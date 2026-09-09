@@ -1,7 +1,7 @@
 from utils import *
 from cliques import *
 from train import *
-from channel import received_graph
+from channel import clean_reliability, simulate_channel
 
 from collections import defaultdict
 def get_node2neighbors(all_sets):
@@ -45,13 +45,23 @@ if __name__ == '__main__':
     graphs = load_graphs(args, logger) # load original graph data
     if args.channel != 'clean':
         clean_edges = graphs['G_test'].number_of_edges()
-        graphs['G_test'] = received_graph(
-            graphs['G_test'], args.snr_db, args.channel, seed=args.channel_seed,
-            max_background_pairs=args.max_background_pairs, tau_e=args.channel_tau_e,
-            beta=args.channel_beta, temperature=args.channel_temperature,
-        )
+        test_observation = simulate_channel(
+            graphs['G_test'], args.snr_db, args.channel, tau_e=args.channel_tau_e,
+            seed=args.channel_seed, max_background_pairs=args.max_background_pairs,
+            beta=args.channel_beta, temperature=args.channel_temperature)
+        graphs['G_test'] = test_observation.graph
         logger.info('Channel %s at %.1f dB: test projection edges %d -> %d',
                     args.channel, args.snr_db, clean_edges, graphs['G_test'].number_of_edges())
+    if args.soft_reliability:
+        if args.channel == 'clean':
+            graphs['edge_reliability_train'] = clean_reliability(graphs['G_train'])
+            graphs['edge_reliability_test'] = clean_reliability(graphs['G_test'])
+        else:
+            graphs['edge_reliability_test'] = test_observation.reliability
+            graphs['edge_reliability_train'] = simulate_channel(
+                graphs['G_train'], args.snr_db, args.channel, tau_e=args.channel_tau_e,
+                seed=args.channel_seed + 1, max_background_pairs=args.max_background_pairs,
+                beta=args.channel_beta, temperature=args.channel_temperature).reliability
     cliques = compute_cliques(graphs, args, logger) # cliques operations
     dataloader = DataLoader(graphs, cliques, args, logger)  # extract features, prepare labels
     train(dataloader, args, logger)
