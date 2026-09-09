@@ -52,6 +52,10 @@ def get_args():
     parser.add_argument('--snr_db', type=float, default=60.0, help='channel SNR in dB')
     parser.add_argument('--channel_seed', type=int, default=123, help='received-graph RNG seed')
     parser.add_argument('--max_background_pairs', type=int, default=10000, help='sampled non-edges for channel false positives')
+    parser.add_argument('--channel_tau_e', type=float, default=0.58, help='posterior hard-edge threshold')
+    parser.add_argument('--channel_beta', type=float, default=1.0, help='channel LLR scale')
+    parser.add_argument('--channel_temperature', type=float, default=1.0, help='channel posterior temperature')
+    parser.add_argument('--enable_cfinder', action='store_true', help='run CFinder baseline (disabled by default)')
 
     try:
         args = parser.parse_args()

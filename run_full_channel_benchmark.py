@@ -26,6 +26,7 @@ def parse_args():
     parser.add_argument("--output", default="results_channel_full_awgn_0_20_step2")
     parser.add_argument("--channel", choices=("awgn", "rayleigh"), default="awgn")
     parser.add_argument("--exclude-datasets", nargs="*", default=())
+    parser.add_argument("--snrs", type=int, nargs="*", default=SNRS)
     return parser.parse_args()
 
 
@@ -38,9 +39,9 @@ def main():
             rows = [r for r in csv.DictReader(h) if str(r["returncode"]) == "0"]
     successful_methods = {}
     for row in rows:
-        key = (row["dataset"], int(row["snr_db"]))
+        key = (row["dataset"], row["channel"].upper(), int(row["snr_db"]))
         successful_methods.setdefault(key, set()).add(row["method"])
-    done = {(r["dataset"], int(r["snr_db"])) for r in rows if r["method"] == "SHyRe"}
+    done = {key for key, methods in successful_methods.items() if REQUIRED_METHODS <= methods}
 
     def persist(message):
         with lock:
@@ -71,7 +72,8 @@ def main():
     if unknown:
         raise ValueError(f"Unknown datasets to exclude: {sorted(unknown)}")
     datasets = [dataset for dataset in DATASETS if dataset not in excluded]
-    cells = [(dataset, snr) for dataset in datasets for snr in SNRS if (dataset, snr) not in done]
+    cells = [(dataset, snr) for dataset in datasets for snr in args.snrs
+             if (dataset, args.channel.upper(), snr) not in done]
     persist(f"RUN workers={args.workers} scheduled_cells={len(cells)}")
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         futures = [pool.submit(run, cell) for cell in cells]

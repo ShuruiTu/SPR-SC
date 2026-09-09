@@ -28,10 +28,10 @@ def train(dataloader, args, logger):
     if X_train2.shape[0] > 0:
         model2.fit(X_train2, y_train2)
     models = (model1, model2)
-    evaluate(models, dataloader, logger)
+    evaluate(models, dataloader, args, logger)
 
 
-def evaluate(models, dataloader, logger):
+def evaluate(models, dataloader, args, logger):
 
     if len(models) > 1:
         model1, model2 = models
@@ -67,7 +67,13 @@ def evaluate(models, dataloader, logger):
     precision, recall, f1, jaccard = get_performance_wrt_ground_truth(communities_demon, dataloader.graphs['simplicies_test'])
     logger.info('Baseline: Demon precision {:.4f}, recall {:.4f}, f1 {:.4f}, jaccard {:.4f} '.format(precision, recall, f1, jaccard))
 
-    logger.info('Baseline: CFinder skipped (disabled for channel-SNR benchmark).')
+    if args.enable_cfinder:
+        communities_kclique, best_k = community.get_kclique_communities(
+            dataloader.graphs['G_test'], dataloader.graphs['G_test'], dataloader.graphs['simplicies_train'])
+        precision, recall, f1, jaccard = get_performance_wrt_ground_truth(communities_kclique, dataloader.graphs['simplicies_test'])
+        logger.info('Baseline: CFinder (k={}) precision {:.4f}, recall {:.4f}, f1 {:.4f}, jaccard {:.4f} '.format(best_k, precision, recall, f1, jaccard))
+    else:
+        logger.info('Baseline: CFinder skipped (disabled for channel-SNR benchmark).')
 
 
 def get_performance_wrt_ground_truth(reconstructed, ground_truth):

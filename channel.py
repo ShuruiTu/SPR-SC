@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import math
 import random
-from itertools import chain, combinations
+from itertools import chain
 
 import networkx as nx
 
@@ -30,41 +30,44 @@ def _llr(y: complex, variance: float) -> float:
     return _logsumexp(one) - _logsumexp(zero)
 
 
-def received_graph(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", threshold: float = 0.5,
-                   seed: int = 123, max_background_pairs: int = 10000) -> nx.Graph:
-    """Transmit projection-edge presence through normalized 16-QAM.
+def _sigmoid(value: float) -> float:
+    value = max(-60.0, min(60.0, value))
+    return 1.0 / (1.0 + math.exp(-value))
 
-    Every clean edge is transmitted; a reproducible sample of non-edges models
-    false positives without quadratic work on large SHyRe datasets.  At high
-    SNR the hard graph converges to the clean projection.
+
+def received_graph(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", tau_e: float = 0.58,
+                   seed: int = 123, max_background_pairs: int = 10000, beta: float = 1.0,
+                   temperature: float = 1.0, edge_prior: float | None = None) -> nx.Graph:
+    """Transmit projection edges through 16-QAM and return a hard received graph.
+
+    This is the SHyRe adapter for the original SPR-SC posterior decision rule:
+    the exact QAM LLR is combined with a sparse edge prior, beta scaling and
+    temperature calibration before thresholding at ``tau_e``.  Only a bounded
+    random sample of non-edges is transmitted; it never enumerates all pairs.
     """
     rng = random.Random(seed)
     nodes = list(clean_graph.nodes())
-    clean = {tuple(sorted(e)) for e in clean_graph.edges()}
-    # Do not materialize every O(|V|^2) non-edge: this can exhaust memory on
-    # large projections before any SHyRe reconstruction work begins.
+    clean = {tuple(sorted(edge)) for edge in clean_graph.edges()}
     possible_pairs = len(nodes) * (len(nodes) - 1) // 2
     nonedge_count = max(0, possible_pairs - len(clean))
-    if max_background_pairs is None or max_background_pairs >= nonedge_count:
-        background_pairs = (pair for pair in combinations(nodes, 2) if pair not in clean)
-    else:
-        target = min(max_background_pairs, nonedge_count)
-        sampled = set()
-        attempts = 0
-        max_attempts = max(target * 40, 1000)
-        while len(sampled) < target and attempts < max_attempts:
-            u, v = rng.sample(nodes, 2)
-            pair = (u, v) if u < v else (v, u)
-            if pair not in clean:
-                sampled.add(pair)
-            attempts += 1
-        if len(sampled) < target:
-            for pair in combinations(nodes, 2):
-                if pair not in clean:
-                    sampled.add(pair)
-                    if len(sampled) == target:
-                        break
-        background_pairs = sampled
+    if edge_prior is None:
+        edge_prior = len(clean) / max(possible_pairs, 1)
+    edge_prior = min(max(edge_prior, 1e-4), 1.0 - 1e-4)
+    prior_logit = math.log(edge_prior / (1.0 - edge_prior))
+
+    # ``None`` deliberately means no sampled background pairs: all-pairs
+    # transmission is not permitted in this scalable received-graph adapter.
+    target = min(max(0, int(max_background_pairs or 0)), nonedge_count)
+    background_pairs = set()
+    attempts = 0
+    max_attempts = max(100, target * 30)
+    while len(background_pairs) < target and attempts < max_attempts and len(nodes) >= 2:
+        u, v = rng.sample(nodes, 2)
+        edge = (u, v) if u < v else (v, u)
+        if edge not in clean:
+            background_pairs.add(edge)
+        attempts += 1
+
     n0 = 10.0 ** (-snr_db / 10.0)
     received = nx.Graph(); received.add_nodes_from(nodes)
     for edge in chain(clean, background_pairs):
@@ -78,7 +81,12 @@ def received_graph(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", t
         noise = complex(rng.gauss(0, math.sqrt(n0 / 2)), rng.gauss(0, math.sqrt(n0 / 2)))
         y = h * x + noise
         equalized = y / h if abs(h) > 1e-10 else y
-        probability = 1.0 / (1.0 + math.exp(-max(-60.0, min(60.0, _llr(equalized, n0 / max(abs(h) ** 2, 1e-12))))))
-        if probability >= threshold:
+        sigma_eff = n0 / max(abs(h) ** 2, 1e-12)
+        posterior = _sigmoid((prior_logit + beta * _llr(equalized, sigma_eff)) / max(temperature, 1e-4))
+        if posterior >= tau_e:
             received.add_edge(*edge)
+    received_edges = {tuple(sorted(edge)) for edge in received.edges()}
+    if received_edges == clean:
+        # Preserve the clean graph's insertion order for order-sensitive baselines.
+        return clean_graph.copy()
     return received

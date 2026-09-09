@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+log/
+results_channel_*/
+data/*/*.pkl
+results_cfinder_validation/

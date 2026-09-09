@@ -47,7 +47,8 @@ if __name__ == '__main__':
         clean_edges = graphs['G_test'].number_of_edges()
         graphs['G_test'] = received_graph(
             graphs['G_test'], args.snr_db, args.channel, seed=args.channel_seed,
-            max_background_pairs=args.max_background_pairs,
+            max_background_pairs=args.max_background_pairs, tau_e=args.channel_tau_e,
+            beta=args.channel_beta, temperature=args.channel_temperature,
         )
         logger.info('Channel %s at %.1f dB: test projection edges %d -> %d',
                     args.channel, args.snr_db, clean_edges, graphs['G_test'].number_of_edges())
