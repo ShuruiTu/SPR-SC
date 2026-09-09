@@ -1,0 +1,27 @@
+2026-09-07 16:02:17,737 - root - INFO - Create log file at log/school2/school2-60000-cou-1788768137.737677.log
+2026-09-07 16:02:17,738 - root - INFO - Command line executed: python main.py --dataset school2 --beta 60000 --features count
+2026-09-07 16:02:17,738 - root - INFO - Full args parsed:
+2026-09-07 16:02:17,738 - root - INFO - Namespace(dataset='school2', beta=60000, features='count', model='mlp', epochs=2000, lr=0.0001, setting='f', label_rate=0.1, ablation=0, seed=123, use_c=1, jobs=1, save_features=0, data_dir='./data/', log_dir='log', downsample=0, max_child_size=1, ext=0)
+2026-09-07 16:02:17,764 - root - INFO - Finish loading graphs.
+2026-09-07 16:02:17,764 - root - INFO - Nodes train: 327, test: 327
+2026-09-07 16:02:17,764 - root - INFO - Simplicies train: 3909, test: 3909
+2026-09-07 16:02:17,764 - root - INFO - Start computing cliques
+2026-09-07 16:02:17,764 - root - INFO - Couldn't find cache for max cliques train
+2026-09-07 16:02:17,787 - root - INFO - Number of maximum cliques:3513
+2026-09-07 16:02:17,829 - root - INFO - Couldn't find cache for max cliques test
+2026-09-07 16:02:17,851 - root - INFO - Number of maximum cliques:3279
+2026-09-07 16:02:17,889 - root - INFO - test nodes 327 hyperedges 3909 avg size 2.3210539779994885 std 0.5232084288484576 avg degree 27.74617737003058 max cliques 3279
+2026-09-07 16:02:17,889 - root - INFO - Breakdown of test hyperedges (max+small) 167 + 3742
+2026-09-07 16:02:17,889 - root - INFO - Intersection 155 out of 956 3279
+2026-09-07 16:02:17,889 - root - INFO - support cliques train:970 - test: 956
+2026-09-07 16:02:17,889 - root - INFO - Optimizing clique sampler .. 
+2026-09-07 16:02:17,894 - root - INFO - Cache for rho not found. Computing rho ...
+2026-09-07 16:02:19,288 - root - INFO - [(2, 2), (3, 2), (4, 2), (11, 2), (5, 2), (4, 3), (3, 3), (11, 3), (5, 3), (9, 2), (6, 3), (4, 4), (6, 2), (9, 3)]
+2026-09-07 16:02:19,288 - root - INFO - Optimize Clique Sampler: #hyperedges collected:3568, recall: 0.9127654131491431, efficiency:0.05946666666666667
+2026-09-07 16:02:19,350 - root - INFO - Clique analysis done.
+2026-09-07 16:02:19,357 - root - INFO - train: 14680 unique candidates out of 59994 sampled candidates
+2026-09-07 16:02:19,491 - root - INFO - test: 14376 unique candidates out of 54819 sampled candidates
+2026-09-07 16:02:19,617 - root - INFO - test max cliques 3279, nested cliques 13461
+2026-09-07 16:02:19,617 - root - INFO - test real max cliques in search universe: 167
+2026-09-07 16:02:19,618 - root - INFO - test real smaller cliques in search universe: 3444 3444
+2026-09-07 16:02:22,187 - root - INFO - Our Performance: precision 0.7253, recall 0.6861, f1 0.7051 jaccard 0.5446

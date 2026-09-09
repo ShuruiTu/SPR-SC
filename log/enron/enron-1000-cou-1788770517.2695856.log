@@ -1,0 +1,27 @@
+2026-09-07 16:41:57,269 - root - INFO - Create log file at log/enron/enron-1000-cou-1788770517.2695856.log
+2026-09-07 16:41:57,269 - root - INFO - Command line executed: python main.py --dataset enron --beta 1000 --features count
+2026-09-07 16:41:57,270 - root - INFO - Full args parsed:
+2026-09-07 16:41:57,270 - root - INFO - Namespace(dataset='enron', beta=1000, features='count', model='mlp', epochs=2000, lr=0.0001, setting='f', label_rate=0.1, ablation=0, seed=123, use_c=1, jobs=1, save_features=0, data_dir='./data/', log_dir='log', downsample=0, max_child_size=1, ext=0)
+2026-09-07 16:41:57,278 - root - INFO - Finish loading graphs.
+2026-09-07 16:41:57,278 - root - INFO - Nodes train: 141, test: 142
+2026-09-07 16:41:57,278 - root - INFO - Simplicies train: 756, test: 756
+2026-09-07 16:41:57,278 - root - INFO - Start computing cliques
+2026-09-07 16:41:57,278 - root - INFO - Couldn't find cache for max cliques train
+2026-09-07 16:41:57,282 - root - INFO - Number of maximum cliques:319
+2026-09-07 16:41:57,288 - root - INFO - Couldn't find cache for max cliques test
+2026-09-07 16:41:57,293 - root - INFO - Number of maximum cliques:362
+2026-09-07 16:41:57,301 - root - INFO - test nodes 142 hyperedges 756 avg size 3.0066137566137567 std 1.9568651812499842 avg degree 16.007042253521128 max cliques 362
+2026-09-07 16:41:57,301 - root - INFO - Breakdown of test hyperedges (max+small) 45 + 711
+2026-09-07 16:41:57,301 - root - INFO - Intersection 42 out of 166 362
+2026-09-07 16:41:57,301 - root - INFO - support cliques train:155 - test: 166
+2026-09-07 16:41:57,301 - root - INFO - Optimizing clique sampler .. 
+2026-09-07 16:41:57,302 - root - INFO - Cache for rho not found. Computing rho ...
+2026-09-07 16:41:57,327 - root - INFO - [(2, 2), (16, 16), (3, 2), (15, 1), (15, 2), (4, 2), (4, 4), (13, 13), (10, 10), (3, 3), (5, 2), (12, 12), (11, 11), (8, 8)]
+2026-09-07 16:41:57,327 - root - INFO - Optimize Clique Sampler: #hyperedges collected:243, recall: 0.32142857142857145, efficiency:0.243
+2026-09-07 16:41:57,329 - root - INFO - Clique analysis done.
+2026-09-07 16:41:57,329 - root - INFO - train: 679 unique candidates out of 1000 sampled candidates
+2026-09-07 16:41:57,346 - root - INFO - test: 746 unique candidates out of 970 sampled candidates
+2026-09-07 16:41:57,361 - root - INFO - test max cliques 362, nested cliques 557
+2026-09-07 16:41:57,361 - root - INFO - test real max cliques in search universe: 45
+2026-09-07 16:41:57,362 - root - INFO - test real smaller cliques in search universe: 184 184
+2026-09-07 16:42:00,602 - root - INFO - Our Performance: precision 0.4850, recall 0.1495, f1 0.2285 jaccard 0.1290

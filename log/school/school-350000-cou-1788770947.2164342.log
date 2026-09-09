@@ -1,0 +1,32 @@
+2026-09-07 16:49:07,216 - root - INFO - Create log file at log/school/school-350000-cou-1788770947.2164342.log
+2026-09-07 16:49:07,216 - root - INFO - Command line executed: python main.py --dataset school --beta 350000 --features count
+2026-09-07 16:49:07,216 - root - INFO - Full args parsed:
+2026-09-07 16:49:07,216 - root - INFO - Namespace(dataset='school', beta=350000, features='count', model='mlp', epochs=2000, lr=0.0001, setting='f', label_rate=0.1, ablation=0, seed=123, use_c=1, jobs=1, save_features=0, data_dir='./data/', log_dir='log', downsample=0, max_child_size=1, ext=0)
+2026-09-07 16:49:07,255 - root - INFO - Finish loading graphs.
+2026-09-07 16:49:07,255 - root - INFO - Nodes train: 242, test: 242
+2026-09-07 16:49:07,255 - root - INFO - Simplicies train: 6352, test: 6352
+2026-09-07 16:49:07,255 - root - INFO - Start computing cliques
+2026-09-07 16:49:07,255 - root - INFO - Found cache for max cliques train
+2026-09-07 16:49:07,260 - root - INFO - Number of maximum cliques:15119
+2026-09-07 16:49:07,544 - root - INFO - Found cache for max cliques test
+2026-09-07 16:49:07,547 - root - INFO - Number of maximum cliques:15017
+2026-09-07 16:49:07,864 - root - INFO - test nodes 242 hyperedges 6352 avg size 2.420654911838791 std 0.5512194626711862 avg degree 63.53719008264463 max cliques 15017
+2026-09-07 16:49:07,865 - root - INFO - Breakdown of test hyperedges (max+small) 19 + 6333
+2026-09-07 16:49:07,865 - root - INFO - Intersection 12 out of 916 15017
+2026-09-07 16:49:07,865 - root - INFO - support cliques train:934 - test: 916
+2026-09-07 16:49:07,865 - root - INFO - Optimizing clique sampler .. 
+2026-09-07 16:49:07,889 - root - INFO - Found cache for rho.
+2026-09-07 16:49:07,903 - root - INFO - [(2, 2), (3, 2), (4, 2), (5, 2), (16, 2), (3, 3), (4, 3), (16, 3), (13, 2), (5, 3), (13, 3), (12, 2), (6, 3), (6, 2), (8, 3), (9, 2)]
+2026-09-07 16:49:07,904 - root - INFO - Optimize Clique Sampler: #hyperedges collected:5807, recall: 0.9142002518891688, efficiency:0.016591428571428573
+2026-09-07 16:49:08,275 - root - INFO - Clique analysis done.
+2026-09-07 16:49:08,467 - root - INFO - train: 41928 unique candidates out of 349993 sampled candidates
+2026-09-07 16:49:08,994 - root - INFO - test: 39955 unique candidates out of 413476 sampled candidates
+2026-09-07 16:49:09,490 - root - INFO - test max cliques 15017, nested cliques 39766
+2026-09-07 16:49:09,490 - root - INFO - test real max cliques in search universe: 19
+2026-09-07 16:49:09,493 - root - INFO - test real smaller cliques in search universe: 5688 5688
+2026-09-07 16:49:15,031 - root - INFO - Our Performance: precision 0.6836, recall 0.5595, f1 0.6154 jaccard 0.4444
+2026-09-07 16:49:15,032 - root - INFO - Baseline: Bayesian-MDL skipped (disabled for this runtime).
+2026-09-07 16:49:15,033 - root - INFO - Baseline: Max Clique precision 0.0013, recall 0.0030, f1 0.0018, jaccard 0.0009 
+2026-09-07 16:49:15,213 - root - INFO - Baseline: ECC precision 0.1631, recall 0.0217, f1 0.0383, jaccard 0.0195 
+2026-09-07 16:49:16,266 - root - INFO - Baseline: Demon precision 0.0243, recall 0.0009, f1 0.0018, jaccard 0.0009 
+2026-09-07 16:54:51,348 - root - INFO - Baseline: CFinder (k=3) precision 0.0000, recall 0.0000, f1 0.0000, jaccard 0.0000 

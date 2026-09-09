@@ -1,0 +1,10 @@
+{
+  "protocol": "original SHyRe count; seed=123; Bayesian-MDL disabled",
+  "Enron": {"beta": 1000, "f1": 0.2285},
+  "Foursquare": {"beta": 20000, "f1": 0.8521},
+  "Hosts-Virus": {"beta": 6000, "f1": 0.6593},
+  "P.School": {"beta": 350000, "f1": 0.6154},
+  "H.School": {"beta": 60000, "f1": 0.7051},
+  "Directors": {"beta": 800, "f1": 1.0},
+  "Crimes": {"beta": 1000, "f1": 0.8884}
+}

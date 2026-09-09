@@ -1,0 +1,12 @@
+2026-09-07 19:39:04,929 - root - INFO - Create log file at log/foursquare/foursquare-20000-cou-1788781144.9289086.log
+2026-09-07 19:39:04,929 - root - INFO - Command line executed: python main.py --dataset foursquare --beta 20000 --features count --channel awgn --snr_db 10
+2026-09-07 19:39:04,929 - root - INFO - Full args parsed:
+2026-09-07 19:39:04,929 - root - INFO - Namespace(dataset='foursquare', beta=20000, features='count', model='mlp', epochs=2000, lr=0.0001, setting='f', label_rate=0.1, ablation=0, seed=123, use_c=1, jobs=1, save_features=0, data_dir='./data/', log_dir='log', downsample=0, max_child_size=1, ext=0, channel='awgn', snr_db=10.0, channel_seed=123, max_background_pairs=10000)
+2026-09-07 19:39:04,995 - root - INFO - Finish loading graphs.
+2026-09-07 19:39:04,995 - root - INFO - Nodes train: 2356, test: 2334
+2026-09-07 19:39:04,995 - root - INFO - Simplicies train: 1026, test: 1019
+2026-09-07 19:39:06,006 - root - INFO - Channel awgn at 10.0 dB: test projection edges 38292 -> 37172
+2026-09-07 19:39:06,007 - root - INFO - Start computing cliques
+2026-09-07 19:39:06,007 - root - INFO - Couldn't find cache for max cliques train
+2026-09-07 19:39:06,254 - root - INFO - Number of maximum cliques:9267
+2026-09-07 19:39:06,364 - root - INFO - Couldn't find cache for max cliques test

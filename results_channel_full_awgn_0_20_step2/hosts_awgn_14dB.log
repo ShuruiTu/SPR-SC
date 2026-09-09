@@ -1,0 +1,53 @@
+INFO:root:Create log file at log/hosts/hosts-6000-cou-1788865831.9708002.log
+INFO:root:Command line executed: python main.py --dataset hosts --beta 6000 --features count --channel awgn --snr_db 14
+INFO:root:Full args parsed:
+INFO:root:Namespace(dataset='hosts', beta=6000, features='count', model='mlp', epochs=2000, lr=0.0001, setting='f', label_rate=0.1, ablation=0, seed=123, use_c=1, jobs=1, save_features=0, data_dir='./data/', log_dir='log', downsample=0, max_child_size=1, ext=0, channel='awgn', snr_db=14.0, channel_seed=123, max_background_pairs=10000)
+INFO:root:Finish loading graphs.
+INFO:root:Nodes train: 591, test: 466
+INFO:root:Simplicies train: 204, test: 218
+INFO:root:Channel awgn at 14.0 dB: test projection edges 9205 -> 9206
+INFO:root:Start computing cliques
+INFO:root:Couldn't find cache for max cliques train
+INFO:root:Number of maximum cliques:383
+INFO:root:Couldn't find cache for max cliques test
+INFO:root:Number of maximum cliques:3783
+INFO:root:test nodes 466 hyperedges 218 avg size 5.564220183486238 std 8.957494150492446 avg degree 2.6030042918454934 max cliques 3783
+INFO:root:Breakdown of test hyperedges (max+small) 83 + 135
+INFO:root:Intersection 83 out of 229 3783
+INFO:root:support cliques train:125 - test: 229
+INFO:root:Optimizing clique sampler .. 
+INFO:root:Found cache for rho.
+INFO:root:[(140, 140), (50, 50), (44, 44), (37, 37), (35, 35), (27, 27), (26, 26), (2, 2), (1, 1), (3, 3), (23, 23), (22, 22), (20, 20), (5, 5), (25, 1), (4, 4), (24, 24), (8, 8), (15, 15), (10, 10), (13, 13), (6, 6), (35, 1), (12, 12), (18, 18), (17, 17), (16, 16), (9, 9), (7, 7), (14, 14), (3, 1), (11, 11), (5, 2), (22, 1), (50, 1), (26, 1), (27, 1), (2, 1), (4, 2), (24, 1), (6, 2), (5, 3), (6, 3), (18, 1), (16, 15), (6, 4), (140, 1), (25, 2), (7, 6), (6, 5), (8, 7), (7, 5), (27, 2), (11, 2)]
+INFO:root:Optimize Clique Sampler: #hyperedges collected:179, recall: 0.8774509803921569, efficiency:0.029833333333333333
+INFO:root:Clique analysis done.
+INFO:root:train: 4497 unique candidates out of 5959 sampled candidates
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'infomap', 'wurlitzer', 'bayanpy', 'graph_tool', 'leidenalg'}
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'hidef', 'torch', 'ASLPAw', 'pyclustering'}
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'scikit-network', 'leidenalg', 'infomap', 'wurlitzer'}
+Sanity check failed, reindexing the hypergraphs ...
+Sanity check failed, reindexing the hypergraphs ...
+number of nodes in construct graph 591
+number of nodes in construct graph 466
+(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (22, 22), (31, 31), (42, 41), (46, 44), (49, 46), (53, 48), (65, 54), (90, 64), (106, 70), (109, 71), (139, 79), (160, 84), (190, 91), (211, 95), (248, 102), (283, 108), (303, 111), (310, 112), (318, 113), (326, 114), (360, 118), (387, 120), (402, 121), (435, 123), (469, 125), (589, 131), (655, 134), (705, 136), (731, 137), (758, 138), (788, 139), (884, 142), (956, 144), (1511, 154), (1631, 156), (2371, 162), (2497, 163), (2625, 164), (3180, 168), (3320, 169), (3620, 171), (3809, 172), (4031, 173), (4271, 174), (4838, 176), (5189, 177), 
+(0, 0), (0, 0), (512, 0), (512, 0), (516, 0), (516, 0), (522, 0), (529, 0), (555, 12), (562, 19), (603, 33), (613, 33), (655, 33), (677, 33), (704, 45), (704, 45), (727, 56), (736, 56), (749, 58), (780, 58), (794, 60), (811, 61), (840, 66), (840, 66), (857, 68), (888, 69), (900, 69), (927, 69), (938, 72), (977, 79), (1000, 79), (1123, 93), (1134, 97), (1404, 110), (2328, 120), (27928, 122), (28110, 127), (28272, 129), (28324, 137), (28462, 139), (28678, 140), (29113, 142), (29383, 146), (29963, 149), (30521, 150), (30953, 150), (31388, 152), (31388, 152), (31388, 152), (31661, 152), (31835, 153), (31939, 154), (32758, 154), (34864, 159), 
+
+0it [00:00, ?it/s]
+4504it [00:00, 181058.93it/s]
+INFO:root:test: 5897 unique candidates out of 35084 sampled candidates
+
+0it [00:00, ?it/s]
+974it [00:00, 9738.52it/s]
+1954it [00:00, 9768.00it/s]
+2935it [00:00, 9782.12it/s]
+6560it [00:00, 20223.96it/s]
+8669it [00:00, 21066.23it/s]
+INFO:root:test max cliques 3783, nested cliques 4886
+INFO:root:test real max cliques in search universe: 83
+INFO:root:test real smaller cliques in search universe: 77 77
+INFO:root:Our Performance: precision 0.3180, recall 0.4128, f1 0.3593 jaccard 0.2190
+INFO:root:Baseline: Bayesian-MDL skipped (disabled for this runtime).
+INFO:root:Baseline: Max Clique precision 0.0219, recall 0.3807, f1 0.0415, jaccard 0.0212 
+INFO:root:Baseline: ECC precision 0.3348, recall 0.3532, f1 0.3438, jaccard 0.2075 
+INFO:root:Baseline: Demon precision 0.0936, recall 0.0734, f1 0.0823, jaccard 0.0429 
+INFO:root:Baseline: CFinder skipped (disabled for channel-SNR benchmark).
+(4121, 9) (4121,) 72

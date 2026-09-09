@@ -1,0 +1,116 @@
+2026-09-08T18:54:55.791257+08:00 RUN workers=3 scheduled_cells=55
+2026-09-08T18:54:55.792566+08:00 START dataset=hosts channel=awgn snr_db=0
+2026-09-08T18:54:55.794092+08:00 START dataset=hosts channel=awgn snr_db=2
+2026-09-08T18:54:55.795012+08:00 START dataset=hosts channel=awgn snr_db=4
+2026-09-08T18:55:23.294182+08:00 DONE dataset=hosts channel=awgn snr_db=0 exit=0 metrics=4
+2026-09-08T18:55:23.294845+08:00 START dataset=hosts channel=awgn snr_db=6
+2026-09-08T18:55:56.752976+08:00 DONE dataset=hosts channel=awgn snr_db=2 exit=0 metrics=4
+2026-09-08T18:55:56.753543+08:00 START dataset=hosts channel=awgn snr_db=8
+2026-09-08T18:58:48.622769+08:00 DONE dataset=hosts channel=awgn snr_db=4 exit=0 metrics=4
+2026-09-08T18:58:48.623960+08:00 START dataset=hosts channel=awgn snr_db=10
+2026-09-08T19:02:57.051299+08:00 DONE dataset=hosts channel=awgn snr_db=6 exit=0 metrics=4
+2026-09-08T19:02:57.052483+08:00 START dataset=hosts channel=awgn snr_db=12
+2026-09-08T19:10:30.487406+08:00 DONE dataset=hosts channel=awgn snr_db=12 exit=0 metrics=4
+2026-09-08T19:10:30.488683+08:00 START dataset=hosts channel=awgn snr_db=14
+2026-09-08T19:10:41.397102+08:00 DONE dataset=hosts channel=awgn snr_db=14 exit=0 metrics=4
+2026-09-08T19:10:41.398378+08:00 START dataset=hosts channel=awgn snr_db=16
+2026-09-08T19:10:48.653544+08:00 DONE dataset=hosts channel=awgn snr_db=16 exit=0 metrics=4
+2026-09-08T19:10:48.655647+08:00 START dataset=hosts channel=awgn snr_db=18
+2026-09-08T19:10:55.918009+08:00 DONE dataset=hosts channel=awgn snr_db=18 exit=0 metrics=4
+2026-09-08T19:10:55.918768+08:00 START dataset=hosts channel=awgn snr_db=20
+2026-09-08T19:11:03.211134+08:00 DONE dataset=hosts channel=awgn snr_db=20 exit=0 metrics=4
+2026-09-08T19:11:03.212120+08:00 START dataset=school channel=awgn snr_db=0
+2026-09-08T19:11:14.622358+08:00 DONE dataset=school channel=awgn snr_db=0 exit=0 metrics=4
+2026-09-08T19:11:14.625290+08:00 START dataset=school channel=awgn snr_db=2
+2026-09-08T19:11:25.916173+08:00 DONE dataset=school channel=awgn snr_db=2 exit=0 metrics=4
+2026-09-08T19:11:25.918886+08:00 START dataset=school channel=awgn snr_db=4
+2026-09-08T19:11:37.330214+08:00 DONE dataset=school channel=awgn snr_db=4 exit=0 metrics=4
+2026-09-08T19:11:37.331648+08:00 START dataset=school channel=awgn snr_db=6
+2026-09-08T19:11:48.775841+08:00 DONE dataset=school channel=awgn snr_db=6 exit=0 metrics=4
+2026-09-08T19:11:48.777354+08:00 START dataset=school channel=awgn snr_db=8
+2026-09-08T19:12:00.224310+08:00 DONE dataset=school channel=awgn snr_db=8 exit=0 metrics=4
+2026-09-08T19:12:00.225135+08:00 START dataset=school channel=awgn snr_db=10
+2026-09-08T19:12:11.630515+08:00 DONE dataset=school channel=awgn snr_db=10 exit=0 metrics=4
+2026-09-08T19:12:11.632029+08:00 START dataset=school channel=awgn snr_db=12
+2026-09-08T19:12:23.547197+08:00 DONE dataset=school channel=awgn snr_db=12 exit=0 metrics=4
+2026-09-08T19:12:23.548883+08:00 START dataset=school channel=awgn snr_db=14
+2026-09-08T19:12:34.995415+08:00 DONE dataset=school channel=awgn snr_db=14 exit=0 metrics=4
+2026-09-08T19:12:34.997603+08:00 START dataset=school channel=awgn snr_db=16
+2026-09-08T19:12:46.401012+08:00 DONE dataset=school channel=awgn snr_db=16 exit=0 metrics=4
+2026-09-08T19:12:46.402579+08:00 START dataset=school channel=awgn snr_db=18
+2026-09-08T19:12:58.029456+08:00 DONE dataset=school channel=awgn snr_db=18 exit=0 metrics=4
+2026-09-08T19:12:58.031707+08:00 START dataset=school channel=awgn snr_db=20
+2026-09-08T19:12:58.711929+08:00 DONE dataset=hosts channel=awgn snr_db=8 exit=0 metrics=4
+2026-09-08T19:12:58.712747+08:00 START dataset=school2 channel=awgn snr_db=0
+2026-09-08T19:13:04.644853+08:00 DONE dataset=school2 channel=awgn snr_db=0 exit=0 metrics=4
+2026-09-08T19:13:04.646482+08:00 START dataset=school2 channel=awgn snr_db=2
+2026-09-08T19:13:09.556306+08:00 DONE dataset=school channel=awgn snr_db=20 exit=0 metrics=4
+2026-09-08T19:13:09.558887+08:00 START dataset=school2 channel=awgn snr_db=4
+2026-09-08T19:13:10.586591+08:00 DONE dataset=school2 channel=awgn snr_db=2 exit=0 metrics=4
+2026-09-08T19:13:10.588420+08:00 START dataset=school2 channel=awgn snr_db=6
+2026-09-08T19:13:15.422277+08:00 DONE dataset=school2 channel=awgn snr_db=4 exit=0 metrics=4
+2026-09-08T19:13:15.423243+08:00 START dataset=school2 channel=awgn snr_db=8
+2026-09-08T19:13:16.334835+08:00 DONE dataset=school2 channel=awgn snr_db=6 exit=0 metrics=4
+2026-09-08T19:13:16.335896+08:00 START dataset=school2 channel=awgn snr_db=10
+2026-09-08T19:13:21.150716+08:00 DONE dataset=school2 channel=awgn snr_db=8 exit=0 metrics=4
+2026-09-08T19:13:21.151720+08:00 START dataset=school2 channel=awgn snr_db=12
+2026-09-08T19:13:22.050857+08:00 DONE dataset=school2 channel=awgn snr_db=10 exit=0 metrics=4
+2026-09-08T19:13:22.053127+08:00 START dataset=school2 channel=awgn snr_db=14
+2026-09-08T19:13:26.827040+08:00 DONE dataset=school2 channel=awgn snr_db=12 exit=0 metrics=4
+2026-09-08T19:13:26.828495+08:00 START dataset=school2 channel=awgn snr_db=16
+2026-09-08T19:13:27.680018+08:00 DONE dataset=school2 channel=awgn snr_db=14 exit=0 metrics=4
+2026-09-08T19:13:27.681878+08:00 START dataset=school2 channel=awgn snr_db=18
+2026-09-08T19:13:32.475518+08:00 DONE dataset=school2 channel=awgn snr_db=16 exit=0 metrics=4
+2026-09-08T19:13:32.477985+08:00 START dataset=school2 channel=awgn snr_db=20
+2026-09-08T19:13:33.294320+08:00 DONE dataset=school2 channel=awgn snr_db=18 exit=0 metrics=4
+2026-09-08T19:13:33.297736+08:00 START dataset=directors channel=awgn snr_db=0
+2026-09-08T19:13:36.791331+08:00 DONE dataset=directors channel=awgn snr_db=0 exit=0 metrics=4
+2026-09-08T19:13:36.793424+08:00 START dataset=directors channel=awgn snr_db=2
+2026-09-08T19:13:38.093449+08:00 DONE dataset=school2 channel=awgn snr_db=20 exit=0 metrics=4
+2026-09-08T19:13:38.095502+08:00 START dataset=directors channel=awgn snr_db=4
+2026-09-08T19:13:39.935184+08:00 DONE dataset=directors channel=awgn snr_db=2 exit=0 metrics=4
+2026-09-08T19:13:39.937294+08:00 START dataset=directors channel=awgn snr_db=6
+2026-09-08T19:13:40.964340+08:00 DONE dataset=directors channel=awgn snr_db=4 exit=0 metrics=4
+2026-09-08T19:13:40.967965+08:00 START dataset=directors channel=awgn snr_db=8
+2026-09-08T19:13:42.588157+08:00 DONE dataset=directors channel=awgn snr_db=6 exit=0 metrics=4
+2026-09-08T19:13:42.590701+08:00 START dataset=directors channel=awgn snr_db=10
+2026-09-08T19:13:43.423407+08:00 DONE dataset=directors channel=awgn snr_db=8 exit=0 metrics=4
+2026-09-08T19:13:43.424570+08:00 START dataset=directors channel=awgn snr_db=12
+2026-09-08T19:13:44.892253+08:00 DONE dataset=directors channel=awgn snr_db=10 exit=0 metrics=4
+2026-09-08T19:13:44.893361+08:00 START dataset=directors channel=awgn snr_db=14
+2026-09-08T19:13:45.684392+08:00 DONE dataset=directors channel=awgn snr_db=12 exit=0 metrics=4
+2026-09-08T19:13:45.685605+08:00 START dataset=directors channel=awgn snr_db=16
+2026-09-08T19:13:47.116302+08:00 DONE dataset=directors channel=awgn snr_db=14 exit=0 metrics=4
+2026-09-08T19:13:47.118477+08:00 START dataset=directors channel=awgn snr_db=18
+2026-09-08T19:13:47.873258+08:00 DONE dataset=directors channel=awgn snr_db=16 exit=0 metrics=4
+2026-09-08T19:13:47.876973+08:00 START dataset=directors channel=awgn snr_db=20
+2026-09-08T19:13:49.305269+08:00 DONE dataset=directors channel=awgn snr_db=18 exit=0 metrics=4
+2026-09-08T19:13:49.308910+08:00 START dataset=crime channel=awgn snr_db=0
+2026-09-08T19:13:50.071727+08:00 DONE dataset=directors channel=awgn snr_db=20 exit=0 metrics=4
+2026-09-08T19:13:50.073039+08:00 START dataset=crime channel=awgn snr_db=2
+2026-09-08T19:13:53.125924+08:00 DONE dataset=crime channel=awgn snr_db=0 exit=0 metrics=4
+2026-09-08T19:13:53.127093+08:00 START dataset=crime channel=awgn snr_db=4
+2026-09-08T19:13:53.569765+08:00 DONE dataset=crime channel=awgn snr_db=2 exit=0 metrics=4
+2026-09-08T19:13:53.572359+08:00 START dataset=crime channel=awgn snr_db=6
+2026-09-08T19:13:56.363540+08:00 DONE dataset=crime channel=awgn snr_db=4 exit=0 metrics=4
+2026-09-08T19:13:56.366074+08:00 START dataset=crime channel=awgn snr_db=8
+2026-09-08T19:13:56.565125+08:00 DONE dataset=crime channel=awgn snr_db=6 exit=0 metrics=4
+2026-09-08T19:13:56.566540+08:00 START dataset=crime channel=awgn snr_db=10
+2026-09-08T19:13:59.203448+08:00 DONE dataset=crime channel=awgn snr_db=8 exit=0 metrics=4
+2026-09-08T19:13:59.204734+08:00 START dataset=crime channel=awgn snr_db=12
+2026-09-08T19:13:59.346809+08:00 DONE dataset=crime channel=awgn snr_db=10 exit=0 metrics=4
+2026-09-08T19:13:59.349255+08:00 START dataset=crime channel=awgn snr_db=14
+2026-09-08T19:14:01.808071+08:00 DONE dataset=crime channel=awgn snr_db=12 exit=0 metrics=4
+2026-09-08T19:14:01.810579+08:00 START dataset=crime channel=awgn snr_db=16
+2026-09-08T19:14:01.932433+08:00 DONE dataset=crime channel=awgn snr_db=14 exit=0 metrics=4
+2026-09-08T19:14:01.933822+08:00 START dataset=crime channel=awgn snr_db=18
+2026-09-08T19:14:04.434129+08:00 DONE dataset=crime channel=awgn snr_db=16 exit=0 metrics=4
+2026-09-08T19:14:04.436693+08:00 START dataset=crime channel=awgn snr_db=20
+2026-09-08T19:14:04.476549+08:00 DONE dataset=crime channel=awgn snr_db=18 exit=0 metrics=4
+2026-09-08T19:14:06.970117+08:00 DONE dataset=crime channel=awgn snr_db=20 exit=0 metrics=4
+2026-09-08T19:32:21.655462+08:00 DONE dataset=hosts channel=awgn snr_db=10 exit=0 metrics=4
+2026-09-08T19:32:21.658901+08:00 COMPLETE
+2026-09-08T21:44:07.903789+08:00 RUN workers=1 scheduled_cells=5
+2026-09-08T21:44:07.905404+08:00 START dataset=foursquare channel=awgn snr_db=6
+2026-09-09T06:30:32.248025+08:00 DONE dataset=foursquare channel=awgn snr_db=6 exit=0 metrics=4
+2026-09-09T06:30:32.249616+08:00 START dataset=foursquare channel=awgn snr_db=8

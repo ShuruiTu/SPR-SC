@@ -1,0 +1,13 @@
+2026-09-08 15:53:06,223 - root - INFO - Create log file at log/foursquare/foursquare-20000-cou-1788853986.2230856.log
+2026-09-08 15:53:06,223 - root - INFO - Command line executed: python main.py --dataset foursquare --beta 20000 --features count --channel rayleigh --snr_db 14
+2026-09-08 15:53:06,223 - root - INFO - Full args parsed:
+2026-09-08 15:53:06,223 - root - INFO - Namespace(dataset='foursquare', beta=20000, features='count', model='mlp', epochs=2000, lr=0.0001, setting='f', label_rate=0.1, ablation=0, seed=123, use_c=1, jobs=1, save_features=0, data_dir='./data/', log_dir='log', downsample=0, max_child_size=1, ext=0, channel='rayleigh', snr_db=14.0, channel_seed=123, max_background_pairs=10000)
+2026-09-08 15:53:06,290 - root - INFO - Finish loading graphs.
+2026-09-08 15:53:06,290 - root - INFO - Nodes train: 2356, test: 2334
+2026-09-08 15:53:06,290 - root - INFO - Simplicies train: 1026, test: 1019
+2026-09-08 15:53:06,909 - root - INFO - Channel rayleigh at 14.0 dB: test projection edges 38292 -> 37033
+2026-09-08 15:53:06,909 - root - INFO - Start computing cliques
+2026-09-08 15:53:06,909 - root - INFO - Couldn't find cache for max cliques train
+2026-09-08 15:53:07,159 - root - INFO - Number of maximum cliques:9267
+2026-09-08 15:53:07,276 - root - INFO - Couldn't find cache for max cliques test
+2026-09-08 16:24:34,298 - root - INFO - Number of maximum cliques:254019863

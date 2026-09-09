@@ -1,0 +1,296 @@
+dataset,channel,snr_db,method,f1,returncode,log
+enron,RAYLEIGH,10,SHyRe,0.131,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_10dB.log
+enron,RAYLEIGH,10,Max Clique,0.0077,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_10dB.log
+enron,RAYLEIGH,10,ECC,0.0364,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_10dB.log
+enron,RAYLEIGH,10,DEMON,0.0063,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_10dB.log
+enron,RAYLEIGH,10,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_10dB.log
+enron,RAYLEIGH,8,SHyRe,0.1225,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_8dB.log
+enron,RAYLEIGH,8,Max Clique,0.005,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_8dB.log
+enron,RAYLEIGH,8,ECC,0.0183,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_8dB.log
+enron,RAYLEIGH,8,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_8dB.log
+enron,RAYLEIGH,8,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_8dB.log
+enron,RAYLEIGH,6,SHyRe,0.104,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_6dB.log
+enron,RAYLEIGH,6,Max Clique,0.0025,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_6dB.log
+enron,RAYLEIGH,6,ECC,0.0208,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_6dB.log
+enron,RAYLEIGH,6,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_6dB.log
+enron,RAYLEIGH,6,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_6dB.log
+enron,RAYLEIGH,12,SHyRe,0.1476,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_12dB.log
+enron,RAYLEIGH,12,Max Clique,0.0127,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_12dB.log
+enron,RAYLEIGH,12,ECC,0.0484,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_12dB.log
+enron,RAYLEIGH,12,DEMON,0.0083,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_12dB.log
+enron,RAYLEIGH,12,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_12dB.log
+enron,RAYLEIGH,14,SHyRe,0.1485,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_14dB.log
+enron,RAYLEIGH,14,Max Clique,0.0196,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_14dB.log
+enron,RAYLEIGH,14,ECC,0.0549,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_14dB.log
+enron,RAYLEIGH,14,DEMON,0.0126,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_14dB.log
+enron,RAYLEIGH,14,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_14dB.log
+enron,RAYLEIGH,4,SHyRe,0.0713,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_4dB.log
+enron,RAYLEIGH,4,Max Clique,0.0012,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_4dB.log
+enron,RAYLEIGH,4,ECC,0.0189,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_4dB.log
+enron,RAYLEIGH,4,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_4dB.log
+enron,RAYLEIGH,4,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_4dB.log
+enron,RAYLEIGH,16,SHyRe,0.1544,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_16dB.log
+enron,RAYLEIGH,16,Max Clique,0.0297,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_16dB.log
+enron,RAYLEIGH,16,ECC,0.0711,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_16dB.log
+enron,RAYLEIGH,16,DEMON,0.0273,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_16dB.log
+enron,RAYLEIGH,16,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_16dB.log
+enron,RAYLEIGH,18,SHyRe,0.18,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_18dB.log
+enron,RAYLEIGH,18,Max Clique,0.0395,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_18dB.log
+enron,RAYLEIGH,18,ECC,0.0971,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_18dB.log
+enron,RAYLEIGH,18,DEMON,0.0321,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_18dB.log
+enron,RAYLEIGH,18,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_18dB.log
+enron,RAYLEIGH,20,SHyRe,0.1796,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_20dB.log
+enron,RAYLEIGH,20,Max Clique,0.0451,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_20dB.log
+enron,RAYLEIGH,20,ECC,0.1041,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_20dB.log
+enron,RAYLEIGH,20,DEMON,0.0325,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_20dB.log
+enron,RAYLEIGH,20,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_20dB.log
+enron,RAYLEIGH,2,SHyRe,0.0566,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_2dB.log
+enron,RAYLEIGH,2,Max Clique,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_2dB.log
+enron,RAYLEIGH,2,ECC,0.016,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_2dB.log
+enron,RAYLEIGH,2,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_2dB.log
+enron,RAYLEIGH,2,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_2dB.log
+enron,RAYLEIGH,0,SHyRe,0.053,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_0dB.log
+enron,RAYLEIGH,0,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_0dB.log
+enron,RAYLEIGH,0,ECC,0.0087,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_0dB.log
+enron,RAYLEIGH,0,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_0dB.log
+enron,RAYLEIGH,0,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/enron_rayleigh_0dB.log
+foursquare,RAYLEIGH,0,SHyRe,0.0061,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_0dB.log
+foursquare,RAYLEIGH,0,Max Clique,0.0006,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_0dB.log
+foursquare,RAYLEIGH,0,ECC,0.0362,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_0dB.log
+foursquare,RAYLEIGH,0,DEMON,0.0658,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_0dB.log
+foursquare,RAYLEIGH,2,SHyRe,0.0018,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_2dB.log
+foursquare,RAYLEIGH,2,Max Clique,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_2dB.log
+foursquare,RAYLEIGH,2,ECC,0.045,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_2dB.log
+foursquare,RAYLEIGH,2,DEMON,0.0858,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_2dB.log
+foursquare,RAYLEIGH,4,SHyRe,0.0008,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_4dB.log
+foursquare,RAYLEIGH,4,Max Clique,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_4dB.log
+foursquare,RAYLEIGH,4,ECC,0.0547,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_4dB.log
+foursquare,RAYLEIGH,4,DEMON,0.1083,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_4dB.log
+foursquare,RAYLEIGH,6,SHyRe,0.0004,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_6dB.log
+foursquare,RAYLEIGH,6,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_6dB.log
+foursquare,RAYLEIGH,6,ECC,0.0715,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_6dB.log
+foursquare,RAYLEIGH,6,DEMON,0.1354,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_6dB.log
+foursquare,RAYLEIGH,8,SHyRe,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_8dB.log
+foursquare,RAYLEIGH,8,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_8dB.log
+foursquare,RAYLEIGH,8,ECC,0.1027,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_8dB.log
+foursquare,RAYLEIGH,8,DEMON,0.1723,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/foursquare_rayleigh_8dB.log
+hosts,RAYLEIGH,0,SHyRe,0.0041,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_0dB.log
+hosts,RAYLEIGH,0,Max Clique,0.0002,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_0dB.log
+hosts,RAYLEIGH,0,ECC,0.0081,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_0dB.log
+hosts,RAYLEIGH,0,DEMON,0.0105,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_0dB.log
+hosts,RAYLEIGH,2,SHyRe,0.0012,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_2dB.log
+hosts,RAYLEIGH,2,Max Clique,0.0002,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_2dB.log
+hosts,RAYLEIGH,2,ECC,0.0089,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_2dB.log
+hosts,RAYLEIGH,2,DEMON,0.0128,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_2dB.log
+hosts,RAYLEIGH,4,SHyRe,0.0004,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_4dB.log
+hosts,RAYLEIGH,4,Max Clique,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_4dB.log
+hosts,RAYLEIGH,4,ECC,0.0109,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_4dB.log
+hosts,RAYLEIGH,4,DEMON,0.0153,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_4dB.log
+hosts,RAYLEIGH,6,SHyRe,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_6dB.log
+hosts,RAYLEIGH,6,Max Clique,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_6dB.log
+hosts,RAYLEIGH,6,ECC,0.0157,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_6dB.log
+hosts,RAYLEIGH,6,DEMON,0.0159,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_6dB.log
+hosts,RAYLEIGH,8,SHyRe,0.0004,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_8dB.log
+hosts,RAYLEIGH,8,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_8dB.log
+hosts,RAYLEIGH,8,ECC,0.0287,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_8dB.log
+hosts,RAYLEIGH,8,DEMON,0.0196,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_8dB.log
+hosts,RAYLEIGH,10,SHyRe,0.0002,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_10dB.log
+hosts,RAYLEIGH,10,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_10dB.log
+hosts,RAYLEIGH,10,ECC,0.0419,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_10dB.log
+hosts,RAYLEIGH,10,DEMON,0.023,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_10dB.log
+hosts,RAYLEIGH,12,SHyRe,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_12dB.log
+hosts,RAYLEIGH,12,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_12dB.log
+hosts,RAYLEIGH,12,ECC,0.0642,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_12dB.log
+hosts,RAYLEIGH,12,DEMON,0.0258,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_12dB.log
+hosts,RAYLEIGH,16,SHyRe,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_16dB.log
+hosts,RAYLEIGH,16,Max Clique,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_16dB.log
+hosts,RAYLEIGH,16,ECC,0.1237,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_16dB.log
+hosts,RAYLEIGH,16,DEMON,0.047,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_16dB.log
+hosts,RAYLEIGH,20,SHyRe,0.0464,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_20dB.log
+hosts,RAYLEIGH,20,Max Clique,0.0052,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_20dB.log
+hosts,RAYLEIGH,20,ECC,0.2597,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_20dB.log
+hosts,RAYLEIGH,20,DEMON,0.0896,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_20dB.log
+school,RAYLEIGH,0,SHyRe,0.4404,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_0dB.log
+school,RAYLEIGH,0,Max Clique,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_0dB.log
+school,RAYLEIGH,0,ECC,0.0154,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_0dB.log
+school,RAYLEIGH,0,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_0dB.log
+school,RAYLEIGH,2,SHyRe,0.4675,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_2dB.log
+school,RAYLEIGH,2,Max Clique,0.0004,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_2dB.log
+school,RAYLEIGH,2,ECC,0.0152,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_2dB.log
+school,RAYLEIGH,2,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_2dB.log
+school,RAYLEIGH,4,SHyRe,0.495,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_4dB.log
+school,RAYLEIGH,4,Max Clique,0.0005,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_4dB.log
+school,RAYLEIGH,4,ECC,0.0146,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_4dB.log
+school,RAYLEIGH,4,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_4dB.log
+school,RAYLEIGH,6,SHyRe,0.5205,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_6dB.log
+school,RAYLEIGH,6,Max Clique,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_6dB.log
+school,RAYLEIGH,6,ECC,0.0176,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_6dB.log
+school,RAYLEIGH,6,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_6dB.log
+school,RAYLEIGH,8,SHyRe,0.5412,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_8dB.log
+school,RAYLEIGH,8,Max Clique,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_8dB.log
+school,RAYLEIGH,8,ECC,0.023,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_8dB.log
+school,RAYLEIGH,8,DEMON,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_8dB.log
+school,RAYLEIGH,10,SHyRe,0.565,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_10dB.log
+school,RAYLEIGH,10,Max Clique,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_10dB.log
+school,RAYLEIGH,10,ECC,0.0217,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_10dB.log
+school,RAYLEIGH,10,DEMON,0.0006,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_10dB.log
+school,RAYLEIGH,12,SHyRe,0.5823,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_12dB.log
+school,RAYLEIGH,12,Max Clique,0.0006,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_12dB.log
+school,RAYLEIGH,12,ECC,0.0277,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_12dB.log
+school,RAYLEIGH,12,DEMON,0.0006,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_12dB.log
+school,RAYLEIGH,14,SHyRe,0.5934,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_14dB.log
+school,RAYLEIGH,14,Max Clique,0.0009,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_14dB.log
+school,RAYLEIGH,14,ECC,0.0277,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_14dB.log
+school,RAYLEIGH,14,DEMON,0.0012,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_14dB.log
+school,RAYLEIGH,16,SHyRe,0.6017,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_16dB.log
+school,RAYLEIGH,16,Max Clique,0.001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_16dB.log
+school,RAYLEIGH,16,ECC,0.0292,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_16dB.log
+school,RAYLEIGH,16,DEMON,0.0012,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_16dB.log
+school,RAYLEIGH,18,SHyRe,0.6102,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_18dB.log
+school,RAYLEIGH,18,Max Clique,0.0011,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_18dB.log
+school,RAYLEIGH,18,ECC,0.0278,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_18dB.log
+school,RAYLEIGH,18,DEMON,0.0012,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_18dB.log
+school,RAYLEIGH,20,SHyRe,0.6127,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_20dB.log
+school,RAYLEIGH,20,Max Clique,0.0016,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_20dB.log
+school,RAYLEIGH,20,ECC,0.0382,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_20dB.log
+school,RAYLEIGH,20,DEMON,0.0015,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school_rayleigh_20dB.log
+hosts,RAYLEIGH,18,SHyRe,0.0015,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_18dB.log
+hosts,RAYLEIGH,18,Max Clique,0.0004,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_18dB.log
+hosts,RAYLEIGH,18,ECC,0.1914,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_18dB.log
+hosts,RAYLEIGH,18,DEMON,0.0604,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_18dB.log
+school2,RAYLEIGH,0,SHyRe,0.4402,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_0dB.log
+school2,RAYLEIGH,0,Max Clique,0.0117,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_0dB.log
+school2,RAYLEIGH,0,ECC,0.0523,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_0dB.log
+school2,RAYLEIGH,0,DEMON,0.0101,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_0dB.log
+school2,RAYLEIGH,2,SHyRe,0.4729,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_2dB.log
+school2,RAYLEIGH,2,Max Clique,0.0148,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_2dB.log
+school2,RAYLEIGH,2,ECC,0.0557,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_2dB.log
+school2,RAYLEIGH,2,DEMON,0.0114,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_2dB.log
+school2,RAYLEIGH,4,SHyRe,0.5081,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_4dB.log
+school2,RAYLEIGH,4,Max Clique,0.0158,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_4dB.log
+school2,RAYLEIGH,4,ECC,0.0559,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_4dB.log
+school2,RAYLEIGH,4,DEMON,0.0126,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_4dB.log
+school2,RAYLEIGH,6,SHyRe,0.5445,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_6dB.log
+school2,RAYLEIGH,6,Max Clique,0.0164,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_6dB.log
+school2,RAYLEIGH,6,ECC,0.0682,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_6dB.log
+school2,RAYLEIGH,6,DEMON,0.0143,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_6dB.log
+school2,RAYLEIGH,8,SHyRe,0.5746,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_8dB.log
+school2,RAYLEIGH,8,Max Clique,0.0204,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_8dB.log
+school2,RAYLEIGH,8,ECC,0.0734,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_8dB.log
+school2,RAYLEIGH,8,DEMON,0.0214,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_8dB.log
+school2,RAYLEIGH,10,SHyRe,0.6082,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_10dB.log
+school2,RAYLEIGH,10,Max Clique,0.0237,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_10dB.log
+school2,RAYLEIGH,10,ECC,0.0813,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_10dB.log
+school2,RAYLEIGH,10,DEMON,0.0258,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_10dB.log
+school2,RAYLEIGH,12,SHyRe,0.6376,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_12dB.log
+school2,RAYLEIGH,12,Max Clique,0.0299,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_12dB.log
+school2,RAYLEIGH,12,ECC,0.0929,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_12dB.log
+school2,RAYLEIGH,12,DEMON,0.036,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_12dB.log
+school2,RAYLEIGH,14,SHyRe,0.6589,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_14dB.log
+school2,RAYLEIGH,14,Max Clique,0.033,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_14dB.log
+school2,RAYLEIGH,14,ECC,0.101,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_14dB.log
+school2,RAYLEIGH,14,DEMON,0.0404,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_14dB.log
+school2,RAYLEIGH,16,SHyRe,0.6723,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_16dB.log
+school2,RAYLEIGH,16,Max Clique,0.0367,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_16dB.log
+school2,RAYLEIGH,16,ECC,0.1031,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_16dB.log
+school2,RAYLEIGH,16,DEMON,0.0447,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_16dB.log
+school2,RAYLEIGH,18,SHyRe,0.6847,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_18dB.log
+school2,RAYLEIGH,18,Max Clique,0.0414,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_18dB.log
+school2,RAYLEIGH,18,ECC,0.1224,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_18dB.log
+school2,RAYLEIGH,18,DEMON,0.0522,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_18dB.log
+school2,RAYLEIGH,20,SHyRe,0.6917,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_20dB.log
+school2,RAYLEIGH,20,Max Clique,0.0419,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_20dB.log
+school2,RAYLEIGH,20,ECC,0.1271,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_20dB.log
+school2,RAYLEIGH,20,DEMON,0.053,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/school2_rayleigh_20dB.log
+directors,RAYLEIGH,0,SHyRe,0.0091,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_0dB.log
+directors,RAYLEIGH,0,Max Clique,0.0091,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_0dB.log
+directors,RAYLEIGH,0,ECC,0.0094,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_0dB.log
+directors,RAYLEIGH,0,DEMON,0.0163,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_0dB.log
+directors,RAYLEIGH,2,SHyRe,0.0126,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_2dB.log
+directors,RAYLEIGH,2,Max Clique,0.0126,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_2dB.log
+directors,RAYLEIGH,2,ECC,0.0129,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_2dB.log
+directors,RAYLEIGH,2,DEMON,0.0243,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_2dB.log
+directors,RAYLEIGH,4,SHyRe,0.0173,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_4dB.log
+directors,RAYLEIGH,4,Max Clique,0.0173,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_4dB.log
+directors,RAYLEIGH,4,ECC,0.0178,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_4dB.log
+directors,RAYLEIGH,4,DEMON,0.05,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_4dB.log
+directors,RAYLEIGH,6,SHyRe,0.0235,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_6dB.log
+directors,RAYLEIGH,6,Max Clique,0.0235,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_6dB.log
+directors,RAYLEIGH,6,ECC,0.0242,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_6dB.log
+directors,RAYLEIGH,6,DEMON,0.0686,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_6dB.log
+directors,RAYLEIGH,8,SHyRe,0.0336,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_8dB.log
+directors,RAYLEIGH,8,Max Clique,0.0336,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_8dB.log
+directors,RAYLEIGH,8,ECC,0.0344,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_8dB.log
+directors,RAYLEIGH,8,DEMON,0.093,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_8dB.log
+directors,RAYLEIGH,10,SHyRe,0.0654,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_10dB.log
+directors,RAYLEIGH,10,Max Clique,0.0654,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_10dB.log
+directors,RAYLEIGH,10,ECC,0.0673,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_10dB.log
+directors,RAYLEIGH,10,DEMON,0.1473,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_10dB.log
+directors,RAYLEIGH,12,SHyRe,0.1071,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_12dB.log
+directors,RAYLEIGH,12,Max Clique,0.1071,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_12dB.log
+directors,RAYLEIGH,12,ECC,0.1085,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_12dB.log
+directors,RAYLEIGH,12,DEMON,0.2017,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_12dB.log
+directors,RAYLEIGH,14,SHyRe,0.1499,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_14dB.log
+directors,RAYLEIGH,14,Max Clique,0.1499,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_14dB.log
+directors,RAYLEIGH,14,ECC,0.1504,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_14dB.log
+directors,RAYLEIGH,14,DEMON,0.274,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_14dB.log
+directors,RAYLEIGH,16,SHyRe,0.237,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_16dB.log
+directors,RAYLEIGH,16,Max Clique,0.237,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_16dB.log
+directors,RAYLEIGH,16,ECC,0.237,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_16dB.log
+directors,RAYLEIGH,16,DEMON,0.358,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_16dB.log
+directors,RAYLEIGH,18,SHyRe,0.3468,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_18dB.log
+directors,RAYLEIGH,18,Max Clique,0.3468,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_18dB.log
+directors,RAYLEIGH,18,ECC,0.3468,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_18dB.log
+directors,RAYLEIGH,18,DEMON,0.4712,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_18dB.log
+directors,RAYLEIGH,20,SHyRe,0.4672,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_20dB.log
+directors,RAYLEIGH,20,Max Clique,0.4672,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_20dB.log
+directors,RAYLEIGH,20,ECC,0.4672,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_20dB.log
+directors,RAYLEIGH,20,DEMON,0.5627,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/directors_rayleigh_20dB.log
+crime,RAYLEIGH,0,SHyRe,0.0515,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_0dB.log
+crime,RAYLEIGH,0,Max Clique,0.0515,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_0dB.log
+crime,RAYLEIGH,0,ECC,0.0535,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_0dB.log
+crime,RAYLEIGH,0,DEMON,0.053,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_0dB.log
+crime,RAYLEIGH,2,SHyRe,0.0631,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_2dB.log
+crime,RAYLEIGH,2,Max Clique,0.0631,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_2dB.log
+crime,RAYLEIGH,2,ECC,0.0633,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_2dB.log
+crime,RAYLEIGH,2,DEMON,0.0677,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_2dB.log
+crime,RAYLEIGH,6,SHyRe,0.1139,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_6dB.log
+crime,RAYLEIGH,6,Max Clique,0.1139,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_6dB.log
+crime,RAYLEIGH,6,ECC,0.12,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_6dB.log
+crime,RAYLEIGH,6,DEMON,0.1195,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_6dB.log
+crime,RAYLEIGH,4,SHyRe,0.083,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_4dB.log
+crime,RAYLEIGH,4,Max Clique,0.083,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_4dB.log
+crime,RAYLEIGH,4,ECC,0.0859,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_4dB.log
+crime,RAYLEIGH,4,DEMON,0.0902,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_4dB.log
+crime,RAYLEIGH,10,SHyRe,0.1952,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_10dB.log
+crime,RAYLEIGH,10,Max Clique,0.1952,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_10dB.log
+crime,RAYLEIGH,10,ECC,0.2048,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_10dB.log
+crime,RAYLEIGH,10,DEMON,0.2103,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_10dB.log
+crime,RAYLEIGH,8,SHyRe,0.1487,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_8dB.log
+crime,RAYLEIGH,8,Max Clique,0.1487,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_8dB.log
+crime,RAYLEIGH,8,ECC,0.1567,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_8dB.log
+crime,RAYLEIGH,8,DEMON,0.1565,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_8dB.log
+crime,RAYLEIGH,14,SHyRe,0.346,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_14dB.log
+crime,RAYLEIGH,14,Max Clique,0.346,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_14dB.log
+crime,RAYLEIGH,14,ECC,0.3488,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_14dB.log
+crime,RAYLEIGH,14,DEMON,0.3408,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_14dB.log
+crime,RAYLEIGH,12,SHyRe,0.2789,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_12dB.log
+crime,RAYLEIGH,12,Max Clique,0.2776,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_12dB.log
+crime,RAYLEIGH,12,ECC,0.2821,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_12dB.log
+crime,RAYLEIGH,12,DEMON,0.2749,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_12dB.log
+crime,RAYLEIGH,16,SHyRe,0.4323,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_16dB.log
+crime,RAYLEIGH,16,Max Clique,0.4323,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_16dB.log
+crime,RAYLEIGH,16,ECC,0.4297,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_16dB.log
+crime,RAYLEIGH,16,DEMON,0.4236,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_16dB.log
+crime,RAYLEIGH,18,SHyRe,0.5557,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_18dB.log
+crime,RAYLEIGH,18,Max Clique,0.5538,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_18dB.log
+crime,RAYLEIGH,18,ECC,0.5469,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_18dB.log
+crime,RAYLEIGH,18,DEMON,0.5065,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_18dB.log
+crime,RAYLEIGH,20,SHyRe,0.6476,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_20dB.log
+crime,RAYLEIGH,20,Max Clique,0.6463,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_20dB.log
+crime,RAYLEIGH,20,ECC,0.6332,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_20dB.log
+crime,RAYLEIGH,20,DEMON,0.5786,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/crime_rayleigh_20dB.log
+hosts,RAYLEIGH,14,SHyRe,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_14dB.log
+hosts,RAYLEIGH,14,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_14dB.log
+hosts,RAYLEIGH,14,ECC,0.0795,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_14dB.log
+hosts,RAYLEIGH,14,DEMON,0.0322,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_rayleigh_0_20_step2/hosts_rayleigh_14dB.log

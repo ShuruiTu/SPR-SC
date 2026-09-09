@@ -1,0 +1,173 @@
+2026-09-07T20:02:07.788275+08:00 RUN workers=6 scheduled_cells=77
+2026-09-07T20:02:07.789077+08:00 START dataset=enron channel=rayleigh snr_db=0
+2026-09-07T20:02:07.790160+08:00 START dataset=enron channel=rayleigh snr_db=2
+2026-09-07T20:02:07.791366+08:00 START dataset=enron channel=rayleigh snr_db=4
+2026-09-07T20:02:07.792503+08:00 START dataset=enron channel=rayleigh snr_db=6
+2026-09-07T20:02:07.793042+08:00 START dataset=enron channel=rayleigh snr_db=8
+2026-09-07T20:02:07.793588+08:00 START dataset=enron channel=rayleigh snr_db=10
+2026-09-07T20:02:16.749648+08:00 DONE dataset=enron channel=rayleigh snr_db=10 exit=0 metrics=5
+2026-09-07T20:02:16.750129+08:00 START dataset=enron channel=rayleigh snr_db=12
+2026-09-07T20:02:18.349096+08:00 DONE dataset=enron channel=rayleigh snr_db=8 exit=0 metrics=5
+2026-09-07T20:02:18.349549+08:00 START dataset=enron channel=rayleigh snr_db=14
+2026-09-07T20:02:21.597651+08:00 DONE dataset=enron channel=rayleigh snr_db=6 exit=0 metrics=5
+2026-09-07T20:02:21.598112+08:00 START dataset=enron channel=rayleigh snr_db=16
+2026-09-07T20:02:24.163784+08:00 DONE dataset=enron channel=rayleigh snr_db=12 exit=0 metrics=5
+2026-09-07T20:02:24.164245+08:00 START dataset=enron channel=rayleigh snr_db=18
+2026-09-07T20:02:25.196539+08:00 DONE dataset=enron channel=rayleigh snr_db=14 exit=0 metrics=5
+2026-09-07T20:02:25.197100+08:00 START dataset=enron channel=rayleigh snr_db=20
+2026-09-07T20:02:25.731697+08:00 DONE dataset=enron channel=rayleigh snr_db=4 exit=0 metrics=5
+2026-09-07T20:02:25.732361+08:00 START dataset=foursquare channel=rayleigh snr_db=0
+2026-09-07T20:02:28.124757+08:00 DONE dataset=enron channel=rayleigh snr_db=16 exit=0 metrics=5
+2026-09-07T20:02:28.125342+08:00 START dataset=foursquare channel=rayleigh snr_db=2
+2026-09-07T20:02:30.466311+08:00 DONE dataset=enron channel=rayleigh snr_db=18 exit=0 metrics=5
+2026-09-07T20:02:30.467212+08:00 START dataset=foursquare channel=rayleigh snr_db=4
+2026-09-07T20:02:31.091479+08:00 DONE dataset=enron channel=rayleigh snr_db=20 exit=0 metrics=5
+2026-09-07T20:02:31.092105+08:00 START dataset=foursquare channel=rayleigh snr_db=6
+2026-09-07T20:02:34.047702+08:00 DONE dataset=enron channel=rayleigh snr_db=2 exit=0 metrics=5
+2026-09-07T20:02:34.048287+08:00 START dataset=foursquare channel=rayleigh snr_db=8
+2026-09-07T20:02:56.246085+08:00 DONE dataset=enron channel=rayleigh snr_db=0 exit=0 metrics=5
+2026-09-07T20:02:56.246633+08:00 START dataset=foursquare channel=rayleigh snr_db=10
+2026-09-07T20:57:32.530090+08:00 RUN workers=3 scheduled_cells=66
+2026-09-07T20:57:32.531104+08:00 START dataset=foursquare channel=rayleigh snr_db=0
+2026-09-07T20:57:32.532820+08:00 START dataset=foursquare channel=rayleigh snr_db=2
+2026-09-07T20:57:32.533517+08:00 START dataset=foursquare channel=rayleigh snr_db=4
+2026-09-07T21:35:18.341283+08:00 DONE dataset=foursquare channel=rayleigh snr_db=0 exit=-9 metrics=4
+2026-09-07T21:35:18.343857+08:00 START dataset=foursquare channel=rayleigh snr_db=6
+2026-09-07T22:15:43.817347+08:00 DONE dataset=foursquare channel=rayleigh snr_db=2 exit=-9 metrics=4
+2026-09-07T22:15:43.819477+08:00 START dataset=foursquare channel=rayleigh snr_db=8
+2026-09-07T22:35:06.267871+08:00 DONE dataset=foursquare channel=rayleigh snr_db=4 exit=-9 metrics=4
+2026-09-07T22:35:06.270195+08:00 START dataset=foursquare channel=rayleigh snr_db=10
+2026-09-07T23:34:31.551382+08:00 DONE dataset=foursquare channel=rayleigh snr_db=6 exit=-9 metrics=4
+2026-09-07T23:34:31.553236+08:00 START dataset=foursquare channel=rayleigh snr_db=12
+2026-09-08T01:01:38.505889+08:00 DONE dataset=foursquare channel=rayleigh snr_db=8 exit=-9 metrics=4
+2026-09-08T01:01:38.508134+08:00 START dataset=foursquare channel=rayleigh snr_db=14
+2026-09-08T04:54:07.262311+08:00 DONE dataset=foursquare channel=rayleigh snr_db=10 exit=-9 metrics=0
+2026-09-08T04:54:07.264641+08:00 START dataset=foursquare channel=rayleigh snr_db=16
+2026-09-08T05:20:13.172815+08:00 DONE dataset=foursquare channel=rayleigh snr_db=14 exit=-9 metrics=0
+2026-09-08T05:20:13.174824+08:00 START dataset=foursquare channel=rayleigh snr_db=18
+2026-09-08T13:49:28.907244+08:00 RUN workers=3 scheduled_cells=66
+2026-09-08T13:49:28.908390+08:00 START dataset=foursquare channel=rayleigh snr_db=0
+2026-09-08T13:49:28.909387+08:00 START dataset=foursquare channel=rayleigh snr_db=2
+2026-09-08T13:49:28.910820+08:00 START dataset=foursquare channel=rayleigh snr_db=4
+2026-09-08T13:50:42.858330+08:00 DONE dataset=foursquare channel=rayleigh snr_db=0 exit=0 metrics=4
+2026-09-08T13:50:42.858855+08:00 START dataset=foursquare channel=rayleigh snr_db=6
+2026-09-08T13:52:01.637982+08:00 DONE dataset=foursquare channel=rayleigh snr_db=2 exit=0 metrics=4
+2026-09-08T13:52:01.638992+08:00 START dataset=foursquare channel=rayleigh snr_db=8
+2026-09-08T13:56:02.870194+08:00 DONE dataset=foursquare channel=rayleigh snr_db=4 exit=0 metrics=4
+2026-09-08T13:56:02.871211+08:00 START dataset=foursquare channel=rayleigh snr_db=10
+2026-09-08T14:17:14.923147+08:00 DONE dataset=foursquare channel=rayleigh snr_db=6 exit=0 metrics=4
+2026-09-08T14:17:14.924199+08:00 START dataset=foursquare channel=rayleigh snr_db=12
+2026-09-08T15:53:04.721474+08:00 DONE dataset=foursquare channel=rayleigh snr_db=8 exit=0 metrics=4
+2026-09-08T15:53:04.722528+08:00 START dataset=foursquare channel=rayleigh snr_db=14
+2026-09-08T18:54:55.791266+08:00 RUN workers=3 scheduled_cells=55
+2026-09-08T18:54:55.792422+08:00 START dataset=hosts channel=rayleigh snr_db=0
+2026-09-08T18:54:55.794069+08:00 START dataset=hosts channel=rayleigh snr_db=2
+2026-09-08T18:54:55.795059+08:00 START dataset=hosts channel=rayleigh snr_db=4
+2026-09-08T18:55:13.300955+08:00 DONE dataset=hosts channel=rayleigh snr_db=0 exit=0 metrics=4
+2026-09-08T18:55:13.302284+08:00 START dataset=hosts channel=rayleigh snr_db=6
+2026-09-08T18:55:21.928999+08:00 DONE dataset=hosts channel=rayleigh snr_db=2 exit=0 metrics=4
+2026-09-08T18:55:21.931485+08:00 START dataset=hosts channel=rayleigh snr_db=8
+2026-09-08T18:55:43.118917+08:00 DONE dataset=hosts channel=rayleigh snr_db=4 exit=0 metrics=4
+2026-09-08T18:55:43.120835+08:00 START dataset=hosts channel=rayleigh snr_db=10
+2026-09-08T18:57:09.784202+08:00 DONE dataset=hosts channel=rayleigh snr_db=6 exit=0 metrics=4
+2026-09-08T18:57:09.785391+08:00 START dataset=hosts channel=rayleigh snr_db=12
+2026-09-08T18:59:56.052301+08:00 DONE dataset=hosts channel=rayleigh snr_db=8 exit=0 metrics=4
+2026-09-08T18:59:56.053021+08:00 START dataset=hosts channel=rayleigh snr_db=14
+2026-09-08T19:03:40.839071+08:00 DONE dataset=hosts channel=rayleigh snr_db=10 exit=0 metrics=4
+2026-09-08T19:03:40.840299+08:00 START dataset=hosts channel=rayleigh snr_db=16
+2026-09-08T19:12:02.899389+08:00 DONE dataset=hosts channel=rayleigh snr_db=12 exit=0 metrics=4
+2026-09-08T19:12:02.900685+08:00 START dataset=hosts channel=rayleigh snr_db=18
+2026-09-08T19:13:16.237838+08:00 DONE dataset=hosts channel=rayleigh snr_db=16 exit=0 metrics=4
+2026-09-08T19:13:16.238517+08:00 START dataset=hosts channel=rayleigh snr_db=20
+2026-09-08T19:13:48.298496+08:00 DONE dataset=hosts channel=rayleigh snr_db=20 exit=0 metrics=4
+2026-09-08T19:13:48.299800+08:00 START dataset=school channel=rayleigh snr_db=0
+2026-09-08T19:13:59.724767+08:00 DONE dataset=school channel=rayleigh snr_db=0 exit=0 metrics=4
+2026-09-08T19:13:59.726045+08:00 START dataset=school channel=rayleigh snr_db=2
+2026-09-08T19:14:11.067156+08:00 DONE dataset=school channel=rayleigh snr_db=2 exit=0 metrics=4
+2026-09-08T19:14:11.068574+08:00 START dataset=school channel=rayleigh snr_db=4
+2026-09-08T19:14:22.529089+08:00 DONE dataset=school channel=rayleigh snr_db=4 exit=0 metrics=4
+2026-09-08T19:14:22.530460+08:00 START dataset=school channel=rayleigh snr_db=6
+2026-09-08T19:14:33.898933+08:00 DONE dataset=school channel=rayleigh snr_db=6 exit=0 metrics=4
+2026-09-08T19:14:33.900353+08:00 START dataset=school channel=rayleigh snr_db=8
+2026-09-08T19:14:45.122907+08:00 DONE dataset=school channel=rayleigh snr_db=8 exit=0 metrics=4
+2026-09-08T19:14:45.124325+08:00 START dataset=school channel=rayleigh snr_db=10
+2026-09-08T19:14:56.432013+08:00 DONE dataset=school channel=rayleigh snr_db=10 exit=0 metrics=4
+2026-09-08T19:14:56.433337+08:00 START dataset=school channel=rayleigh snr_db=12
+2026-09-08T19:15:07.720950+08:00 DONE dataset=school channel=rayleigh snr_db=12 exit=0 metrics=4
+2026-09-08T19:15:07.722436+08:00 START dataset=school channel=rayleigh snr_db=14
+2026-09-08T19:15:19.036212+08:00 DONE dataset=school channel=rayleigh snr_db=14 exit=0 metrics=4
+2026-09-08T19:15:19.037056+08:00 START dataset=school channel=rayleigh snr_db=16
+2026-09-08T19:15:30.472870+08:00 DONE dataset=school channel=rayleigh snr_db=16 exit=0 metrics=4
+2026-09-08T19:15:30.474429+08:00 START dataset=school channel=rayleigh snr_db=18
+2026-09-08T19:15:41.804004+08:00 DONE dataset=school channel=rayleigh snr_db=18 exit=0 metrics=4
+2026-09-08T19:15:41.806875+08:00 START dataset=school channel=rayleigh snr_db=20
+2026-09-08T19:15:53.218338+08:00 DONE dataset=school channel=rayleigh snr_db=20 exit=0 metrics=4
+2026-09-08T19:15:53.219216+08:00 START dataset=school2 channel=rayleigh snr_db=0
+2026-09-08T19:15:56.288990+08:00 DONE dataset=hosts channel=rayleigh snr_db=18 exit=0 metrics=4
+2026-09-08T19:15:56.289838+08:00 START dataset=school2 channel=rayleigh snr_db=2
+2026-09-08T19:15:59.216957+08:00 DONE dataset=school2 channel=rayleigh snr_db=0 exit=0 metrics=4
+2026-09-08T19:15:59.217841+08:00 START dataset=school2 channel=rayleigh snr_db=4
+2026-09-08T19:16:02.188113+08:00 DONE dataset=school2 channel=rayleigh snr_db=2 exit=0 metrics=4
+2026-09-08T19:16:02.189041+08:00 START dataset=school2 channel=rayleigh snr_db=6
+2026-09-08T19:16:05.035946+08:00 DONE dataset=school2 channel=rayleigh snr_db=4 exit=0 metrics=4
+2026-09-08T19:16:05.038107+08:00 START dataset=school2 channel=rayleigh snr_db=8
+2026-09-08T19:16:07.960739+08:00 DONE dataset=school2 channel=rayleigh snr_db=6 exit=0 metrics=4
+2026-09-08T19:16:07.972734+08:00 START dataset=school2 channel=rayleigh snr_db=10
+2026-09-08T19:16:10.798526+08:00 DONE dataset=school2 channel=rayleigh snr_db=8 exit=0 metrics=4
+2026-09-08T19:16:10.800383+08:00 START dataset=school2 channel=rayleigh snr_db=12
+2026-09-08T19:16:13.753871+08:00 DONE dataset=school2 channel=rayleigh snr_db=10 exit=0 metrics=4
+2026-09-08T19:16:13.754833+08:00 START dataset=school2 channel=rayleigh snr_db=14
+2026-09-08T19:16:16.563531+08:00 DONE dataset=school2 channel=rayleigh snr_db=12 exit=0 metrics=4
+2026-09-08T19:16:16.565512+08:00 START dataset=school2 channel=rayleigh snr_db=16
+2026-09-08T19:16:19.507284+08:00 DONE dataset=school2 channel=rayleigh snr_db=14 exit=0 metrics=4
+2026-09-08T19:16:19.509671+08:00 START dataset=school2 channel=rayleigh snr_db=18
+2026-09-08T19:16:22.378732+08:00 DONE dataset=school2 channel=rayleigh snr_db=16 exit=0 metrics=4
+2026-09-08T19:16:22.379719+08:00 START dataset=school2 channel=rayleigh snr_db=20
+2026-09-08T19:16:25.191121+08:00 DONE dataset=school2 channel=rayleigh snr_db=18 exit=0 metrics=4
+2026-09-08T19:16:25.193046+08:00 START dataset=directors channel=rayleigh snr_db=0
+2026-09-08T19:16:28.035334+08:00 DONE dataset=school2 channel=rayleigh snr_db=20 exit=0 metrics=4
+2026-09-08T19:16:28.037383+08:00 START dataset=directors channel=rayleigh snr_db=2
+2026-09-08T19:16:29.119239+08:00 DONE dataset=directors channel=rayleigh snr_db=0 exit=0 metrics=4
+2026-09-08T19:16:29.121563+08:00 START dataset=directors channel=rayleigh snr_db=4
+2026-09-08T19:16:31.663867+08:00 DONE dataset=directors channel=rayleigh snr_db=2 exit=0 metrics=4
+2026-09-08T19:16:31.665908+08:00 START dataset=directors channel=rayleigh snr_db=6
+2026-09-08T19:16:32.440286+08:00 DONE dataset=directors channel=rayleigh snr_db=4 exit=0 metrics=4
+2026-09-08T19:16:32.442397+08:00 START dataset=directors channel=rayleigh snr_db=8
+2026-09-08T19:16:34.666040+08:00 DONE dataset=directors channel=rayleigh snr_db=6 exit=0 metrics=4
+2026-09-08T19:16:34.667146+08:00 START dataset=directors channel=rayleigh snr_db=10
+2026-09-08T19:16:35.260153+08:00 DONE dataset=directors channel=rayleigh snr_db=8 exit=0 metrics=4
+2026-09-08T19:16:35.263837+08:00 START dataset=directors channel=rayleigh snr_db=12
+2026-09-08T19:16:37.244071+08:00 DONE dataset=directors channel=rayleigh snr_db=10 exit=0 metrics=4
+2026-09-08T19:16:37.245201+08:00 START dataset=directors channel=rayleigh snr_db=14
+2026-09-08T19:16:37.700969+08:00 DONE dataset=directors channel=rayleigh snr_db=12 exit=0 metrics=4
+2026-09-08T19:16:37.702071+08:00 START dataset=directors channel=rayleigh snr_db=16
+2026-09-08T19:16:39.615785+08:00 DONE dataset=directors channel=rayleigh snr_db=14 exit=0 metrics=4
+2026-09-08T19:16:39.617991+08:00 START dataset=directors channel=rayleigh snr_db=18
+2026-09-08T19:16:40.020202+08:00 DONE dataset=directors channel=rayleigh snr_db=16 exit=0 metrics=4
+2026-09-08T19:16:40.022450+08:00 START dataset=directors channel=rayleigh snr_db=20
+2026-09-08T19:16:41.873405+08:00 DONE dataset=directors channel=rayleigh snr_db=18 exit=0 metrics=4
+2026-09-08T19:16:41.874592+08:00 START dataset=crime channel=rayleigh snr_db=0
+2026-09-08T19:16:42.261570+08:00 DONE dataset=directors channel=rayleigh snr_db=20 exit=0 metrics=4
+2026-09-08T19:16:42.264129+08:00 START dataset=crime channel=rayleigh snr_db=2
+2026-09-08T19:16:46.041286+08:00 DONE dataset=crime channel=rayleigh snr_db=0 exit=0 metrics=4
+2026-09-08T19:16:46.042444+08:00 START dataset=crime channel=rayleigh snr_db=4
+2026-09-08T19:16:46.144459+08:00 DONE dataset=crime channel=rayleigh snr_db=2 exit=0 metrics=4
+2026-09-08T19:16:46.146827+08:00 START dataset=crime channel=rayleigh snr_db=6
+2026-09-08T19:16:49.527199+08:00 DONE dataset=crime channel=rayleigh snr_db=6 exit=0 metrics=4
+2026-09-08T19:16:49.529597+08:00 START dataset=crime channel=rayleigh snr_db=8
+2026-09-08T19:16:49.648150+08:00 DONE dataset=crime channel=rayleigh snr_db=4 exit=0 metrics=4
+2026-09-08T19:16:49.650548+08:00 START dataset=crime channel=rayleigh snr_db=10
+2026-09-08T19:16:52.626445+08:00 DONE dataset=crime channel=rayleigh snr_db=10 exit=0 metrics=4
+2026-09-08T19:16:52.628959+08:00 START dataset=crime channel=rayleigh snr_db=12
+2026-09-08T19:16:52.659233+08:00 DONE dataset=crime channel=rayleigh snr_db=8 exit=0 metrics=4
+2026-09-08T19:16:52.661857+08:00 START dataset=crime channel=rayleigh snr_db=14
+2026-09-08T19:16:55.395158+08:00 DONE dataset=crime channel=rayleigh snr_db=14 exit=0 metrics=4
+2026-09-08T19:16:55.396472+08:00 START dataset=crime channel=rayleigh snr_db=16
+2026-09-08T19:16:55.432327+08:00 DONE dataset=crime channel=rayleigh snr_db=12 exit=0 metrics=4
+2026-09-08T19:16:55.434943+08:00 START dataset=crime channel=rayleigh snr_db=18
+2026-09-08T19:16:58.071299+08:00 DONE dataset=crime channel=rayleigh snr_db=16 exit=0 metrics=4
+2026-09-08T19:16:58.072588+08:00 START dataset=crime channel=rayleigh snr_db=20
+2026-09-08T19:16:58.105353+08:00 DONE dataset=crime channel=rayleigh snr_db=18 exit=0 metrics=4
+2026-09-08T19:17:00.665564+08:00 DONE dataset=crime channel=rayleigh snr_db=20 exit=0 metrics=4
+2026-09-08T19:22:05.008389+08:00 DONE dataset=hosts channel=rayleigh snr_db=14 exit=0 metrics=4
+2026-09-08T19:22:05.011728+08:00 COMPLETE

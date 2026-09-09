@@ -1,0 +1,205 @@
+INFO:root:Create log file at log/foursquare/foursquare-20000-cou-1788846571.0470815.log
+INFO:root:Command line executed: python main.py --dataset foursquare --beta 20000 --features count --channel rayleigh --snr_db 2
+INFO:root:Full args parsed:
+INFO:root:Namespace(dataset='foursquare', beta=20000, features='count', model='mlp', epochs=2000, lr=0.0001, setting='f', label_rate=0.1, ablation=0, seed=123, use_c=1, jobs=1, save_features=0, data_dir='./data/', log_dir='log', downsample=0, max_child_size=1, ext=0, channel='rayleigh', snr_db=2.0, channel_seed=123, max_background_pairs=10000)
+INFO:root:Finish loading graphs.
+INFO:root:Nodes train: 2356, test: 2334
+INFO:root:Simplicies train: 1026, test: 1019
+INFO:root:Channel rayleigh at 2.0 dB: test projection edges 38292 -> 32194
+INFO:root:Start computing cliques
+INFO:root:Couldn't find cache for max cliques train
+INFO:root:Number of maximum cliques:9267
+INFO:root:Couldn't find cache for max cliques test
+INFO:root:Number of maximum cliques:1100814
+INFO:root:test nodes 2334 hyperedges 1019 avg size 6.426889106967615 std 6.4961151853204555 avg degree 2.8059125964010283 max cliques 1100814
+INFO:root:Breakdown of test hyperedges (max+small) 152 + 867
+INFO:root:Intersection 151 out of 6481 1100814
+INFO:root:support cliques train:930 - test: 6481
+INFO:root:Optimizing clique sampler .. 
+INFO:root:Found cache for rho.
+INFO:root:[(52, 52), (44, 44), (39, 39), (37, 37), (36, 36), (35, 35), (32, 32), (31, 31), (30, 30), (27, 27), (26, 26), (25, 25), (24, 24), (23, 23), (22, 22), (21, 21), (20, 20), (19, 19), (18, 18), (17, 17), (2, 2), (1, 1), (14, 14), (16, 16), (15, 15), (13, 13), (11, 11), (12, 12), (10, 10), (9, 9), (35, 1), (8, 8), (52, 1), (31, 1), (7, 7), (23, 1), (39, 1), (27, 1), (3, 3), (2, 1), (20, 1), (6, 6), (21, 1), (5, 5), (22, 1), (24, 1), (30, 1), (4, 4), (36, 1), (44, 1), (14, 1), (25, 1), (32, 1), (11, 1), (3, 2), (16, 1), (17, 1), (12, 1), (15, 1), (10, 1), (13, 1), (35, 2), (9, 1)]
+INFO:root:Optimize Clique Sampler: #hyperedges collected:967, recall: 0.942495126705653, efficiency:0.04835
+INFO:root:Clique analysis done.
+INFO:root:train: 15502 unique candidates out of 19994 sampled candidates
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'infomap', 'wurlitzer', 'graph_tool', 'leidenalg', 'bayanpy'}
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'torch', 'pyclustering', 'hidef', 'ASLPAw'}
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'infomap', 'scikit-network', 'leidenalg', 'wurlitzer'}
+Sanity check failed, reindexing the hypergraphs ...
+Sanity check failed, reindexing the hypergraphs ...
+number of nodes in construct graph 2356
+number of nodes in construct graph 2334
+(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (8, 8), (9, 9), (10, 10), (11, 11), (13, 13), (17, 17), (22, 22), (27, 27), (34, 34), (41, 41), (51, 51), (59, 59), (65, 65), (72, 72), (146, 146), (165, 165), (194, 191), (213, 208), (227, 219), (248, 235), (303, 273), (344, 301), (425, 332), (586, 377), (621, 383), (939, 432), (991, 439), (1022, 443), (1764, 505), (1879, 514), (1918, 517), (1945, 519), (3331, 611), (3479, 620), (3679, 631), (5001, 699), (5148, 706), (7355, 795), (7509, 801), (7629, 805), (7659, 806), (10365, 889), (10401, 890), (10445, 891), (10851, 900), (10951, 902), (11015, 903), (11620, 910), (15778, 952), (16082, 955), (16201, 956), (16693, 959), (16903, 960), (17713, 963), (17986, 964), (18581, 965), 
+(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (15, 0), (283, 0), (2481, 0), (4306, 64), (4309, 65), (185464, 65), (198890, 65), (260421, 65), (574405, 65), (730817, 65), (1031896, 65), (1070530, 65), (1079755, 65), (1079755, 65), (1085464, 65), (1085464, 65), (1085464, 65), (1089393, 66), (1089393, 66), (1089393, 66), (1089393, 66), (1091883, 124), (1095533, 254), (1095533, 254), (1098677, 255), (1098677, 255), (1101278, 257), (1101278, 257), (1101278, 257), (1101278, 257), (1104464, 282), (1104464, 282), (1104464, 282), (3640634, 285), (3640634, 285), (3640634, 285), (5361166, 294), (5368636, 319), (5583452, 319), (5620818, 319), (9233766, 319), (10156731, 319), (10543071, 320), (14624863, 320), (14624863, 320), 
+
+0it [00:00, ?it/s]
+15502it [00:00, 191599.63it/s]
+INFO:root:test: 1108921 unique candidates out of 14706169 sampled candidates
+
+0it [00:00, ?it/s]
+6929it [00:00, 69277.68it/s]
+13929it [00:00, 69699.36it/s]
+20966it [00:00, 70001.71it/s]
+27967it [00:00, 69937.08it/s]
+34961it [00:00, 69709.30it/s]
+41963it [00:00, 69811.98it/s]
+48998it [00:00, 69985.95it/s]
+55997it [00:00, 69847.47it/s]
+62993it [00:00, 69881.24it/s]
+70032it [00:01, 70036.43it/s]
+77036it [00:01, 70021.93it/s]
+84084it [00:01, 70157.46it/s]
+91102it [00:01, 70162.43it/s]
+98190it [00:01, 70376.25it/s]
+105244it [00:01, 70423.59it/s]
+112287it [00:01, 70343.12it/s]
+119322it [00:01, 69956.71it/s]
+126342it [00:01, 70025.71it/s]
+133345it [00:01, 69766.33it/s]
+140375it [00:02, 69925.20it/s]
+147368it [00:02, 69649.77it/s]
+154351it [00:02, 69702.36it/s]
+161322it [00:02, 69394.55it/s]
+168336it [00:02, 69615.00it/s]
+175350it [00:02, 69770.32it/s]
+182328it [00:02, 69455.47it/s]
+189333it [00:02, 69629.52it/s]
+196347it [00:02, 69779.84it/s]
+203326it [00:02, 69665.85it/s]
+210371it [00:03, 69898.23it/s]
+217378it [00:03, 69948.07it/s]
+224399it [00:03, 70024.56it/s]
+231402it [00:03, 69756.27it/s]
+238467it [00:03, 70020.39it/s]
+245499it [00:03, 70109.17it/s]
+252548it [00:03, 70219.89it/s]
+259571it [00:03, 69831.19it/s]
+266624it [00:03, 70039.05it/s]
+273670it [00:03, 70161.58it/s]
+280722it [00:04, 70267.42it/s]
+287792it [00:04, 70394.23it/s]
+294832it [00:04, 69835.37it/s]
+301894it [00:04, 70066.22it/s]
+308959it [00:04, 70238.13it/s]
+316008it [00:04, 70312.82it/s]
+323045it [00:04, 70328.40it/s]
+330079it [00:04, 69150.20it/s]
+337095it [00:04, 69446.06it/s]
+344101it [00:04, 69625.96it/s]
+351131it [00:05, 69823.52it/s]
+358171it [00:05, 69993.86it/s]
+365173it [00:05, 70000.60it/s]
+372175it [00:05, 69113.73it/s]
+379140it [00:05, 69270.78it/s]
+386089it [00:05, 69333.91it/s]
+393075it [00:05, 69490.34it/s]
+400088it [00:05, 69679.67it/s]
+407137it [00:05, 69921.41it/s]
+414130it [00:05, 68589.24it/s]
+421217it [00:06, 69260.40it/s]
+428309it [00:06, 69752.54it/s]
+435431it [00:06, 70187.80it/s]
+442551it [00:06, 70488.32it/s]
+449630it [00:06, 70576.20it/s]
+456711it [00:06, 70643.81it/s]
+463777it [00:06, 69673.30it/s]
+470807it [00:06, 69855.41it/s]
+477824it [00:06, 69946.75it/s]
+484855it [00:06, 70053.45it/s]
+491881it [00:07, 70113.05it/s]
+498917it [00:07, 70184.90it/s]
+505963it [00:07, 70266.04it/s]
+512996it [00:07, 70283.01it/s]
+520025it [00:07, 70268.86it/s]
+527053it [00:07, 68918.41it/s]
+534084it [00:07, 69329.17it/s]
+541129it [00:07, 69658.69it/s]
+548162it [00:07, 69856.01it/s]
+555188it [00:07, 69975.13it/s]
+562231it [00:08, 70109.89it/s]
+569251it [00:08, 70132.72it/s]
+576303it [00:08, 70247.57it/s]
+583357it [00:08, 70334.60it/s]
+590391it [00:08, 69723.33it/s]
+597440it [00:08, 69949.52it/s]
+604497it [00:08, 70131.90it/s]
+611598it [00:08, 70393.77it/s]
+618695it [00:08, 70562.62it/s]
+625776it [00:08, 70635.67it/s]
+632870it [00:09, 70726.18it/s]
+639961it [00:09, 70778.41it/s]
+647072it [00:09, 70875.21it/s]
+654160it [00:09, 70631.46it/s]
+661224it [00:09, 68372.21it/s]
+668233it [00:09, 68873.53it/s]
+675259it [00:09, 69279.37it/s]
+682296it [00:09, 69599.48it/s]
+689339it [00:09, 69845.08it/s]
+696373it [00:09, 69991.48it/s]
+703397it [00:10, 70063.34it/s]
+710430it [00:10, 70141.87it/s]
+717470it [00:10, 70216.66it/s]
+724513it [00:10, 70279.83it/s]
+731557it [00:10, 70324.23it/s]
+738603it [00:10, 70364.20it/s]
+745640it [00:10, 69375.37it/s]
+752713it [00:10, 69776.57it/s]
+759763it [00:10, 69988.82it/s]
+766825it [00:10, 70174.78it/s]
+773909it [00:11, 70372.39it/s]
+780959it [00:11, 70408.99it/s]
+788036it [00:11, 70515.51it/s]
+795095it [00:11, 70534.92it/s]
+802188it [00:11, 70651.95it/s]
+809311it [00:11, 70821.72it/s]
+816425it [00:11, 70915.15it/s]
+823519it [00:11, 70920.80it/s]
+830612it [00:11, 70801.21it/s]
+837693it [00:11, 69243.14it/s]
+844779it [00:12, 69718.20it/s]
+851823it [00:12, 69930.07it/s]
+858858it [00:12, 70053.60it/s]
+865955it [00:12, 70326.25it/s]
+873059it [00:12, 70536.36it/s]
+880174it [00:12, 70716.97it/s]
+887274it [00:12, 70800.41it/s]
+894362it [00:12, 70822.71it/s]
+901493it [00:12, 70965.22it/s]
+908590it [00:12, 70900.39it/s]
+915681it [00:13, 70892.60it/s]
+922771it [00:13, 70882.08it/s]
+929867it [00:13, 70902.26it/s]
+936966it [00:13, 70925.90it/s]
+944059it [00:13, 68844.45it/s]
+951134it [00:13, 69401.63it/s]
+958213it [00:13, 69809.91it/s]
+965290it [00:13, 70093.36it/s]
+972370it [00:13, 70302.81it/s]
+979433it [00:13, 70397.48it/s]
+986531it [00:14, 70569.40it/s]
+993668it [00:14, 70808.17it/s]
+1000762it [00:14, 70845.04it/s]
+1007869it [00:14, 70911.14it/s]
+1014961it [00:14, 70832.12it/s]
+1022045it [00:14, 70690.51it/s]
+1029115it [00:14, 70542.82it/s]
+1036170it [00:14, 70452.52it/s]
+1043237it [00:14, 70516.97it/s]
+1050289it [00:14, 70441.59it/s]
+1057334it [00:15, 67540.44it/s]
+1064374it [00:15, 68369.53it/s]
+1071462it [00:15, 69104.93it/s]
+1078537it [00:15, 69589.07it/s]
+1085624it [00:15, 69968.57it/s]
+1092711it [00:15, 70233.97it/s]
+1099817it [00:15, 70479.16it/s]
+1108921it [00:15, 70427.96it/s]
+INFO:root:test max cliques 1100814, nested cliques 8107
+INFO:root:test real max cliques in search universe: 152
+INFO:root:test real smaller cliques in search universe: 174 174
+INFO:root:Our Performance: precision 0.0009, recall 0.1531, f1 0.0018 jaccard 0.0009
+INFO:root:Baseline: Bayesian-MDL skipped (disabled for this runtime).
+INFO:root:Baseline: Max Clique precision 0.0001, recall 0.1492, f1 0.0003, jaccard 0.0001 
+INFO:root:Baseline: ECC precision 0.0261, recall 0.1609, f1 0.0450, jaccard 0.0230 
+INFO:root:Baseline: Demon precision 0.0520, recall 0.2444, f1 0.0858, jaccard 0.0448 
+INFO:root:Baseline: CFinder skipped (disabled for channel-SNR benchmark).
+(6235, 9) (6235,) 147

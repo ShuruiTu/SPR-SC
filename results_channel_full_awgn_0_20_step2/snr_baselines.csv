@@ -1,0 +1,307 @@
+dataset,channel,snr_db,method,f1,returncode,log
+enron,AWGN,10,SHyRe,0.1957,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_10dB.log
+enron,AWGN,10,Max Clique,0.0206,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_10dB.log
+enron,AWGN,10,ECC,0.0459,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_10dB.log
+enron,AWGN,10,DEMON,0.0043,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_10dB.log
+enron,AWGN,10,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_10dB.log
+enron,AWGN,8,SHyRe,0.1796,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_8dB.log
+enron,AWGN,8,Max Clique,0.0116,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_8dB.log
+enron,AWGN,8,ECC,0.0351,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_8dB.log
+enron,AWGN,8,DEMON,0.0022,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_8dB.log
+enron,AWGN,8,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_8dB.log
+enron,AWGN,6,SHyRe,0.1374,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_6dB.log
+enron,AWGN,6,Max Clique,0.0091,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_6dB.log
+enron,AWGN,6,ECC,0.0286,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_6dB.log
+enron,AWGN,6,DEMON,0.0043,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_6dB.log
+enron,AWGN,6,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_6dB.log
+enron,AWGN,12,SHyRe,0.1953,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_12dB.log
+enron,AWGN,12,Max Clique,0.0392,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_12dB.log
+enron,AWGN,12,ECC,0.0763,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_12dB.log
+enron,AWGN,12,DEMON,0.0193,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_12dB.log
+enron,AWGN,12,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_12dB.log
+enron,AWGN,14,SHyRe,0.1928,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_14dB.log
+enron,AWGN,14,Max Clique,0.0651,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_14dB.log
+enron,AWGN,14,ECC,0.123,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_14dB.log
+enron,AWGN,14,DEMON,0.0401,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_14dB.log
+enron,AWGN,14,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_14dB.log
+enron,AWGN,4,SHyRe,0.1216,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_4dB.log
+enron,AWGN,4,Max Clique,0.006,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_4dB.log
+enron,AWGN,4,ECC,0.029,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_4dB.log
+enron,AWGN,4,DEMON,0.0022,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_4dB.log
+enron,AWGN,4,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_4dB.log
+enron,AWGN,16,SHyRe,0.2136,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_16dB.log
+enron,AWGN,16,Max Clique,0.0756,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_16dB.log
+enron,AWGN,16,ECC,0.1159,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_16dB.log
+enron,AWGN,16,DEMON,0.0456,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_16dB.log
+enron,AWGN,16,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_16dB.log
+enron,AWGN,18,SHyRe,0.2285,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_18dB.log
+enron,AWGN,18,Max Clique,0.0805,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_18dB.log
+enron,AWGN,18,ECC,0.126,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_18dB.log
+enron,AWGN,18,DEMON,0.046,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_18dB.log
+enron,AWGN,18,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_18dB.log
+enron,AWGN,20,SHyRe,0.2285,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_20dB.log
+enron,AWGN,20,Max Clique,0.0805,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_20dB.log
+enron,AWGN,20,ECC,0.126,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_20dB.log
+enron,AWGN,20,DEMON,0.046,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_20dB.log
+enron,AWGN,20,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_20dB.log
+enron,AWGN,2,SHyRe,0.1088,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_2dB.log
+enron,AWGN,2,Max Clique,0.0021,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_2dB.log
+enron,AWGN,2,ECC,0.0148,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_2dB.log
+enron,AWGN,2,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_2dB.log
+enron,AWGN,2,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_2dB.log
+enron,AWGN,0,SHyRe,0.0599,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_0dB.log
+enron,AWGN,0,Max Clique,0.0012,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_0dB.log
+enron,AWGN,0,ECC,0.0131,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_0dB.log
+enron,AWGN,0,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_0dB.log
+enron,AWGN,0,CFinder (k=3),0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/enron_awgn_0dB.log
+foursquare,AWGN,16,SHyRe,0.7902,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_16dB.log
+foursquare,AWGN,16,Max Clique,0.1669,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_16dB.log
+foursquare,AWGN,16,ECC,0.8213,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_16dB.log
+foursquare,AWGN,16,DEMON,0.276,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_16dB.log
+foursquare,AWGN,16,CFinder (k=2),0.0078,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_16dB.log
+foursquare,AWGN,18,SHyRe,0.8438,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_18dB.log
+foursquare,AWGN,18,Max Clique,0.1743,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_18dB.log
+foursquare,AWGN,18,ECC,0.8805,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_18dB.log
+foursquare,AWGN,18,DEMON,0.2749,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_18dB.log
+foursquare,AWGN,18,CFinder (k=2),0.0078,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_18dB.log
+foursquare,AWGN,20,SHyRe,0.8521,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_20dB.log
+foursquare,AWGN,20,Max Clique,0.1754,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_20dB.log
+foursquare,AWGN,20,ECC,0.8887,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_20dB.log
+foursquare,AWGN,20,DEMON,0.2739,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_20dB.log
+foursquare,AWGN,20,CFinder (k=2),0.0078,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_20dB.log
+foursquare,AWGN,0,SHyRe,0.0016,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_0dB.log
+foursquare,AWGN,0,Max Clique,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_0dB.log
+foursquare,AWGN,0,ECC,0.048,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_0dB.log
+foursquare,AWGN,0,DEMON,0.0743,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_0dB.log
+foursquare,AWGN,2,SHyRe,0.0007,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_2dB.log
+foursquare,AWGN,2,Max Clique,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_2dB.log
+foursquare,AWGN,2,ECC,0.0621,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_2dB.log
+foursquare,AWGN,2,DEMON,0.0967,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_2dB.log
+foursquare,AWGN,4,SHyRe,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_4dB.log
+foursquare,AWGN,4,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_4dB.log
+foursquare,AWGN,4,ECC,0.0877,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_4dB.log
+foursquare,AWGN,4,DEMON,0.1352,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_4dB.log
+hosts,AWGN,0,SHyRe,0.0015,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_0dB.log
+hosts,AWGN,0,Max Clique,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_0dB.log
+hosts,AWGN,0,ECC,0.0091,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_0dB.log
+hosts,AWGN,0,DEMON,0.0129,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_0dB.log
+hosts,AWGN,2,SHyRe,0.0004,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_2dB.log
+hosts,AWGN,2,Max Clique,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_2dB.log
+hosts,AWGN,2,ECC,0.0145,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_2dB.log
+hosts,AWGN,2,DEMON,0.0159,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_2dB.log
+hosts,AWGN,4,SHyRe,0.0003,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_4dB.log
+hosts,AWGN,4,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_4dB.log
+hosts,AWGN,4,ECC,0.0244,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_4dB.log
+hosts,AWGN,4,DEMON,0.0197,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_4dB.log
+hosts,AWGN,6,SHyRe,0.0002,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_6dB.log
+hosts,AWGN,6,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_6dB.log
+hosts,AWGN,6,ECC,0.0411,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_6dB.log
+hosts,AWGN,6,DEMON,0.0209,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_6dB.log
+hosts,AWGN,12,SHyRe,0.0009,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_12dB.log
+hosts,AWGN,12,Max Clique,0.0002,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_12dB.log
+hosts,AWGN,12,ECC,0.2017,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_12dB.log
+hosts,AWGN,12,DEMON,0.0574,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_12dB.log
+hosts,AWGN,14,SHyRe,0.3593,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_14dB.log
+hosts,AWGN,14,Max Clique,0.0415,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_14dB.log
+hosts,AWGN,14,ECC,0.3438,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_14dB.log
+hosts,AWGN,14,DEMON,0.0823,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_14dB.log
+hosts,AWGN,16,SHyRe,0.5753,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_16dB.log
+hosts,AWGN,16,Max Clique,0.3102,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_16dB.log
+hosts,AWGN,16,ECC,0.4986,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_16dB.log
+hosts,AWGN,16,DEMON,0.1239,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_16dB.log
+hosts,AWGN,18,SHyRe,0.6575,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_18dB.log
+hosts,AWGN,18,Max Clique,0.3655,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_18dB.log
+hosts,AWGN,18,ECC,0.5799,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_18dB.log
+hosts,AWGN,18,DEMON,0.1398,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_18dB.log
+hosts,AWGN,20,SHyRe,0.6593,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_20dB.log
+hosts,AWGN,20,Max Clique,0.3661,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_20dB.log
+hosts,AWGN,20,ECC,0.5816,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_20dB.log
+hosts,AWGN,20,DEMON,0.1402,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_20dB.log
+school,AWGN,0,SHyRe,0.4735,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_0dB.log
+school,AWGN,0,Max Clique,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_0dB.log
+school,AWGN,0,ECC,0.0169,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_0dB.log
+school,AWGN,0,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_0dB.log
+school,AWGN,2,SHyRe,0.5036,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_2dB.log
+school,AWGN,2,Max Clique,0.0002,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_2dB.log
+school,AWGN,2,ECC,0.0172,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_2dB.log
+school,AWGN,2,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_2dB.log
+school,AWGN,4,SHyRe,0.5333,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_4dB.log
+school,AWGN,4,Max Clique,0.0004,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_4dB.log
+school,AWGN,4,ECC,0.0209,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_4dB.log
+school,AWGN,4,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_4dB.log
+school,AWGN,6,SHyRe,0.5593,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_6dB.log
+school,AWGN,6,Max Clique,0.0007,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_6dB.log
+school,AWGN,6,ECC,0.0217,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_6dB.log
+school,AWGN,6,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_6dB.log
+school,AWGN,8,SHyRe,0.5801,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_8dB.log
+school,AWGN,8,Max Clique,0.0008,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_8dB.log
+school,AWGN,8,ECC,0.0246,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_8dB.log
+school,AWGN,8,DEMON,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_8dB.log
+school,AWGN,10,SHyRe,0.5973,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_10dB.log
+school,AWGN,10,Max Clique,0.001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_10dB.log
+school,AWGN,10,ECC,0.0256,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_10dB.log
+school,AWGN,10,DEMON,0.0009,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_10dB.log
+school,AWGN,12,SHyRe,0.6148,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_12dB.log
+school,AWGN,12,Max Clique,0.0015,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_12dB.log
+school,AWGN,12,ECC,0.0316,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_12dB.log
+school,AWGN,12,DEMON,0.0015,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_12dB.log
+school,AWGN,14,SHyRe,0.6189,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_14dB.log
+school,AWGN,14,Max Clique,0.0018,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_14dB.log
+school,AWGN,14,ECC,0.0366,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_14dB.log
+school,AWGN,14,DEMON,0.0018,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_14dB.log
+school,AWGN,16,SHyRe,0.6187,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_16dB.log
+school,AWGN,16,Max Clique,0.0017,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_16dB.log
+school,AWGN,16,ECC,0.0386,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_16dB.log
+school,AWGN,16,DEMON,0.0015,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_16dB.log
+school,AWGN,18,SHyRe,0.6177,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_18dB.log
+school,AWGN,18,Max Clique,0.0018,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_18dB.log
+school,AWGN,18,ECC,0.0381,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_18dB.log
+school,AWGN,18,DEMON,0.0018,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_18dB.log
+hosts,AWGN,8,SHyRe,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_8dB.log
+hosts,AWGN,8,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_8dB.log
+hosts,AWGN,8,ECC,0.0655,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_8dB.log
+hosts,AWGN,8,DEMON,0.0282,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_8dB.log
+school2,AWGN,0,SHyRe,0.4799,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_0dB.log
+school2,AWGN,0,Max Clique,0.0131,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_0dB.log
+school2,AWGN,0,ECC,0.0551,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_0dB.log
+school2,AWGN,0,DEMON,0.01,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_0dB.log
+school,AWGN,20,SHyRe,0.6177,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_20dB.log
+school,AWGN,20,Max Clique,0.0018,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_20dB.log
+school,AWGN,20,ECC,0.0381,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_20dB.log
+school,AWGN,20,DEMON,0.0018,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school_awgn_20dB.log
+school2,AWGN,2,SHyRe,0.5188,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_2dB.log
+school2,AWGN,2,Max Clique,0.0174,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_2dB.log
+school2,AWGN,2,ECC,0.062,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_2dB.log
+school2,AWGN,2,DEMON,0.0157,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_2dB.log
+school2,AWGN,4,SHyRe,0.5627,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_4dB.log
+school2,AWGN,4,Max Clique,0.0211,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_4dB.log
+school2,AWGN,4,ECC,0.0729,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_4dB.log
+school2,AWGN,4,DEMON,0.0197,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_4dB.log
+school2,AWGN,6,SHyRe,0.5975,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_6dB.log
+school2,AWGN,6,Max Clique,0.025,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_6dB.log
+school2,AWGN,6,ECC,0.091,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_6dB.log
+school2,AWGN,6,DEMON,0.0267,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_6dB.log
+school2,AWGN,8,SHyRe,0.6297,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_8dB.log
+school2,AWGN,8,Max Clique,0.0303,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_8dB.log
+school2,AWGN,8,ECC,0.1007,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_8dB.log
+school2,AWGN,8,DEMON,0.033,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_8dB.log
+school2,AWGN,10,SHyRe,0.6605,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_10dB.log
+school2,AWGN,10,Max Clique,0.036,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_10dB.log
+school2,AWGN,10,ECC,0.1069,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_10dB.log
+school2,AWGN,10,DEMON,0.0413,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_10dB.log
+school2,AWGN,12,SHyRe,0.6857,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_12dB.log
+school2,AWGN,12,Max Clique,0.041,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_12dB.log
+school2,AWGN,12,ECC,0.1247,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_12dB.log
+school2,AWGN,12,DEMON,0.0499,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_12dB.log
+school2,AWGN,14,SHyRe,0.6993,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_14dB.log
+school2,AWGN,14,Max Clique,0.0446,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_14dB.log
+school2,AWGN,14,ECC,0.1251,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_14dB.log
+school2,AWGN,14,DEMON,0.0551,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_14dB.log
+school2,AWGN,16,SHyRe,0.7041,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_16dB.log
+school2,AWGN,16,Max Clique,0.0461,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_16dB.log
+school2,AWGN,16,ECC,0.1262,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_16dB.log
+school2,AWGN,16,DEMON,0.0576,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_16dB.log
+school2,AWGN,18,SHyRe,0.7051,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_18dB.log
+school2,AWGN,18,Max Clique,0.0465,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_18dB.log
+school2,AWGN,18,ECC,0.1276,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_18dB.log
+school2,AWGN,18,DEMON,0.0577,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_18dB.log
+directors,AWGN,0,SHyRe,0.0141,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_0dB.log
+directors,AWGN,0,Max Clique,0.0141,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_0dB.log
+directors,AWGN,0,ECC,0.0146,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_0dB.log
+directors,AWGN,0,DEMON,0.0307,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_0dB.log
+school2,AWGN,20,SHyRe,0.7051,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_20dB.log
+school2,AWGN,20,Max Clique,0.0465,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_20dB.log
+school2,AWGN,20,ECC,0.1276,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_20dB.log
+school2,AWGN,20,DEMON,0.0577,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/school2_awgn_20dB.log
+directors,AWGN,2,SHyRe,0.0227,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_2dB.log
+directors,AWGN,2,Max Clique,0.0227,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_2dB.log
+directors,AWGN,2,ECC,0.0236,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_2dB.log
+directors,AWGN,2,DEMON,0.0463,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_2dB.log
+directors,AWGN,4,SHyRe,0.0372,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_4dB.log
+directors,AWGN,4,Max Clique,0.0372,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_4dB.log
+directors,AWGN,4,ECC,0.0383,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_4dB.log
+directors,AWGN,4,DEMON,0.0813,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_4dB.log
+directors,AWGN,6,SHyRe,0.0519,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_6dB.log
+directors,AWGN,6,Max Clique,0.0519,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_6dB.log
+directors,AWGN,6,ECC,0.0538,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_6dB.log
+directors,AWGN,6,DEMON,0.128,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_6dB.log
+directors,AWGN,8,SHyRe,0.084,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_8dB.log
+directors,AWGN,8,Max Clique,0.084,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_8dB.log
+directors,AWGN,8,ECC,0.0863,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_8dB.log
+directors,AWGN,8,DEMON,0.1862,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_8dB.log
+directors,AWGN,10,SHyRe,0.1583,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_10dB.log
+directors,AWGN,10,Max Clique,0.1583,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_10dB.log
+directors,AWGN,10,ECC,0.1627,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_10dB.log
+directors,AWGN,10,DEMON,0.2772,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_10dB.log
+directors,AWGN,12,SHyRe,0.3434,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_12dB.log
+directors,AWGN,12,Max Clique,0.3434,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_12dB.log
+directors,AWGN,12,ECC,0.3482,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_12dB.log
+directors,AWGN,12,DEMON,0.4536,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_12dB.log
+directors,AWGN,14,SHyRe,0.6571,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_14dB.log
+directors,AWGN,14,Max Clique,0.6571,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_14dB.log
+directors,AWGN,14,ECC,0.6571,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_14dB.log
+directors,AWGN,14,DEMON,0.7041,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_14dB.log
+directors,AWGN,16,SHyRe,0.9528,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_16dB.log
+directors,AWGN,16,Max Clique,0.9528,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_16dB.log
+directors,AWGN,16,ECC,0.9528,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_16dB.log
+directors,AWGN,16,DEMON,0.8942,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_16dB.log
+directors,AWGN,18,SHyRe,1.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_18dB.log
+directors,AWGN,18,Max Clique,1.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_18dB.log
+directors,AWGN,18,ECC,1.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_18dB.log
+directors,AWGN,18,DEMON,0.95,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_18dB.log
+directors,AWGN,20,SHyRe,1.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_20dB.log
+directors,AWGN,20,Max Clique,1.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_20dB.log
+directors,AWGN,20,ECC,1.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_20dB.log
+directors,AWGN,20,DEMON,0.95,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/directors_awgn_20dB.log
+crime,AWGN,0,SHyRe,0.0635,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_0dB.log
+crime,AWGN,0,Max Clique,0.0635,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_0dB.log
+crime,AWGN,0,ECC,0.0682,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_0dB.log
+crime,AWGN,0,DEMON,0.0652,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_0dB.log
+crime,AWGN,2,SHyRe,0.0846,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_2dB.log
+crime,AWGN,2,Max Clique,0.0846,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_2dB.log
+crime,AWGN,2,ECC,0.091,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_2dB.log
+crime,AWGN,2,DEMON,0.0936,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_2dB.log
+crime,AWGN,4,SHyRe,0.1264,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_4dB.log
+crime,AWGN,4,Max Clique,0.1264,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_4dB.log
+crime,AWGN,4,ECC,0.1374,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_4dB.log
+crime,AWGN,4,DEMON,0.1327,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_4dB.log
+crime,AWGN,6,SHyRe,0.1684,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_6dB.log
+crime,AWGN,6,Max Clique,0.1684,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_6dB.log
+crime,AWGN,6,ECC,0.1816,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_6dB.log
+crime,AWGN,6,DEMON,0.1826,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_6dB.log
+crime,AWGN,8,SHyRe,0.2329,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_8dB.log
+crime,AWGN,8,Max Clique,0.2329,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_8dB.log
+crime,AWGN,8,ECC,0.2407,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_8dB.log
+crime,AWGN,8,DEMON,0.2525,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_8dB.log
+crime,AWGN,10,SHyRe,0.3505,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_10dB.log
+crime,AWGN,10,Max Clique,0.3505,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_10dB.log
+crime,AWGN,10,ECC,0.3498,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_10dB.log
+crime,AWGN,10,DEMON,0.3595,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_10dB.log
+crime,AWGN,12,SHyRe,0.53,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_12dB.log
+crime,AWGN,12,Max Clique,0.5302,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_12dB.log
+crime,AWGN,12,ECC,0.518,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_12dB.log
+crime,AWGN,12,DEMON,0.5071,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_12dB.log
+crime,AWGN,14,SHyRe,0.7333,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_14dB.log
+crime,AWGN,14,Max Clique,0.7317,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_14dB.log
+crime,AWGN,14,ECC,0.7179,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_14dB.log
+crime,AWGN,14,DEMON,0.6455,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_14dB.log
+crime,AWGN,16,SHyRe,0.866,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_16dB.log
+crime,AWGN,16,Max Clique,0.8565,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_16dB.log
+crime,AWGN,16,ECC,0.8373,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_16dB.log
+crime,AWGN,16,DEMON,0.7528,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_16dB.log
+crime,AWGN,18,SHyRe,0.8866,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_18dB.log
+crime,AWGN,18,Max Clique,0.8793,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_18dB.log
+crime,AWGN,18,ECC,0.8603,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_18dB.log
+crime,AWGN,18,DEMON,0.7608,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_18dB.log
+crime,AWGN,20,SHyRe,0.8884,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_20dB.log
+crime,AWGN,20,Max Clique,0.8812,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_20dB.log
+crime,AWGN,20,ECC,0.8622,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_20dB.log
+crime,AWGN,20,DEMON,0.7626,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/crime_awgn_20dB.log
+hosts,AWGN,10,SHyRe,0.0001,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_10dB.log
+hosts,AWGN,10,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_10dB.log
+hosts,AWGN,10,ECC,0.1109,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_10dB.log
+hosts,AWGN,10,DEMON,0.0462,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/hosts_awgn_10dB.log
+foursquare,AWGN,6,SHyRe,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_6dB.log
+foursquare,AWGN,6,Max Clique,0.0,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_6dB.log
+foursquare,AWGN,6,ECC,0.1236,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_6dB.log
+foursquare,AWGN,6,DEMON,0.1747,0,/home/tushurui/SPR-SC_20260907/06_REPRODUCTION_CODE/results_channel_full_awgn_0_20_step2/foursquare_awgn_6dB.log

@@ -1,0 +1,49 @@
+INFO:root:Create log file at log/enron/enron-1000-cou-1788782529.2925901.log
+INFO:root:Command line executed: python main.py --dataset enron --beta 1000 --features count --channel rayleigh --snr_db 2
+INFO:root:Full args parsed:
+INFO:root:Namespace(dataset='enron', beta=1000, features='count', model='mlp', epochs=2000, lr=0.0001, setting='f', label_rate=0.1, ablation=0, seed=123, use_c=1, jobs=1, save_features=0, data_dir='./data/', log_dir='log', downsample=0, max_child_size=1, ext=0, channel='rayleigh', snr_db=2.0, channel_seed=123, max_background_pairs=10000)
+INFO:root:Finish loading graphs.
+INFO:root:Nodes train: 141, test: 142
+INFO:root:Simplicies train: 756, test: 756
+INFO:root:Channel rayleigh at 2.0 dB: test projection edges 1388 -> 2922
+INFO:root:Start computing cliques
+INFO:root:Couldn't find cache for max cliques train
+INFO:root:Number of maximum cliques:319
+INFO:root:Couldn't find cache for max cliques test
+INFO:root:Number of maximum cliques:5941
+INFO:root:test nodes 142 hyperedges 756 avg size 3.0066137566137567 std 1.9568651812499842 avg degree 16.007042253521128 max cliques 5941
+INFO:root:Breakdown of test hyperedges (max+small) 1 + 755
+INFO:root:Intersection 0 out of 699 5941
+INFO:root:support cliques train:155 - test: 699
+INFO:root:Optimizing clique sampler .. 
+INFO:root:Found cache for rho.
+INFO:root:[(2, 2), (16, 16), (3, 2), (15, 1), (15, 2), (4, 2), (4, 4), (13, 13), (10, 10), (3, 3), (5, 2), (12, 12), (11, 11), (8, 8)]
+INFO:root:Optimize Clique Sampler: #hyperedges collected:243, recall: 0.32142857142857145, efficiency:0.243
+INFO:root:Clique analysis done.
+INFO:root:train: 679 unique candidates out of 1000 sampled candidates
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'wurlitzer', 'leidenalg', 'graph_tool', 'bayanpy', 'infomap'}
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'pyclustering', 'torch', 'ASLPAw', 'hidef'}
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'wurlitzer', 'infomap', 'scikit-network', 'leidenalg'}
+Sanity check failed, reindexing the hypergraphs ...
+Sanity check failed, reindexing the hypergraphs ...
+number of nodes in construct graph 141
+number of nodes in construct graph 142
+(0, 0), (11, 11), (15, 13), (123, 63), (138, 68), (243, 97), (483, 158), (523, 166), (534, 168), (546, 170), (582, 176), (972, 239), (985, 241), (999, 243), 
+(0, 0), (0, 0), (0, 0), (762, 54), (762, 54), (762, 54), (13620, 278), (15763, 278), (15763, 278), (15768, 278), (16022, 279), (36372, 319), (36372, 319), (36372, 319), 
+
+0it [00:00, ?it/s]
+856it [00:00, 216990.46it/s]
+INFO:root:test: 5318 unique candidates out of 36374 sampled candidates
+
+0it [00:00, ?it/s]
+8855it [00:00, 229800.35it/s]
+INFO:root:test max cliques 5941, nested cliques 2914
+INFO:root:test real max cliques in search universe: 1
+INFO:root:test real smaller cliques in search universe: 318 318
+INFO:root:Our Performance: precision 0.0592, recall 0.0542, f1 0.0566 jaccard 0.0291
+INFO:root:Baseline: Bayesian-MDL skipped (disabled for this runtime).
+INFO:root:Baseline: Max Clique precision 0.0002, recall 0.0013, f1 0.0003, jaccard 0.0001 
+INFO:root:Baseline: ECC precision 0.0177, recall 0.0146, f1 0.0160, jaccard 0.0081 
+INFO:root:Baseline: Demon precision 0.0000, recall 0.0000, f1 0.0000, jaccard 0.0000 
+INFO:root:Baseline: CFinder (k=3) precision 0.0000, recall 0.0000, f1 0.0000, jaccard 0.0000 
+(537, 9) (537,) 208

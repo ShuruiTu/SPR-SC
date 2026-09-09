@@ -1,0 +1,49 @@
+INFO:root:Create log file at log/school2/school2-60000-cou-1788866172.2825034.log
+INFO:root:Command line executed: python main.py --dataset school2 --beta 60000 --features count --channel rayleigh --snr_db 12
+INFO:root:Full args parsed:
+INFO:root:Namespace(dataset='school2', beta=60000, features='count', model='mlp', epochs=2000, lr=0.0001, setting='f', label_rate=0.1, ablation=0, seed=123, use_c=1, jobs=1, save_features=0, data_dir='./data/', log_dir='log', downsample=0, max_child_size=1, ext=0, channel='rayleigh', snr_db=12.0, channel_seed=123, max_background_pairs=10000)
+INFO:root:Finish loading graphs.
+INFO:root:Nodes train: 327, test: 327
+INFO:root:Simplicies train: 3909, test: 3909
+INFO:root:Channel rayleigh at 12.0 dB: test projection edges 3806 -> 4172
+INFO:root:Start computing cliques
+INFO:root:Couldn't find cache for max cliques train
+INFO:root:Number of maximum cliques:3513
+INFO:root:Couldn't find cache for max cliques test
+INFO:root:Number of maximum cliques:3643
+INFO:root:test nodes 327 hyperedges 3909 avg size 2.3210539779994885 std 0.5232084288484576 avg degree 27.74617737003058 max cliques 3643
+INFO:root:Breakdown of test hyperedges (max+small) 113 + 3796
+INFO:root:Intersection 100 out of 1343 3643
+INFO:root:support cliques train:970 - test: 1343
+INFO:root:Optimizing clique sampler .. 
+INFO:root:Found cache for rho.
+INFO:root:[(2, 2), (3, 2), (4, 2), (11, 2), (5, 2), (4, 3), (3, 3), (11, 3), (5, 3), (9, 2), (6, 3), (4, 4), (6, 2), (9, 3)]
+INFO:root:Optimize Clique Sampler: #hyperedges collected:3568, recall: 0.9127654131491431, efficiency:0.05946666666666667
+INFO:root:Clique analysis done.
+INFO:root:train: 14680 unique candidates out of 59994 sampled candidates
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'bayanpy', 'leidenalg', 'infomap', 'graph_tool', 'wurlitzer'}
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'torch', 'hidef', 'pyclustering', 'ASLPAw'}
+Note: to be able to use all crisp methods, you need to install some additional packages:  {'infomap', 'scikit-network', 'wurlitzer', 'leidenalg'}
+Sanity check failed, reindexing the hypergraphs ...
+Sanity check failed, reindexing the hypergraphs ...
+number of nodes in construct graph 327
+number of nodes in construct graph 327
+(0, 0), (139, 139), (1222, 768), (3904, 1541), (4179, 1609), (10109, 2303), (11897, 2441), (12258, 2467), (13083, 2511), (19013, 2785), (25205, 2982), (39165, 3285), (39612, 3293), (50082, 3473), 
+(0, 0), (293, 82), (2273, 904), (6005, 1790), (6060, 1814), (14550, 2404), (17038, 2553), (17698, 2580), (17863, 2599), (26353, 2930), (27145, 2970), (42305, 3179), (42927, 3183), (54297, 3304), 
+
+0it [00:00, ?it/s]
+17246it [00:00, 241418.33it/s]
+INFO:root:test: 14575 unique candidates out of 55557 sampled candidates
+
+0it [00:00, ?it/s]
+16643it [00:00, 247520.75it/s]
+INFO:root:test max cliques 3643, nested cliques 13000
+INFO:root:test real max cliques in search universe: 113
+INFO:root:test real smaller cliques in search universe: 3207 3207
+INFO:root:Our Performance: precision 0.6206, recall 0.6557, f1 0.6376 jaccard 0.4680
+INFO:root:Baseline: Bayesian-MDL skipped (disabled for this runtime).
+INFO:root:Baseline: Max Clique precision 0.0310, recall 0.0289, f1 0.0299, jaccard 0.0152 
+INFO:root:Baseline: ECC precision 0.1834, recall 0.0622, f1 0.0929, jaccard 0.0487 
+INFO:root:Baseline: Demon precision 0.1275, recall 0.0210, f1 0.0360, jaccard 0.0183 
+INFO:root:Baseline: CFinder skipped (disabled for channel-SNR benchmark).
+(13733, 9) (13733,) 3428

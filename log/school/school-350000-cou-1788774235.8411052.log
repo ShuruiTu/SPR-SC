@@ -1,0 +1,33 @@
+2026-09-07 17:43:55,841 - root - INFO - Create log file at log/school/school-350000-cou-1788774235.8411052.log
+2026-09-07 17:43:55,841 - root - INFO - Command line executed: python main.py --dataset school --beta 350000 --features count --channel awgn --snr_db 10
+2026-09-07 17:43:55,841 - root - INFO - Full args parsed:
+2026-09-07 17:43:55,841 - root - INFO - Namespace(dataset='school', beta=350000, features='count', model='mlp', epochs=2000, lr=0.0001, setting='f', label_rate=0.1, ablation=0, seed=123, use_c=1, jobs=1, save_features=0, data_dir='./data/', log_dir='log', downsample=0, max_child_size=1, ext=0, channel='awgn', snr_db=10.0, channel_seed=123, max_background_pairs=10000)
+2026-09-07 17:43:55,880 - root - INFO - Finish loading graphs.
+2026-09-07 17:43:55,880 - root - INFO - Nodes train: 242, test: 242
+2026-09-07 17:43:55,880 - root - INFO - Simplicies train: 6352, test: 6352
+2026-09-07 17:43:56,060 - root - INFO - Channel awgn at 10.0 dB: test projection edges 5710 -> 5833
+2026-09-07 17:43:56,060 - root - INFO - Start computing cliques
+2026-09-07 17:43:56,060 - root - INFO - Couldn't find cache for max cliques train
+2026-09-07 17:43:56,161 - root - INFO - Number of maximum cliques:15119
+2026-09-07 17:43:56,454 - root - INFO - Couldn't find cache for max cliques test
+2026-09-07 17:43:56,555 - root - INFO - Number of maximum cliques:16345
+2026-09-07 17:43:56,836 - root - INFO - test nodes 242 hyperedges 6352 avg size 2.420654911838791 std 0.5512194626711862 avg degree 63.53719008264463 max cliques 16345
+2026-09-07 17:43:56,837 - root - INFO - Breakdown of test hyperedges (max+small) 12 + 6340
+2026-09-07 17:43:56,837 - root - INFO - Intersection 9 out of 1093 16345
+2026-09-07 17:43:56,837 - root - INFO - support cliques train:934 - test: 1093
+2026-09-07 17:43:56,837 - root - INFO - Optimizing clique sampler .. 
+2026-09-07 17:43:56,857 - root - INFO - Found cache for rho.
+2026-09-07 17:43:56,871 - root - INFO - [(2, 2), (3, 2), (4, 2), (5, 2), (16, 2), (3, 3), (4, 3), (16, 3), (13, 2), (5, 3), (13, 3), (12, 2), (6, 3), (6, 2), (8, 3), (9, 2)]
+2026-09-07 17:43:56,871 - root - INFO - Optimize Clique Sampler: #hyperedges collected:5807, recall: 0.9142002518891688, efficiency:0.016591428571428573
+2026-09-07 17:43:57,183 - root - INFO - Clique analysis done.
+2026-09-07 17:43:57,371 - root - INFO - train: 41928 unique candidates out of 349993 sampled candidates
+2026-09-07 17:43:57,909 - root - INFO - test: 39244 unique candidates out of 314485 sampled candidates
+2026-09-07 17:43:58,404 - root - INFO - test max cliques 16345, nested cliques 38923
+2026-09-07 17:43:58,404 - root - INFO - test real max cliques in search universe: 12
+2026-09-07 17:43:58,406 - root - INFO - test real smaller cliques in search universe: 5276 5276
+2026-09-07 17:44:03,986 - root - INFO - Our Performance: precision 0.6374, recall 0.5636, f1 0.5982 jaccard 0.4267
+2026-09-07 17:44:03,986 - root - INFO - Baseline: Bayesian-MDL skipped (disabled for this runtime).
+2026-09-07 17:44:03,987 - root - INFO - Baseline: Max Clique precision 0.0007, recall 0.0019, f1 0.0011, jaccard 0.0005 
+2026-09-07 17:44:04,039 - root - INFO - Baseline: ECC precision 0.1172, recall 0.0183, f1 0.0316, jaccard 0.0161 
+2026-09-07 17:44:05,261 - root - INFO - Baseline: Demon precision 0.0150, recall 0.0006, f1 0.0012, jaccard 0.0006 
+2026-09-07 17:49:17,445 - root - INFO - Baseline: CFinder (k=3) precision 0.0000, recall 0.0000, f1 0.0000, jaccard 0.0000 
