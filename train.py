@@ -93,6 +93,8 @@ class DataLoader:
         self.logger = logger
         self.feature_names = ['clique_type', 'clique_size', 'edge_degree_all_dup', 'edge_degree_mean',
                               'node_degree_mean', 'node_degree_mean_recur', 'node_degree_mean2', 'cluster_coef_mean', 'parent_cliques']
+        if args.soft_reliability:
+            self.feature_names += ['reliability_mean', 'reliability_min', 'reliability_geomean', 'reliability_logit_mean', 'reliability_below_tau']
         self.node_features, self.max_candidates = {}, {}
         self.X_train, self.cliques['final_cliques_train'], self.feature_dict_train, self.node_features['train'] = self.extract_features('train')
         self.X_test, self.cliques['final_cliques_test'], self.feature_dict_test, self.node_features['test'] = self.extract_features('test')
@@ -154,6 +156,15 @@ class DataLoader:
                 feature_dict['node_degree_mean'].append(sum(node_degree[node] for node in clique) / size)
                 feature_dict['node_degree_mean_recur'].append(sum(node_degree_recur[node] for node in clique) / size)
                 feature_dict['node_degree_mean2'].append(sum(node_degree2[node] for node in clique)/size)
+                if self.args.soft_reliability:
+                    reliability = self.graphs.get('edge_reliability_{}'.format(mode), {})
+                    probabilities = [reliability.get(tuple(sorted(edge)), 0.5) for edge in combinations(clique, 2)] or [1.0]
+                    probabilities = np.clip(np.asarray(probabilities, dtype=float), epsilon, 1.0 - epsilon)
+                    feature_dict['reliability_mean'].append(probabilities.mean())
+                    feature_dict['reliability_min'].append(probabilities.min())
+                    feature_dict['reliability_geomean'].append(np.exp(np.log(probabilities).mean()))
+                    feature_dict['reliability_logit_mean'].append(np.log(probabilities / (1.0 - probabilities)).mean())
+                    feature_dict['reliability_below_tau'].append((probabilities < self.args.channel_tau_e).mean())
                 feature_dict['cluster_coef_mean'].append(sum(cluster_coef[node] for node in clique)/size)
                 feature_dict['parent_cliques'].append(len(child2parents[clique]) if clique in child2parents else 0)
 

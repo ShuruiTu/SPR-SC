@@ -7,6 +7,8 @@ candidate/feature/classifier logic remain untouched.
 from __future__ import annotations
 
 import math
+from dataclasses import dataclass
+from typing import Dict, Tuple
 import random
 from itertools import chain
 
@@ -16,6 +18,14 @@ import networkx as nx
 _LEVEL = {(0, 0): -3.0, (0, 1): -1.0, (1, 1): 1.0, (1, 0): 3.0}
 _CONSTELLATION = [(complex(_LEVEL[(b[0], b[1])], _LEVEL[(b[2], b[3])]) / math.sqrt(10.0), b)
                   for b in ((a, b, c, d) for a in (0, 1) for b in (0, 1) for c in (0, 1) for d in (0, 1))]
+
+Edge = Tuple[object, object]
+
+
+@dataclass(frozen=True)
+class ChannelObservation:
+    graph: nx.Graph
+    reliability: Dict[Edge, float]
 
 
 def _logsumexp(values):
@@ -35,16 +45,10 @@ def _sigmoid(value: float) -> float:
     return 1.0 / (1.0 + math.exp(-value))
 
 
-def received_graph(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", tau_e: float = 0.58,
-                   seed: int = 123, max_background_pairs: int = 10000, beta: float = 1.0,
-                   temperature: float = 1.0, edge_prior: float | None = None) -> nx.Graph:
-    """Transmit projection edges through 16-QAM and return a hard received graph.
-
-    This is the SHyRe adapter for the original SPR-SC posterior decision rule:
-    the exact QAM LLR is combined with a sparse edge prior, beta scaling and
-    temperature calibration before thresholding at ``tau_e``.  Only a bounded
-    random sample of non-edges is transmitted; it never enumerates all pairs.
-    """
+def simulate_channel(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", tau_e: float = 0.58,
+                     seed: int = 123, max_background_pairs: int = 10000, beta: float = 1.0,
+                     temperature: float = 1.0, edge_prior: float | None = None) -> ChannelObservation:
+    """Return a hard received graph and posterior reliability per transmitted pair."""
     rng = random.Random(seed)
     nodes = list(clean_graph.nodes())
     clean = {tuple(sorted(edge)) for edge in clean_graph.edges()}
@@ -54,12 +58,8 @@ def received_graph(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", t
         edge_prior = len(clean) / max(possible_pairs, 1)
     edge_prior = min(max(edge_prior, 1e-4), 1.0 - 1e-4)
     prior_logit = math.log(edge_prior / (1.0 - edge_prior))
-
-    # ``None`` deliberately means no sampled background pairs: all-pairs
-    # transmission is not permitted in this scalable received-graph adapter.
     target = min(max(0, int(max_background_pairs or 0)), nonedge_count)
-    background_pairs = set()
-    attempts = 0
+    background_pairs = set(); attempts = 0
     max_attempts = max(100, target * 30)
     while len(background_pairs) < target and attempts < max_attempts and len(nodes) >= 2:
         u, v = rng.sample(nodes, 2)
@@ -70,23 +70,32 @@ def received_graph(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", t
 
     n0 = 10.0 ** (-snr_db / 10.0)
     received = nx.Graph(); received.add_nodes_from(nodes)
+    reliability: Dict[Edge, float] = {}
     for edge in chain(clean, background_pairs):
         bit = int(edge in clean)
         bits = (bit, rng.randrange(2), rng.randrange(2), rng.randrange(2))
         x = next(point for point, label in _CONSTELLATION if label == bits)
-        if fading.lower() == "rayleigh":
-            h = complex(rng.gauss(0, 1 / math.sqrt(2)), rng.gauss(0, 1 / math.sqrt(2)))
-        else:
-            h = 1.0 + 0.0j
+        h = (complex(rng.gauss(0, 1 / math.sqrt(2)), rng.gauss(0, 1 / math.sqrt(2)))
+             if fading.lower() == "rayleigh" else 1.0 + 0.0j)
         noise = complex(rng.gauss(0, math.sqrt(n0 / 2)), rng.gauss(0, math.sqrt(n0 / 2)))
-        y = h * x + noise
-        equalized = y / h if abs(h) > 1e-10 else y
+        equalized = (h * x + noise) / h if abs(h) > 1e-10 else h * x + noise
         sigma_eff = n0 / max(abs(h) ** 2, 1e-12)
         posterior = _sigmoid((prior_logit + beta * _llr(equalized, sigma_eff)) / max(temperature, 1e-4))
+        reliability[edge] = posterior
         if posterior >= tau_e:
             received.add_edge(*edge)
-    received_edges = {tuple(sorted(edge)) for edge in received.edges()}
-    if received_edges == clean:
-        # Preserve the clean graph's insertion order for order-sensitive baselines.
-        return clean_graph.copy()
-    return received
+    if {tuple(sorted(edge)) for edge in received.edges()} == clean:
+        received = clean_graph.copy()
+    return ChannelObservation(received, reliability)
+
+
+def received_graph(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", tau_e: float = 0.58,
+                   seed: int = 123, max_background_pairs: int = 10000, beta: float = 1.0,
+                   temperature: float = 1.0, edge_prior: float | None = None) -> nx.Graph:
+    """Backward-compatible hard-graph adapter."""
+    return simulate_channel(clean_graph, snr_db, fading, tau_e, seed, max_background_pairs,
+                            beta, temperature, edge_prior).graph
+
+
+def clean_reliability(clean_graph: nx.Graph) -> Dict[Edge, float]:
+    return {tuple(sorted(edge)): 1.0 for edge in clean_graph.edges()}

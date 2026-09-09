@@ -27,6 +27,7 @@ def parse_args():
     parser.add_argument("--channel", choices=("awgn", "rayleigh"), default="awgn")
     parser.add_argument("--exclude-datasets", nargs="*", default=())
     parser.add_argument("--snrs", type=int, nargs="*", default=SNRS)
+    parser.add_argument("--soft-reliability", action="store_true")
     return parser.parse_args()
 
 
@@ -57,6 +58,8 @@ def main():
         persist(f"START dataset={dataset} channel={args.channel} snr_db={snr}")
         command = [sys.executable, "main.py", "--dataset", dataset, "--beta", str(beta), "--features", "count",
                    "--channel", args.channel, "--snr_db", str(snr)]
+        if args.soft_reliability:
+            command.append("--soft_reliability")
         proc = subprocess.run(command, cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         log.write_text(proc.stdout, encoding="utf-8")
         parsed = []

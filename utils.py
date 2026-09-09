@@ -56,6 +56,7 @@ def get_args():
     parser.add_argument('--channel_beta', type=float, default=1.0, help='channel LLR scale')
     parser.add_argument('--channel_temperature', type=float, default=1.0, help='channel posterior temperature')
     parser.add_argument('--enable_cfinder', action='store_true', help='run CFinder baseline (disabled by default)')
+    parser.add_argument('--soft_reliability', action='store_true', help='append channel reliability statistics to count features')
 
     try:
         args = parser.parse_args()
