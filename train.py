@@ -49,6 +49,8 @@ def evaluate(models, dataloader, args, logger):
     reconstructed_cliques = set(clique for pred, clique in zip(y_hat_test, dataloader.cliques['final_cliques_test']) if pred > 0.5)
     precision, recall, f1, jaccard = get_performance_wrt_ground_truth(reconstructed_cliques, dataloader.graphs['simplicies_test'])
     logger.info('Our Performance: precision {:.4f}, recall {:.4f}, f1 {:.4f} jaccard {:.4f}'.format(precision, recall, f1, jaccard))
+    variant = 'SHyRe{}-{}'.format('-soft' if args.soft_reliability else '', args.features)
+    logger.info('Model variant: %s', variant)
 
     # baselines:
     # Bayesian-MDL requires graph-tool, which is intentionally not part of the
@@ -178,10 +180,16 @@ class DataLoader:
             # motif based features
             X, feature_dict = extract_motif_features(candidates=final_cliques,
                                                      H=self.cliques['max_cliques_{}'.format(mode)],
-                                                     node_degree=node_degree,
-                                                     use_c=self.args.use_c,
-                                                     jobs=self.args.jobs,
-                                                     args=self.args)
+                                                     node_degree=node_degree, use_c=self.args.use_c,
+                                                     jobs=self.args.jobs, args=self.args)
+            if self.args.soft_reliability:
+                reliability = self.graphs.get('edge_reliability_{}'.format(mode), {})
+                rows = []
+                for clique in final_cliques:
+                    p = [reliability.get(tuple(sorted(edge)), .5) for edge in combinations(clique, 2)] or [1.0]
+                    p = np.clip(np.asarray(p), epsilon, 1-epsilon)
+                    rows.append([p.mean(), p.min(), np.exp(np.log(p).mean()), np.log(p/(1-p)).mean(), (p < self.args.channel_tau_e).mean()])
+                X = np.hstack((X, np.asarray(rows)))
         if self.args.ext:
             X = self.extend_features(X, final_cliques, child2parents, mode)
         split = self.get_num_max_candidates(mode)

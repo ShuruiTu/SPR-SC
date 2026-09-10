@@ -68,3 +68,50 @@
 | Directors | 1.0000 | 1.0000 | 1.0000 |
 | Crimes | 0.8884 | 0.8812 | 0.8622 |
 
+
+## 7. 2026-09-09 当前实施进度
+
+### 已完成
+
+1. **原 SHyRe count 基线固定**：七个非 DBLP 数据集的 clean count 基线保存在
+   `baseline_count_non_dblp.json`；Bayesian-MDL 默认跳过，CFinder 通过
+   `--enable_cfinder` 显式启用。
+2. **hard received graph 信道**：`channel.py` 已实现归一化 16-QAM、AWGN、
+   Rayleigh、精确 bit LLR、有界背景非边抽样，以及旧 SPR-SC 风格的
+   `edge_prior + beta * LLR + temperature + tau_e` 后验判决。
+3. **高 SNR 一致性**：Enron、Hosts-Virus 的 AWGN/Rayleigh 60 dB 测试均恢复
+   clean 图边集；为避免顺序敏感基线差异，边集一致时返回 clean 图副本。四个
+   当前基线（SHyRe、Max Clique、ECC、DEMON）与 clean 对照一致。
+4. **SHyRe 主流程保持不变**：只替换测试投影图；`compute_cliques`、
+   `CliqueSampler`、`DataLoader` 的候选来源和双 MLP 重建流程未被替换。
+5. **软可靠度观测与特征（可选）**：`ChannelObservation` 保留每条传输对的
+   后验可靠度。`--soft_reliability` 会保留原特征，并追加五个候选级统计：
+   均值、最小值、几何均值、平均 logit、低于 `tau_e` 的边比例。训练候选/标签
+   保持 clean；仅独立模拟同参数训练边可靠度以提供训练分布。
+6. **模型变体**：目前支持 `SHyRe-count`、`SHyRe-soft-count`、
+   `SHyRe-motif`、`SHyRe-soft-motif`。后二者的 soft 版本在原 motif 矩阵后
+   拼接同一组五维可靠度特征。
+7. **实验 runner**：`run_full_channel_benchmark.py` 支持信道、SNR 列表、
+   数据集排除、count/motif 选择和软可靠度开关；结果按信道维度恢复。
+
+### 已完成验证
+
+- 60 dB soft-count：除 Foursquare 外六个数据集、AWGN 与 Rayleigh 均已运行；
+  与 clean F1 最大差值为 0.005，说明高 SNR 下基本不退化。
+- 10 dB soft-count 对照：相对同一后验 hard graph，Enron/AWGN 提升 0.0316，
+  Crimes 有小幅提升；整体平均增益接近 0，H.School/Rayleigh 下降 0.0209。
+  因此当前五维直接拼接不是普适增益方案，需继续校准和消融。
+- CFinder：Enron 与 Hosts-Virus 的 AWGN 0 dB 已验证可正常结束；默认仍关闭，
+  避免大图低 SNR 下的组合爆炸。
+
+### 尚未完成 / 下一步
+
+1. 软可靠度的温度/ECE 校准、Rayleigh 信道估计误差与观测比例 manifest。
+2. 对 soft-count / soft-motif 做完整多 SNR、多 seed 消融，并输出带模型变体列的
+   汇总 CSV 与曲线。
+3. 可靠度驱动候选扩张、soft quasi-clique、top-K 高可靠区域和双预算采样。
+4. 语义 embedding、下游任务、HYPER/Walmart 数据、外部基线和完整工程 manifest。
+
+> 当前推荐比较对象是同一信道、同一 SNR 下的 `SHyRe-count` 与
+> `SHyRe-soft-count`（或 motif 对应变体）；不要将早期纯 LLR 信道结果与当前
+> 后验信道结果直接混合比较。

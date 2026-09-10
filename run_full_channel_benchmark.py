@@ -1,4 +1,4 @@
-"""Parallel, resumable native-SHyRe channel benchmark (all non-DBLP datasets)."""
+"""Parallel, resumable SHyRe channel benchmark."""
 from __future__ import annotations
 
 import argparse
@@ -12,10 +12,10 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-DATASETS = {"enron": 1000, "foursquare": 20000, "hosts": 6000, "school": 350000,
-            "school2": 60000, "directors": 800, "crime": 1000}
+DATASETS = {"dblp": 1000000, "enron": 1000, "foursquare": 20000, "hosts": 6000,
+            "school": 350000, "school2": 60000, "directors": 800, "crime": 1000}
 SNRS = list(range(0, 21, 2))
-PATTERN = re.compile(r"(?:(?P<shyre>Our Performance)|Baseline: (?P<baseline>Max Clique|ECC|Demon)).*?f1 (?P<f1>[0-9.]+)")
+PATTERN = re.compile(r"(?:(?P<shyre>Our Performance)|Baseline: (?P<baseline>Max Clique|ECC|Demon|CFinder \(k=\d+\))).*?f1 (?P<f1>[0-9.]+)")
 REQUIRED_METHODS = {"SHyRe", "Max Clique", "ECC", "DEMON"}
 FIELDS = ["dataset", "channel", "snr_db", "method", "f1", "returncode", "log"]
 
@@ -28,6 +28,8 @@ def parse_args():
     parser.add_argument("--exclude-datasets", nargs="*", default=())
     parser.add_argument("--snrs", type=int, nargs="*", default=SNRS)
     parser.add_argument("--soft-reliability", action="store_true")
+    parser.add_argument("--enable-cfinder", action="store_true")
+    parser.add_argument("--features", choices=("count", "motif"), default="count")
     return parser.parse_args()
 
 
@@ -42,8 +44,8 @@ def main():
     for row in rows:
         key = (row["dataset"], row["channel"].upper(), int(row["snr_db"]))
         successful_methods.setdefault(key, set()).add(row["method"])
-    done = {key for key, methods in successful_methods.items() if REQUIRED_METHODS <= methods}
-
+    required_methods = REQUIRED_METHODS | ({"CFinder"} if args.enable_cfinder else set())
+    done = {key for key, methods in successful_methods.items() if required_methods <= methods}
     def persist(message):
         with lock:
             stamp = datetime.now().astimezone().isoformat()
@@ -56,15 +58,22 @@ def main():
         dataset, snr = cell; beta = DATASETS[dataset]
         log = output / f"{dataset}_{args.channel}_{snr}dB.log"
         persist(f"START dataset={dataset} channel={args.channel} snr_db={snr}")
-        command = [sys.executable, "main.py", "--dataset", dataset, "--beta", str(beta), "--features", "count",
+        command = [sys.executable, "main.py", "--dataset", dataset, "--beta", str(beta), "--features", args.features,
                    "--channel", args.channel, "--snr_db", str(snr)]
+        if args.enable_cfinder:
+            command.append("--enable_cfinder")
         if args.soft_reliability:
             command.append("--soft_reliability")
         proc = subprocess.run(command, cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         log.write_text(proc.stdout, encoding="utf-8")
         parsed = []
         for match in PATTERN.finditer(proc.stdout):
-            method = "SHyRe" if match.group("shyre") else match.group("baseline").replace("Demon", "DEMON")
+            if match.group("shyre"):
+                method = "SHyRe"
+            else:
+                method = match.group("baseline").replace("Demon", "DEMON")
+                if method.startswith("CFinder"):
+                    method = "CFinder"
             parsed.append({"dataset": dataset, "channel": args.channel.upper(), "snr_db": snr, "method": method,
                            "f1": float(match.group("f1")), "returncode": proc.returncode, "log": str(log)})
         with lock: rows.extend(parsed)
