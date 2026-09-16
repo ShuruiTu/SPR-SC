@@ -31,6 +31,7 @@ def parse_args():
                         help="explicit dataset subset; defaults to all registered datasets")
     parser.add_argument("--snrs", type=int, nargs="*", default=SNRS)
     parser.add_argument("--soft-reliability", action="store_true")
+    parser.add_argument("--soft-reliability-mode", choices=("off", "basic", "distribution"), default="off")
     parser.add_argument("--train-channel-matched", action="store_true",
                         help="apply an independent same-SNR channel draw to the training projection")
     parser.add_argument("--train-channel-replicates", type=int, default=1)
@@ -91,6 +92,8 @@ def main():
             command.append("--enable_cfinder")
         if args.soft_reliability:
             command.append("--soft_reliability")
+        if args.soft_reliability_mode != 'off':
+            command.extend(['--soft_reliability_mode', args.soft_reliability_mode])
         if args.train_channel_matched:
             command.append("--train_channel_matched")
         if args.train_channel_replicates != 1:

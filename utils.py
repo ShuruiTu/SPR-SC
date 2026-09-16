@@ -67,6 +67,9 @@ def get_args():
     parser.add_argument('--channel_temperature', type=float, default=1.0, help='channel posterior temperature')
     parser.add_argument('--enable_cfinder', action='store_true', help='run CFinder baseline (disabled by default)')
     parser.add_argument('--soft_reliability', action='store_true', help='append channel reliability statistics to count features')
+    parser.add_argument('--soft_reliability_mode', '--soft-reliability-mode',
+                        choices=['off', 'basic', 'distribution'], default='off',
+                        help='soft reliability feature set; basic preserves the v1.0 soft-count features')
     parser.add_argument('--train_channel_matched', action='store_true', help='apply an independently drawn channel with matching type/SNR to the training projection')
     parser.add_argument('--train_channel_replicates', '--train-channel-replicates', type=int, default=1,
                         help='independent noisy training projections per train SNR')
@@ -90,6 +93,10 @@ def get_args():
         args = parser.parse_args()
         if args.setting == 's':
             args.dataset = args.dataset + '-s'
+        if args.soft_reliability and args.soft_reliability_mode == 'off':
+            args.soft_reliability_mode = 'basic'
+        if args.soft_reliability_mode != 'off':
+            args.soft_reliability = True
         if not 0.0 < args.decision_threshold < 1.0:
             parser.error('--decision-threshold must be in (0, 1)')
         if not 0.0 < args.threshold_validation_fraction < 0.5:

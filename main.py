@@ -202,13 +202,15 @@ if __name__ == '__main__':
                 ('-fast' if args.candidate_generator == 'shyre_fast' else
                  '-channel-aware' if args.candidate_generator == 'shyre_channel_aware' else ''),
                 '-matched-train' if args.train_channel_matched else '',
-                '-soft' if args.soft_reliability else '',
+                ('-soft-distribution' if args.soft_reliability_mode == 'distribution' else
+                 '-soft' if args.soft_reliability else ''),
                 '-adaptive-threshold' if args.decision_threshold_mode == 'validation' else '',
                 '-multi-train' if len(training_observations) > 1 else '',
                 args.features),
             'modules': {
                 'projection_retention': args.enable_projection_retention,
                 'soft_reliability': args.soft_reliability,
+                'soft_reliability_mode': args.soft_reliability_mode,
                 'train_channel_matched': args.train_channel_matched,
                 'candidate_metrics': args.enable_candidate_metrics,
                 'storage_metrics': args.enable_storage_metrics,

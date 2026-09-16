@@ -17,6 +17,45 @@ from baselines import ecc, community
 from tqdm import tqdm
 from telemetry import candidate_diagnostics, classifier_diagnostics
 
+BASIC_RELIABILITY_FEATURES = [
+    'reliability_mean', 'reliability_min', 'reliability_geomean',
+    'reliability_logit_mean', 'reliability_below_tau',
+]
+DISTRIBUTION_RELIABILITY_FEATURES = [
+    'reliability_std', 'reliability_q10', 'reliability_q25',
+    'reliability_median', 'reliability_log_probability',
+    'reliability_unobserved_ratio',
+]
+
+
+def _reliability_feature_values(clique, reliability, tau, mode):
+    edges = [tuple(sorted(edge)) for edge in combinations(clique, 2)]
+    if not edges:
+        probabilities = np.asarray([1.0], dtype=float)
+        unobserved_ratio = 0.0
+    else:
+        probabilities = np.asarray(
+            [reliability.get(edge, 0.5) for edge in edges], dtype=float)
+        unobserved_ratio = sum(edge not in reliability for edge in edges) / len(edges)
+    probabilities = np.clip(probabilities, epsilon, 1.0 - epsilon)
+    values = [
+        probabilities.mean(),
+        probabilities.min(),
+        np.exp(np.log(probabilities).mean()),
+        np.log(probabilities / (1.0 - probabilities)).mean(),
+        (probabilities < tau).mean(),
+    ]
+    if mode == 'distribution':
+        values.extend([
+            probabilities.std(),
+            np.quantile(probabilities, 0.10),
+            np.quantile(probabilities, 0.25),
+            np.median(probabilities),
+            np.log(probabilities).sum(),
+            unobserved_ratio,
+        ])
+    return values
+
 def _metric_record(reconstructed, ground_truth):
     precision, recall, f1, jaccard = get_performance_wrt_ground_truth(reconstructed, ground_truth)
     return {'precision': precision, 'recall': recall, 'f1': f1, 'jaccard': jaccard}
@@ -153,8 +192,10 @@ def evaluate(models, dataloader, args, logger, thresholds=None):
     threshold_tag = '-adaptive-threshold' if args.decision_threshold_mode == 'validation' else ''
     multi_train_tag = ('-multi-train' if
                        args.train_channel_replicates * len(args.train_snr_offsets) > 1 else '')
+    soft_tag = ('-soft-distribution' if args.soft_reliability_mode == 'distribution' else
+                '-soft' if args.soft_reliability else '')
     variant = 'SHyRe{}{}{}{}{}-{}'.format(
-        sampler_tag, train_tag, '-soft' if args.soft_reliability else '',
+        sampler_tag, train_tag, soft_tag,
         threshold_tag, multi_train_tag, args.features)
     logger.info('Model variant: %s', variant)
     outcome = {
@@ -232,7 +273,9 @@ class DataLoader:
         self.feature_names = ['clique_type', 'clique_size', 'edge_degree_all_dup', 'edge_degree_mean',
                               'node_degree_mean', 'node_degree_mean_recur', 'node_degree_mean2', 'cluster_coef_mean', 'parent_cliques']
         if args.soft_reliability:
-            self.feature_names += ['reliability_mean', 'reliability_min', 'reliability_geomean', 'reliability_logit_mean', 'reliability_below_tau']
+            self.feature_names += BASIC_RELIABILITY_FEATURES
+            if args.soft_reliability_mode == 'distribution':
+                self.feature_names += DISTRIBUTION_RELIABILITY_FEATURES
         self.node_features, self.max_candidates = {}, {}
         self.X_train, self.cliques['final_cliques_train'], self.feature_dict_train, self.node_features['train'] = self.extract_features('train')
         self.X_test, self.cliques['final_cliques_test'], self.feature_dict_test, self.node_features['test'] = self.extract_features('test')
@@ -293,13 +336,15 @@ class DataLoader:
                 feature_dict['node_degree_mean2'].append(sum(node_degree2[node] for node in clique)/size)
                 if self.args.soft_reliability:
                     reliability = self.graphs.get('edge_reliability_{}'.format(mode), {})
-                    probabilities = [reliability.get(tuple(sorted(edge)), 0.5) for edge in combinations(clique, 2)] or [1.0]
-                    probabilities = np.clip(np.asarray(probabilities, dtype=float), epsilon, 1.0 - epsilon)
-                    feature_dict['reliability_mean'].append(probabilities.mean())
-                    feature_dict['reliability_min'].append(probabilities.min())
-                    feature_dict['reliability_geomean'].append(np.exp(np.log(probabilities).mean()))
-                    feature_dict['reliability_logit_mean'].append(np.log(probabilities / (1.0 - probabilities)).mean())
-                    feature_dict['reliability_below_tau'].append((probabilities < self.args.channel_tau_e).mean())
+                    values = _reliability_feature_values(
+                        clique, reliability, self.args.channel_tau_e,
+                        self.args.soft_reliability_mode)
+                    for name, value in zip(
+                            BASIC_RELIABILITY_FEATURES +
+                            (DISTRIBUTION_RELIABILITY_FEATURES
+                             if self.args.soft_reliability_mode == 'distribution' else []),
+                            values):
+                        feature_dict[name].append(value)
                 feature_dict['cluster_coef_mean'].append(sum(cluster_coef[node] for node in clique)/size)
                 feature_dict['parent_cliques'].append(len(child2parents[clique]) if clique in child2parents else 0)
 
@@ -317,11 +362,12 @@ class DataLoader:
                                                      jobs=self.args.jobs, args=self.args)
             if self.args.soft_reliability:
                 reliability = self.graphs.get('edge_reliability_{}'.format(mode), {})
-                rows = []
-                for clique in final_cliques:
-                    p = [reliability.get(tuple(sorted(edge)), .5) for edge in combinations(clique, 2)] or [1.0]
-                    p = np.clip(np.asarray(p), epsilon, 1-epsilon)
-                    rows.append([p.mean(), p.min(), np.exp(np.log(p).mean()), np.log(p/(1-p)).mean(), (p < self.args.channel_tau_e).mean()])
+                rows = [
+                    _reliability_feature_values(
+                        clique, reliability, self.args.channel_tau_e,
+                        self.args.soft_reliability_mode)
+                    for clique in final_cliques
+                ]
                 X = np.hstack((X, np.asarray(rows)))
         if self.args.ext:
             X = self.extend_features(X, final_cliques, child2parents, mode)

@@ -115,7 +115,7 @@ v1.0 已包含：
 
 计划模式：`off|basic|distribution`，其中 `basic` 保持 v1.0 soft-count 行为。
 
-状态：`待实现`
+状态：`已实现并完成 10 dB 三种子验证`
 
 ### P5：类别不平衡与模型比较
 
@@ -272,3 +272,22 @@ v1.0 已包含：
 
 - P2+P3 对 Crime 效果最好，并进一步降低 Rayleigh 方差；Enron 候选召回提高但 F1 略降，说明额外候选的分类仍有改进空间。
 - 结果目录：`results_v1_1_p2_p3_multiseed_awgn_10db/`、`results_v1_1_p2_p3_multiseed_rayleigh_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P4 软可靠度分布特征
+
+- 新增 `--soft-reliability-mode off|basic|distribution`。
+- `basic` 完全保持 v1.0 soft-count 的五个可靠度特征和结果。
+- `distribution` 追加可靠度标准差、10%/25%/50% 分位数、候选联合对数概率和未观测边比例。
+- 三个 channel seed 的 10 dB 结果：
+
+| 数据集 | 信道 | basic F1 | distribution F1 |
+|---|---|---:|---:|
+| Enron | AWGN | 0.3068 ± 0.0095 | 0.3203 ± 0.0076 |
+| Enron | Rayleigh | 0.3028 ± 0.0128 | 0.3034 ± 0.0087 |
+| Crime | AWGN | 0.2905 ± 0.0484 | 0.3061 ± 0.0432 |
+| Crime | Rayleigh | 0.1580 ± 0.0776 | 0.1644 ± 0.0903 |
+
+- distribution 相比 basic 的均值均有小幅提高，并降低 Enron 方差；但 Crime-Rayleigh 仍不稳定且低于 count P3。
+- Crime 上将 P3 与 distribution 组合后，AWGN 为 0.2881 ± 0.0236、Rayleigh 为 0.2311 ± 0.0104，均低于纯 count P3，因此当前不建议同时启用。
+- 结论：`distribution` 作为独立消融模型保留，不替换 count；AWGN 更可能从软可靠度获益，Rayleigh 应优先使用邻域 SNR 训练或等待 P6 专项处理。
+- 结果目录：`results_v1_1_p4_basic_*_10db/`、`results_v1_1_p4_distribution_*_10db/`、`results_v1_1_p3_p4_distribution_*_10db/`（本地忽略，不提交）。
