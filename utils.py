@@ -68,11 +68,23 @@ def get_args():
     parser.add_argument('--enable_cfinder', action='store_true', help='run CFinder baseline (disabled by default)')
     parser.add_argument('--soft_reliability', action='store_true', help='append channel reliability statistics to count features')
     parser.add_argument('--train_channel_matched', action='store_true', help='apply an independently drawn channel with matching type/SNR to the training projection')
+    parser.add_argument('--decision_threshold_mode', '--decision-threshold-mode',
+                        choices=['fixed', 'validation'], default='fixed',
+                        help='fixed 0.5-style decision or per-candidate-type validation threshold')
+    parser.add_argument('--decision_threshold', '--decision-threshold', type=float, default=0.5,
+                        help='positive-class threshold used in fixed mode and as validation fallback')
+    parser.add_argument('--threshold_validation_fraction', '--threshold-validation-fraction',
+                        type=float, default=0.2,
+                        help='training-candidate fraction reserved only for threshold selection')
 
     try:
         args = parser.parse_args()
         if args.setting == 's':
             args.dataset = args.dataset + '-s'
+        if not 0.0 < args.decision_threshold < 1.0:
+            parser.error('--decision-threshold must be in (0, 1)')
+        if not 0.0 < args.threshold_validation_fraction < 0.5:
+            parser.error('--threshold-validation-fraction must be in (0, 0.5)')
     except:
         parser.print_help()
         sys.exit(0)

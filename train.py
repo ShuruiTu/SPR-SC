@@ -11,6 +11,7 @@ from motif import extract_motif_features
 import pickle
 from sklearn.utils import resample
 from sklearn.feature_selection import SelectKBest
+from sklearn.model_selection import train_test_split
 epsilon = 1e-8
 from baselines import ecc, community
 from tqdm import tqdm
@@ -43,23 +44,82 @@ def _size_stratified_metrics(outputs, ground_truth):
     return result
 
 
+def _positive_scores(model, features):
+    """Return P(y=1), including sklearn's single-class fitted case."""
+    classes = list(model.classes_)
+    if 1 not in classes:
+        return np.zeros(features.shape[0], dtype=float)
+    probabilities = model.predict_proba(features)
+    return probabilities[:, classes.index(1)]
+
+
+def _binary_f1(labels, predictions):
+    labels = np.asarray(labels, dtype=int)
+    predictions = np.asarray(predictions, dtype=int)
+    true_positive = int(((labels == 1) & (predictions == 1)).sum())
+    false_positive = int(((labels == 0) & (predictions == 1)).sum())
+    false_negative = int(((labels == 1) & (predictions == 0)).sum())
+    denominator = 2 * true_positive + false_positive + false_negative
+    return 2 * true_positive / denominator if denominator else 0.0
+
+
+def _fit_with_threshold(model, features, labels, args, logger, candidate_group):
+    """Fit one candidate classifier and optionally tune its threshold."""
+    fallback = args.decision_threshold
+    if not features.shape[0]:
+        return model, fallback
+    if args.decision_threshold_mode == 'fixed':
+        model.fit(features, labels)
+        return model, fallback
+
+    labels = np.asarray(labels)
+    class_counts = Counter(labels.tolist())
+    if len(class_counts) < 2 or min(class_counts.values()) < 2 or len(labels) < 10:
+        logger.warning(
+            '%s threshold validation unavailable for label counts %s; using %.3f.',
+            candidate_group, dict(class_counts), fallback)
+        model.fit(features, labels)
+        return model, fallback
+
+    X_fit, X_validation, y_fit, y_validation = train_test_split(
+        features, labels, test_size=args.threshold_validation_fraction,
+        random_state=args.seed, stratify=labels)
+    model.fit(X_fit, y_fit)
+    scores = _positive_scores(model, X_validation)
+    thresholds = np.unique(np.r_[np.arange(0.05, 1.0, 0.05), fallback])
+    ranked = [
+        (_binary_f1(y_validation, scores >= threshold),
+         -abs(threshold - fallback), threshold)
+        for threshold in thresholds
+    ]
+    _, _, selected = max(ranked)
+    logger.info('%s validation threshold %.3f (fallback %.3f, validation rows %d).',
+                candidate_group, selected, fallback, len(y_validation))
+    # Threshold selection uses only the held-out split; the final estimator can
+    # then use every training candidate without touching test labels.
+    model.fit(features, labels)
+    return model, float(selected)
+
+
 def train(dataloader, args, logger):
     model1 = get_model(args, dataloader)
     model2 = deepcopy(model1)
     (X_train1, y_train1), (X_train2, y_train2) = dataloader.split_train()
-    if X_train1.shape[0] > 0:
-        model1.fit(X_train1, y_train1)
+    model1, threshold1 = _fit_with_threshold(
+        model1, X_train1, y_train1, args, logger, 'max-clique')
     print(X_train2.shape, y_train2.shape, y_train2.sum())
-    if X_train2.shape[0] > 0:
-        model2.fit(X_train2, y_train2)
-    return evaluate((model1, model2), dataloader, args, logger)
+    model2, threshold2 = _fit_with_threshold(
+        model2, X_train2, y_train2, args, logger, 'nested-clique')
+    return evaluate((model1, model2), dataloader, args, logger,
+                    thresholds=(threshold1, threshold2))
 
 
-def evaluate(models, dataloader, args, logger):
+def evaluate(models, dataloader, args, logger, thresholds=None):
     model1, model2 = models if len(models) > 1 else (models[0], models[0])
+    thresholds = thresholds or (args.decision_threshold, args.decision_threshold)
     X_test = dataloader.X_test
     num_max_cliques_test = dataloader.get_num_max_candidates('test')
-    def predict_or_reject(model, features, candidate_group):
+    def predict_or_reject(model, features, candidate_group, threshold):
         """Reject a group when its corresponding classifier has no train rows.
 
         Strong channels can leave one candidate class (typically nested cliques)
@@ -73,10 +133,14 @@ def evaluate(models, dataloader, args, logger):
             logger.warning('%s classifier has no training samples; rejecting %d candidates.',
                            candidate_group, features.shape[0])
             return np.zeros(features.shape[0], dtype=int)
-        return model.predict(features)
+        if args.decision_threshold_mode == 'fixed' and threshold == 0.5:
+            return model.predict(features)
+        return (_positive_scores(model, features) >= threshold).astype(int)
 
-    y_hat_test1 = predict_or_reject(model1, X_test[:num_max_cliques_test], 'max-clique')
-    y_hat_test2 = predict_or_reject(model2, X_test[num_max_cliques_test:], 'nested-clique')
+    y_hat_test1 = predict_or_reject(
+        model1, X_test[:num_max_cliques_test], 'max-clique', thresholds[0])
+    y_hat_test2 = predict_or_reject(
+        model2, X_test[num_max_cliques_test:], 'nested-clique', thresholds[1])
     y_hat_test = np.hstack((y_hat_test1, y_hat_test2))
     truth = dataloader.graphs['simplicies_test']
     reconstructed_cliques = set(clique for pred, clique in zip(y_hat_test, dataloader.cliques['final_cliques_test']) if pred > 0.5)
@@ -85,9 +149,20 @@ def evaluate(models, dataloader, args, logger):
         shyre['precision'], shyre['recall'], shyre['f1'], shyre['jaccard']))
     sampler_tag = '-fast' if args.candidate_generator == 'shyre_fast' else ''
     train_tag = '-matched-train' if args.train_channel_matched else ''
-    variant = 'SHyRe{}{}{}-{}'.format(sampler_tag, train_tag, '-soft' if args.soft_reliability else '', args.features)
+    threshold_tag = '-adaptive-threshold' if args.decision_threshold_mode == 'validation' else ''
+    variant = 'SHyRe{}{}{}{}-{}'.format(
+        sampler_tag, train_tag, '-soft' if args.soft_reliability else '',
+        threshold_tag, args.features)
     logger.info('Model variant: %s', variant)
-    outcome = {'performance': {'SHyRe': shyre}, '_reconstructed_cliques': reconstructed_cliques}
+    outcome = {
+        'performance': {'SHyRe': shyre},
+        'decision_thresholds': {
+            'mode': args.decision_threshold_mode,
+            'max_clique': thresholds[0],
+            'nested_clique': thresholds[1],
+        },
+        '_reconstructed_cliques': reconstructed_cliques,
+    }
 
     if args.enable_candidate_metrics:
         test_candidates = dataloader.cliques['final_cliques_test']

@@ -47,6 +47,9 @@ def parse_args():
     parser.add_argument("--seeds", type=int, nargs="*", default=None,
                         help="matched seed grid; overrides --seed when supplied")
     parser.add_argument("--channel-seed", type=int, default=None)
+    parser.add_argument("--decision-threshold-mode", choices=("fixed", "validation"), default="fixed")
+    parser.add_argument("--decision-threshold", type=float, default=0.5)
+    parser.add_argument("--threshold-validation-fraction", type=float, default=0.2)
     return parser.parse_args()
 
 
@@ -86,6 +89,12 @@ def main():
             command.append("--soft_reliability")
         if args.train_channel_matched:
             command.append("--train_channel_matched")
+        if args.decision_threshold_mode != 'fixed':
+            command.extend(['--decision_threshold_mode', args.decision_threshold_mode])
+        if args.decision_threshold != 0.5:
+            command.extend(['--decision_threshold', str(args.decision_threshold)])
+        if args.threshold_validation_fraction != 0.2:
+            command.extend(['--threshold_validation_fraction', str(args.threshold_validation_fraction)])
         if args.projection_retention is not None:
             command.extend(['--enable_projection_retention', '--projection_retention', str(args.projection_retention)])
         if args.candidate_generator != 'shyre':

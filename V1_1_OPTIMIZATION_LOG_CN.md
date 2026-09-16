@@ -71,7 +71,7 @@ v1.0 已包含：
 
 候选阈值只能在训练/验证数据上选择，禁止使用测试集调参。
 
-状态：`待实现`
+状态：`已实现并完成首轮单种子验证`
 
 ### P2：信道感知候选生成
 
@@ -186,3 +186,23 @@ v1.0 已包含：
 
 - 结论：首轮样本中的候选集合仍覆盖约 35%–48% 的真实超边，但分类器只保留其中约 3%–21%；当前中低 SNR 的主要瓶颈位于分类判决阶段，P1 的优先级高于扩大候选池。
 - 结果目录：`results_v1_1_p0_diagnostics_awgn_10db/`、`results_v1_1_p0_diagnostics_rayleigh_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P1 验证集自适应分类阈值
+
+- 新增 `--decision-threshold-mode fixed|validation`，默认 `fixed`。
+- 新增 `--decision-threshold` 和 `--threshold-validation-fraction`。
+- 最大团与嵌套团分类器分别在训练候选的分层验证子集上选择 F1 最优阈值；测试标签不参与阈值选择。
+- 若训练子集为空、只有单类别或样本不足，则回退到固定阈值。
+- 默认固定阈值回归检查与 v1.0 完全一致。
+
+| 数据集 | 信道 | 固定阈值 F1 | 自适应阈值 F1 | 变化 |
+|---|---|---:|---:|---:|
+| Enron | AWGN | 0.1102 | 0.3084 | +0.1982 |
+| Enron | Rayleigh | 0.0610 | 0.2991 | +0.2381 |
+| Crime | AWGN | 0.1490 | 0.1685 | +0.0195 |
+| Crime | Rayleigh | 0.0223 | 0.2339 | +0.2116 |
+
+- Enron 自适应阈值：AWGN 为最大团 0.15、嵌套团 0.05；Rayleigh 为 0.05、0.10。
+- Crime 自适应阈值：AWGN 为最大团 0.45、嵌套团 0.25；Rayleigh 均为 0.15。
+- 结论：结果支持 P0 的判断，固定 0.5 阈值是中低 SNR 的主要瓶颈之一；需要通过多 channel seed 和完整 SNR 曲线确认泛化与稳定性。
+- 结果目录：`results_v1_1_p1_validation_threshold_awgn_10db/`、`results_v1_1_p1_validation_threshold_rayleigh_10db/`（本地忽略，不提交）。
