@@ -38,6 +38,9 @@ def parse_args():
     parser.add_argument("--train-snr-offsets", type=float, nargs="+", default=[0.0])
     parser.add_argument("--enable-cfinder", action="store_true")
     parser.add_argument("--features", choices=("count", "motif"), default="count")
+    parser.add_argument("--model", choices=("mlp", "lr", "rf"), default="mlp")
+    parser.add_argument("--class-balance", choices=("none", "upsample"), default="none")
+    parser.add_argument("--upsample-positive-ratio", type=float, default=1.0 / 3.0)
     parser.add_argument("--projection-retention", type=float, default=None)
     parser.add_argument("--candidate-generator", choices=("shyre", "shyre_fast", "shyre_channel_aware", "strict_max_clique", "random", "head", "tail"), default="shyre")
     parser.add_argument("--channel-candidate-tau", type=float, default=0.45)
@@ -86,8 +89,13 @@ def main():
         log = output / f"{suffix}.log"
         persist(f"START dataset={dataset} channel={args.channel} snr_db={snr} seed={seed}")
         command = [sys.executable, "main.py", "--dataset", dataset, "--beta", str(beta),
-                   "--features", args.features, "--channel", args.channel, "--snr_db", str(snr),
+                   "--features", args.features, "--model", args.model,
+                   "--channel", args.channel, "--snr_db", str(snr),
                    "--seed", str(seed), "--channel_seed", str(seed if args.channel_seed is None else args.channel_seed)]
+        if args.class_balance != 'none':
+            command.extend(['--class_balance', args.class_balance])
+        if args.upsample_positive_ratio != 1.0 / 3.0:
+            command.extend(['--upsample_positive_ratio', str(args.upsample_positive_ratio)])
         if args.enable_cfinder:
             command.append("--enable_cfinder")
         if args.soft_reliability:

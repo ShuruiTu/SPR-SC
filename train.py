@@ -12,6 +12,7 @@ import pickle
 from sklearn.utils import resample
 from sklearn.feature_selection import SelectKBest
 from sklearn.model_selection import train_test_split
+from sklearn.dummy import DummyClassifier
 epsilon = 1e-8
 from baselines import ecc, community
 from tqdm import tqdm
@@ -102,13 +103,39 @@ def _binary_f1(labels, predictions):
     return 2 * true_positive / denominator if denominator else 0.0
 
 
+def _balance_training(features, labels, args):
+    if args.class_balance != 'upsample':
+        return features, labels
+    labels = np.asarray(labels)
+    positives = int((labels == 1).sum())
+    negatives = int((labels == 0).sum())
+    if positives == 0 or negatives == 0:
+        return features, labels
+    target_positives = int(np.ceil(negatives * args.upsample_positive_ratio))
+    if positives >= target_positives:
+        return features, labels
+    X_positive, y_positive = resample(
+        features[labels == 1], labels[labels == 1],
+        n_samples=target_positives, replace=True, random_state=args.seed)
+    return (np.vstack((X_positive, features[labels == 0])),
+            np.hstack((y_positive, labels[labels == 0])))
+
+
 def _fit_with_threshold(model, features, labels, args, logger, candidate_group):
     """Fit one candidate classifier and optionally tune its threshold."""
     fallback = args.decision_threshold
     if not features.shape[0]:
         return model, fallback
+    unique_labels = np.unique(labels)
+    if len(unique_labels) == 1:
+        logger.warning('%s has a single training class %s; using a constant classifier.',
+                       candidate_group, unique_labels[0])
+        constant = DummyClassifier(strategy='constant', constant=unique_labels[0])
+        constant.fit(features, labels)
+        return constant, fallback
     if args.decision_threshold_mode == 'fixed':
-        model.fit(features, labels)
+        fit_features, fit_labels = _balance_training(features, labels, args)
+        model.fit(fit_features, fit_labels)
         return model, fallback
 
     labels = np.asarray(labels)
@@ -117,13 +144,15 @@ def _fit_with_threshold(model, features, labels, args, logger, candidate_group):
         logger.warning(
             '%s threshold validation unavailable for label counts %s; using %.3f.',
             candidate_group, dict(class_counts), fallback)
-        model.fit(features, labels)
+        fit_features, fit_labels = _balance_training(features, labels, args)
+        model.fit(fit_features, fit_labels)
         return model, fallback
 
     X_fit, X_validation, y_fit, y_validation = train_test_split(
         features, labels, test_size=args.threshold_validation_fraction,
         random_state=args.seed, stratify=labels)
-    model.fit(X_fit, y_fit)
+    balanced_X_fit, balanced_y_fit = _balance_training(X_fit, y_fit, args)
+    model.fit(balanced_X_fit, balanced_y_fit)
     scores = _positive_scores(model, X_validation)
     thresholds = np.unique(np.r_[np.arange(0.05, 1.0, 0.05), fallback])
     ranked = [
@@ -136,7 +165,8 @@ def _fit_with_threshold(model, features, labels, args, logger, candidate_group):
                 candidate_group, selected, fallback, len(y_validation))
     # Threshold selection uses only the held-out split; the final estimator can
     # then use every training candidate without touching test labels.
-    model.fit(features, labels)
+    balanced_features, balanced_labels = _balance_training(features, labels, args)
+    model.fit(balanced_features, balanced_labels)
     return model, float(selected)
 
 
@@ -194,9 +224,11 @@ def evaluate(models, dataloader, args, logger, thresholds=None):
                        args.train_channel_replicates * len(args.train_snr_offsets) > 1 else '')
     soft_tag = ('-soft-distribution' if args.soft_reliability_mode == 'distribution' else
                 '-soft' if args.soft_reliability else '')
-    variant = 'SHyRe{}{}{}{}{}-{}'.format(
+    model_tag = '-{}'.format(args.model) if args.model != 'mlp' else ''
+    balance_tag = '-upsample' if args.class_balance == 'upsample' else ''
+    variant = 'SHyRe{}{}{}{}{}{}{}-{}'.format(
         sampler_tag, train_tag, soft_tag,
-        threshold_tag, multi_train_tag, args.features)
+        threshold_tag, multi_train_tag, model_tag, balance_tag, args.features)
     logger.info('Model variant: %s', variant)
     outcome = {
         'performance': {'SHyRe': shyre},
@@ -468,11 +500,7 @@ class DataLoader:
         num_max_cliques_train = self.get_num_max_candidates('train')
         X_train1, y_train1 = self.X_train[:num_max_cliques_train], self.y_train[:num_max_cliques_train]
         X_train2, y_train2 = self.X_train[num_max_cliques_train:], self.y_train[num_max_cliques_train:]
-        upsampled = False
-        if upsampled:
-            return self.upsample(X_train1, y_train1), self.upsample(X_train2, y_train2)
-        else:
-            return (X_train1, y_train1), (X_train2, y_train2)
+        return (X_train1, y_train1), (X_train2, y_train2)
 
     def augment_training(self, additional_loaders):
         """Stack independent noisy training projections by candidate type."""
@@ -514,13 +542,6 @@ class DataLoader:
         for i in range(start, X.shape[0]):
             X_ext[i] = np.array([parent2features[parent] for parent in child2parents[final_cliques[i]]]).mean(axis=0)
         return np.concatenate((X_ext, X), axis=1)
-
-    def upsample(self, X, y):
-        if 2*y.sum() >= len(y):
-            return X, y
-        X_upsampled, y_upsampled = resample(X[y==1], y[y==1], n_samples=int((y==0).sum()/3), replace=True,
-                                            random_state=self.args.seed)
-        return np.vstack((X_upsampled, X[y==0])), np.hstack((y_upsampled, y[y==0]))
 
     def select_k_best(self, X_train, y_train, X_test):
         s = SelectKBest(k=self.k_best)

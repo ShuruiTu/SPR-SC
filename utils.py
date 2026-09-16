@@ -23,7 +23,13 @@ def get_args():
     parser.add_argument('--dataset', '--d', type=str, default='dblp', help='dataset name')
     parser.add_argument('--beta', type=int, default=1e6, help='sampling budget')
     parser.add_argument('--features', type=str, default='count', help='type of features used to characterize structural property, heuristic or motif-based')
-    parser.add_argument('--model', type=str, default='mlp', help='Ml model to use')
+    parser.add_argument('--model', choices=['mlp', 'lr', 'rf'], default='mlp', help='ML model to use')
+    parser.add_argument('--class_balance', '--class-balance',
+                        choices=['none', 'upsample'], default='none',
+                        help='optional label balancing applied independently by candidate type')
+    parser.add_argument('--upsample_positive_ratio', '--upsample-positive-ratio',
+                        type=float, default=1.0 / 3.0,
+                        help='target positive/negative ratio for upsampling')
     # parser.add_argument('--gnn_model', type=str, default='GIN', help='GNN model to use, valid only when model=gnn')
 
     # moderate training process
@@ -107,6 +113,8 @@ def get_args():
             parser.error('--channel-candidate-max-extra-edges must be non-negative')
         if args.train_channel_replicates < 1:
             parser.error('--train-channel-replicates must be at least 1')
+        if not 0.0 < args.upsample_positive_ratio <= 1.0:
+            parser.error('--upsample-positive-ratio must be in (0, 1]')
         if ((args.train_channel_replicates != 1 or args.train_snr_offsets != [0.0])
                 and not args.train_channel_matched):
             parser.error('multi-instance channel training requires --train_channel_matched')

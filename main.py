@@ -198,7 +198,7 @@ if __name__ == '__main__':
             'channel': args.channel,
             'snr_db': args.snr_db,
             'seed': args.seed,
-            'model_variant': 'SHyRe{}{}{}{}{}-{}'.format(
+            'model_variant': 'SHyRe{}{}{}{}{}{}{}-{}'.format(
                 ('-fast' if args.candidate_generator == 'shyre_fast' else
                  '-channel-aware' if args.candidate_generator == 'shyre_channel_aware' else ''),
                 '-matched-train' if args.train_channel_matched else '',
@@ -206,6 +206,8 @@ if __name__ == '__main__':
                  '-soft' if args.soft_reliability else ''),
                 '-adaptive-threshold' if args.decision_threshold_mode == 'validation' else '',
                 '-multi-train' if len(training_observations) > 1 else '',
+                '-{}'.format(args.model) if args.model != 'mlp' else '',
+                '-upsample' if args.class_balance == 'upsample' else '',
                 args.features),
             'modules': {
                 'projection_retention': args.enable_projection_retention,
@@ -221,6 +223,9 @@ if __name__ == '__main__':
                 'decision_threshold_mode': args.decision_threshold_mode,
                 'train_channel_replicates': args.train_channel_replicates,
                 'train_snr_offsets': args.train_snr_offsets,
+                'model': args.model,
+                'class_balance': args.class_balance,
+                'upsample_positive_ratio': args.upsample_positive_ratio,
             },
             'projection': telemetry,
             'outcome': outcome,
