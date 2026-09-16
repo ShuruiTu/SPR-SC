@@ -54,7 +54,7 @@ def get_args():
     parser.add_argument('--retention_seed', type=int, default=None, help='RNG seed for projection retention; defaults to channel_seed')
     parser.add_argument('--enable_candidate_metrics', action='store_true', help='record candidate coverage statistics for Fig. 4')
     parser.add_argument('--enable_storage_metrics', action='store_true', help='record received/reconstructed storage statistics for Fig. 10')
-    parser.add_argument('--candidate_generator', choices=['shyre', 'shyre_fast', 'strict_max_clique', 'random', 'head', 'tail'], default='shyre', help='independent candidate-generation module for ablations and Fig. 4')
+    parser.add_argument('--candidate_generator', choices=['shyre', 'shyre_fast', 'shyre_channel_aware', 'strict_max_clique', 'random', 'head', 'tail'], default='shyre', help='independent candidate-generation module for ablations and Fig. 4')
     parser.add_argument('--enable_runtime_metrics', action='store_true', help='record wall-clock and peak RSS telemetry for scaling studies')
     parser.add_argument('--enable_size_stratified_metrics', action='store_true', help='record per-hyperedge-size F1 for Fig. 11/12')
     parser.add_argument('--metrics_jsonl', type=str, default='', help='optional JSONL destination for enabled telemetry modules')
@@ -76,6 +76,11 @@ def get_args():
     parser.add_argument('--threshold_validation_fraction', '--threshold-validation-fraction',
                         type=float, default=0.2,
                         help='training-candidate fraction reserved only for threshold selection')
+    parser.add_argument('--channel_candidate_tau', '--channel-candidate-tau', type=float, default=0.45,
+                        help='posterior threshold for soft edges used only by shyre_channel_aware')
+    parser.add_argument('--channel_candidate_max_extra_edges', '--channel-candidate-max-extra-edges',
+                        type=int, default=2000,
+                        help='maximum posterior soft edges added to each candidate-search graph')
 
     try:
         args = parser.parse_args()
@@ -85,6 +90,10 @@ def get_args():
             parser.error('--decision-threshold must be in (0, 1)')
         if not 0.0 < args.threshold_validation_fraction < 0.5:
             parser.error('--threshold-validation-fraction must be in (0, 0.5)')
+        if not 0.0 < args.channel_candidate_tau < 1.0:
+            parser.error('--channel-candidate-tau must be in (0, 1)')
+        if args.channel_candidate_max_extra_edges < 0:
+            parser.error('--channel-candidate-max-extra-edges must be non-negative')
     except:
         parser.print_help()
         sys.exit(0)

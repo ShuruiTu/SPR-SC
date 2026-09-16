@@ -106,3 +106,32 @@ def received_graph(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", t
 
 def clean_reliability(clean_graph: nx.Graph) -> Dict[Edge, float]:
     return {tuple(sorted(edge)): 1.0 for edge in clean_graph.edges()}
+
+
+def posterior_candidate_graph(hard_graph: nx.Graph, reliability: Dict[Edge, float],
+                              threshold: float, max_extra_edges: int) -> tuple[nx.Graph, dict]:
+    """Augment only the candidate-search graph with high-posterior soft edges.
+
+    The hard received graph remains untouched and continues to drive structural
+    features and baselines.  A deterministic posterior ranking plus an explicit
+    cap prevents low thresholds from creating an intractably dense graph.
+    """
+    if not 0.0 < threshold < 1.0:
+        raise ValueError('candidate posterior threshold must be in (0, 1)')
+    if max_extra_edges < 0:
+        raise ValueError('candidate max extra edges must be non-negative')
+    candidate_graph = hard_graph.copy()
+    hard_edges = {tuple(sorted(edge)) for edge in hard_graph.edges()}
+    eligible = [
+        (posterior, edge) for edge, posterior in reliability.items()
+        if edge not in hard_edges and posterior >= threshold
+    ]
+    eligible.sort(key=lambda item: (-item[0], item[1]))
+    selected = eligible[:max_extra_edges]
+    candidate_graph.add_edges_from(edge for _, edge in selected)
+    return candidate_graph, {
+        'candidate_posterior_threshold': threshold,
+        'candidate_soft_edges_eligible': len(eligible),
+        'candidate_soft_edges_added': len(selected),
+        'candidate_graph_edges': candidate_graph.number_of_edges(),
+    }

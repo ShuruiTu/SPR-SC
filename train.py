@@ -147,7 +147,8 @@ def evaluate(models, dataloader, args, logger, thresholds=None):
     shyre = _metric_record(reconstructed_cliques, truth)
     logger.info('Our Performance: precision {:.4f}, recall {:.4f}, f1 {:.4f} jaccard {:.4f}'.format(
         shyre['precision'], shyre['recall'], shyre['f1'], shyre['jaccard']))
-    sampler_tag = '-fast' if args.candidate_generator == 'shyre_fast' else ''
+    sampler_tag = ('-fast' if args.candidate_generator == 'shyre_fast' else
+                   '-channel-aware' if args.candidate_generator == 'shyre_channel_aware' else '')
     train_tag = '-matched-train' if args.train_channel_matched else ''
     threshold_tag = '-adaptive-threshold' if args.decision_threshold_mode == 'validation' else ''
     variant = 'SHyRe{}{}{}{}-{}'.format(

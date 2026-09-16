@@ -13,9 +13,23 @@ import random
 def compute_cliques(graphs, args, logger):
     logger.info('Start computing cliques')
     cliques = {}
-    cliques['max_cliques_train'] = detect_max_cliques(graphs['G_train'], 'train', args, logger)
+    base_max_train = detect_max_cliques(graphs['G_train'], 'train', args, logger)
+    base_max_test = detect_max_cliques(graphs['G_test'], 'test', args, logger)
+    if 'G_candidate_train' in graphs:
+        augmented_max_train = detect_max_cliques(
+            graphs['G_candidate_train'], 'candidate_train', args, logger)
+        augmented_max_test = detect_max_cliques(
+            graphs['G_candidate_test'], 'candidate_test', args, logger)
+        cliques['max_cliques_train'] = base_max_train | augmented_max_train
+        cliques['max_cliques_test'] = base_max_test | augmented_max_test
+        logger.info('Channel-aware maximal-clique union: train %d + %d -> %d; test %d + %d -> %d',
+                    len(base_max_train), len(augmented_max_train), len(cliques['max_cliques_train']),
+                    len(base_max_test), len(augmented_max_test), len(cliques['max_cliques_test']))
+    else:
+        augmented_max_train = augmented_max_test = set()
+        cliques['max_cliques_train'] = base_max_train
+        cliques['max_cliques_test'] = base_max_test
     cliques['support_cliques_train'], _ = find_support(cliques['max_cliques_train'])
-    cliques['max_cliques_test'] = detect_max_cliques(graphs['G_test'], 'test', args, logger)
     cliques['support_cliques_test'], _ = find_support(cliques['max_cliques_test'])
     lengths = np.array([len(x) for x in graphs['simplicies_test']])
     c = Counter([n for h in graphs['simplicies_test'] for n in h])
@@ -37,9 +51,23 @@ def compute_cliques(graphs, args, logger):
 
     # finishing computing max cliques
     logger.info('Optimizing clique sampler .. ')
-    cliques['sampler'] = CliqueSampler(cliques['max_cliques_train'], graphs['simplicies_train'], args.beta, logger, args)
-    cliques['children_cliques_train'] = cliques['sampler'].find_children(cliques['max_cliques_train'], graphs['simplicies_train'])
-    cliques['children_cliques_test'] = cliques['sampler'].find_children(cliques['max_cliques_test'], graphs['simplicies_test'])
+    cliques['sampler'] = CliqueSampler(base_max_train, graphs['simplicies_train'], args.beta, logger, args)
+    cliques['children_cliques_train'] = cliques['sampler'].find_children(
+        base_max_train, graphs['simplicies_train'])
+    cliques['children_cliques_test'] = cliques['sampler'].find_children(
+        base_max_test, graphs['simplicies_test'])
+    if 'G_candidate_train' in graphs:
+        # Preserve every hard-graph candidate, then add candidates from newly
+        # discovered posterior-graph parents.  This prevents an augmented
+        # maximal clique from swallowing a useful original maximal clique.
+        extra_children_train = cliques['sampler'].find_children(
+            augmented_max_train - base_max_train, graphs['simplicies_train'])
+        extra_children_test = cliques['sampler'].find_children(
+            augmented_max_test - base_max_test, graphs['simplicies_test'])
+        for parent, children in extra_children_train.items():
+            cliques['children_cliques_train'][parent].extend(children)
+        for parent, children in extra_children_test.items():
+            cliques['children_cliques_test'][parent].extend(children)
 
    # cliques['children_cliques_train'] = find_children(cliques['max_cliques_train'], max_size=args.max_child_size) # the children cliques are only children of the support
     # cliques['children_cliques_test'] = find_children(cliques['max_cliques_test'], max_size=args.max_child_size)
@@ -111,7 +139,8 @@ class CliqueSampler:
 
         self.beta = beta
         self.logger = logger
-        if self.args.ablation > 0 or getattr(self.args, 'candidate_generator', 'shyre') != 'shyre':
+        if (self.args.ablation > 0 or
+                getattr(self.args, 'candidate_generator', 'shyre') not in ('shyre', 'shyre_channel_aware')):
             return
 
         self.rho = self.compute_clique_distribution(self.max_cliques, self.hyperedges)

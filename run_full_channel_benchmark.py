@@ -36,7 +36,9 @@ def parse_args():
     parser.add_argument("--enable-cfinder", action="store_true")
     parser.add_argument("--features", choices=("count", "motif"), default="count")
     parser.add_argument("--projection-retention", type=float, default=None)
-    parser.add_argument("--candidate-generator", choices=("shyre", "shyre_fast", "strict_max_clique", "random", "head", "tail"), default="shyre")
+    parser.add_argument("--candidate-generator", choices=("shyre", "shyre_fast", "shyre_channel_aware", "strict_max_clique", "random", "head", "tail"), default="shyre")
+    parser.add_argument("--channel-candidate-tau", type=float, default=0.45)
+    parser.add_argument("--channel-candidate-max-extra-edges", type=int, default=2000)
     parser.add_argument("--enable-candidate-metrics", action="store_true")
     parser.add_argument("--enable-storage-metrics", action="store_true")
     parser.add_argument("--enable-runtime-metrics", action="store_true")
@@ -99,6 +101,11 @@ def main():
             command.extend(['--enable_projection_retention', '--projection_retention', str(args.projection_retention)])
         if args.candidate_generator != 'shyre':
             command.extend(['--candidate_generator', args.candidate_generator])
+        if args.candidate_generator == 'shyre_channel_aware':
+            command.extend([
+                '--channel_candidate_tau', str(args.channel_candidate_tau),
+                '--channel_candidate_max_extra_edges', str(args.channel_candidate_max_extra_edges),
+            ])
         if args.enable_candidate_metrics:
             command.append('--enable_candidate_metrics')
         if args.enable_storage_metrics:

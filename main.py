@@ -1,7 +1,7 @@
 from utils import *
 from cliques import *
 from train import *
-from channel import clean_reliability, simulate_channel
+from channel import clean_reliability, posterior_candidate_graph, simulate_channel
 from time import perf_counter
 from telemetry import (retain_projection_edges, runtime_metrics, storage_metrics,
                        write_metrics_jsonl)
@@ -112,6 +112,28 @@ if __name__ == '__main__':
                     beta=args.channel_beta, temperature=args.channel_temperature)
             graphs['edge_reliability_train'] = train_observation.reliability
 
+    if args.candidate_generator == 'shyre_channel_aware':
+        if args.channel == 'clean':
+            logger.info('Channel-aware candidates requested for clean graphs; no soft edges added.')
+        else:
+            graphs['G_candidate_test'], candidate_test_metadata = posterior_candidate_graph(
+                graphs['G_test'], test_observation.reliability,
+                args.channel_candidate_tau, args.channel_candidate_max_extra_edges)
+            if train_observation is not None:
+                train_reliability = train_observation.reliability
+            else:
+                train_reliability = clean_reliability(graphs['G_train'])
+            graphs['G_candidate_train'], candidate_train_metadata = posterior_candidate_graph(
+                graphs['G_train'], train_reliability,
+                args.channel_candidate_tau, args.channel_candidate_max_extra_edges)
+            telemetry['candidate_graph_test'] = candidate_test_metadata
+            telemetry['candidate_graph_train'] = candidate_train_metadata
+            logger.info(
+                'Channel-aware candidate graphs: test +%d edges, train +%d edges (tau %.3f).',
+                candidate_test_metadata['candidate_soft_edges_added'],
+                candidate_train_metadata['candidate_soft_edges_added'],
+                args.channel_candidate_tau)
+
     cliques = compute_cliques(graphs, args, logger)
     dataloader = DataLoader(graphs, cliques, args, logger)
     outcome = train(dataloader, args, logger)
@@ -129,10 +151,13 @@ if __name__ == '__main__':
             'channel': args.channel,
             'snr_db': args.snr_db,
             'seed': args.seed,
-            'model_variant': 'SHyRe{}{}{}-{}'.format(
-                '-fast' if args.candidate_generator == 'shyre_fast' else '',
+            'model_variant': 'SHyRe{}{}{}{}-{}'.format(
+                ('-fast' if args.candidate_generator == 'shyre_fast' else
+                 '-channel-aware' if args.candidate_generator == 'shyre_channel_aware' else ''),
                 '-matched-train' if args.train_channel_matched else '',
-                '-soft' if args.soft_reliability else '', args.features),
+                '-soft' if args.soft_reliability else '',
+                '-adaptive-threshold' if args.decision_threshold_mode == 'validation' else '',
+                args.features),
             'modules': {
                 'projection_retention': args.enable_projection_retention,
                 'soft_reliability': args.soft_reliability,
@@ -143,6 +168,7 @@ if __name__ == '__main__':
                 'size_stratified_metrics': args.enable_size_stratified_metrics,
                 'cfinder': args.enable_cfinder,
                 'candidate_generator': args.candidate_generator,
+                'decision_threshold_mode': args.decision_threshold_mode,
             },
             'projection': telemetry,
             'outcome': outcome,

@@ -86,7 +86,7 @@ v1.0 已包含：
 
 该模块必须作为新的 candidate generator，不改变原 `shyre` 和 `shyre_fast`。
 
-状态：`待实现`
+状态：`已实现实验版本并完成 10 dB 单种子验证`
 
 ### P3：多信道种子与邻域 SNR 训练
 
@@ -206,3 +206,39 @@ v1.0 已包含：
 - Crime 自适应阈值：AWGN 为最大团 0.45、嵌套团 0.25；Rayleigh 均为 0.15。
 - 结论：结果支持 P0 的判断，固定 0.5 阈值是中低 SNR 的主要瓶颈之一；需要通过多 channel seed 和完整 SNR 曲线确认泛化与稳定性。
 - 结果目录：`results_v1_1_p1_validation_threshold_awgn_10db/`、`results_v1_1_p1_validation_threshold_rayleigh_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P1 完整单种子 SNR 曲线
+
+- 数据集：Enron、P.School、H.School、Directors、Crime。
+- SNR：0–20 dB，间隔 2 dB；AWGN 和 Rayleigh；matched-channel training。
+
+| 数据集 | AWGN 平均 F1 变化 | Rayleigh 平均 F1 变化 |
+|---|---:|---:|
+| Enron | 0.1164 → 0.2538（+0.1374） | 0.0758 → 0.2626（+0.1868） |
+| P.School | 0.5379 → 0.5514（+0.0135） | 0.4843 → 0.5028（+0.0185） |
+| H.School | 0.5577 → 0.5655（+0.0078） | 0.5102 → 0.5124（+0.0022） |
+| Directors | 0.3211 → 0.3198（-0.0014） | 0.0317 → 0.0479（+0.0162） |
+| Crime | 0.3376 → 0.3855（+0.0480） | 0.1905 → 0.2732（+0.0827） |
+
+- AWGN 高 SNR 下 Crime 有 0.009–0.030 的局部回退，后续需要多 seed 或阈值正则化确认。
+- 结果目录：`results_v1_1_p1_adaptive_threshold_awgn_0_20_step2/`、`results_v1_1_p1_adaptive_threshold_rayleigh_0_20_step2/`（本地忽略，不提交）。
+
+### 2026-09-16：P2 信道感知候选生成实验版
+
+- 新增 `shyre_channel_aware`，原 `shyre` 行为不变。
+- 使用低于 hard 判决阈值的后验边建立候选搜索图；原 hard received graph 继续用于结构特征和基线。
+- 后验边按概率排序，并使用 `--channel-candidate-max-extra-edges` 控制规模。
+- hard graph 与后验图的最大团、子团候选采用并集，保证不会因最大团吞并而删除原候选。
+- 比较 0.40、0.45、0.50 后，0.45 在当前 10 dB 单种子实验中最稳定，因此作为实验模块的推荐初值。
+
+| 数据集 | 信道 | P1 F1 | P2（tau=0.45）F1 | 候选召回变化 |
+|---|---|---:|---:|---:|
+| Enron | AWGN | 0.308 | 0.317 | 0.352 → 0.378 |
+| Directors | AWGN | 0.093 | 0.177 | 0.118 → 0.147 |
+| Crime | AWGN | 0.168 | 0.329 | 0.484 → 0.516 |
+| Enron | Rayleigh | 0.299 | 0.295 | 0.386 → 0.415 |
+| Directors | Rayleigh | 0.000 | 0.000 | 0.029 → 0.059 |
+| Crime | Rayleigh | 0.234 | 0.242 | 0.422 → 0.438 |
+
+- 结论：P2 能稳定提高候选召回，但最终 F1 仍受分类器和阈值稳定性影响；暂不作为默认模型，应在 P3 多 seed 训练完成后重新验证。
+- 结果目录：`results_v1_1_p2_tau_0p45_awgn_10db/`、`results_v1_1_p2_tau_0p45_rayleigh_10db/`（本地忽略，不提交）。
