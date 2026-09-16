@@ -33,6 +33,8 @@ def parse_args():
     parser.add_argument("--soft-reliability", action="store_true")
     parser.add_argument("--train-channel-matched", action="store_true",
                         help="apply an independent same-SNR channel draw to the training projection")
+    parser.add_argument("--train-channel-replicates", type=int, default=1)
+    parser.add_argument("--train-snr-offsets", type=float, nargs="+", default=[0.0])
     parser.add_argument("--enable-cfinder", action="store_true")
     parser.add_argument("--features", choices=("count", "motif"), default="count")
     parser.add_argument("--projection-retention", type=float, default=None)
@@ -91,6 +93,11 @@ def main():
             command.append("--soft_reliability")
         if args.train_channel_matched:
             command.append("--train_channel_matched")
+        if args.train_channel_replicates != 1:
+            command.extend(['--train_channel_replicates', str(args.train_channel_replicates)])
+        if args.train_snr_offsets != [0.0]:
+            command.append('--train_snr_offsets')
+            command.extend(map(str, args.train_snr_offsets))
         if args.decision_threshold_mode != 'fixed':
             command.extend(['--decision_threshold_mode', args.decision_threshold_mode])
         if args.decision_threshold != 0.5:

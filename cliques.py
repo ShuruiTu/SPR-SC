@@ -77,6 +77,33 @@ def compute_cliques(graphs, args, logger):
     return cliques
 
 
+def compute_training_cliques(graphs, args, logger):
+    """Compute only train-side candidates for an additional noisy projection."""
+    base_max_train = detect_max_cliques(graphs['G_train'], 'train', args, logger)
+    if 'G_candidate_train' in graphs:
+        augmented_max_train = detect_max_cliques(
+            graphs['G_candidate_train'], 'candidate_train', args, logger)
+        max_cliques_train = base_max_train | augmented_max_train
+    else:
+        augmented_max_train = set()
+        max_cliques_train = base_max_train
+    sampler = CliqueSampler(
+        base_max_train, graphs['simplicies_train'], args.beta, logger, args)
+    children_train = sampler.find_children(
+        base_max_train, graphs['simplicies_train'])
+    if 'G_candidate_train' in graphs:
+        extra_children = sampler.find_children(
+            augmented_max_train - base_max_train, graphs['simplicies_train'])
+        for parent, children in extra_children.items():
+            children_train[parent].extend(children)
+    return {
+        'max_cliques_train': max_cliques_train,
+        'support_cliques_train': find_support(max_cliques_train)[0],
+        'children_cliques_train': children_train,
+        'sampler': sampler,
+    }
+
+
 def detect_max_cliques(graph, mode, args, logger):
 
     cache = args.data_dir + args.dataset + '/cliques_{}.pkl'.format(mode)

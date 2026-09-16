@@ -151,9 +151,11 @@ def evaluate(models, dataloader, args, logger, thresholds=None):
                    '-channel-aware' if args.candidate_generator == 'shyre_channel_aware' else '')
     train_tag = '-matched-train' if args.train_channel_matched else ''
     threshold_tag = '-adaptive-threshold' if args.decision_threshold_mode == 'validation' else ''
-    variant = 'SHyRe{}{}{}{}-{}'.format(
+    multi_train_tag = ('-multi-train' if
+                       args.train_channel_replicates * len(args.train_snr_offsets) > 1 else '')
+    variant = 'SHyRe{}{}{}{}{}-{}'.format(
         sampler_tag, train_tag, '-soft' if args.soft_reliability else '',
-        threshold_tag, args.features)
+        threshold_tag, multi_train_tag, args.features)
     logger.info('Model variant: %s', variant)
     outcome = {
         'performance': {'SHyRe': shyre},
@@ -402,6 +404,8 @@ class DataLoader:
         return precision, recall
 
     def get_num_max_candidates(self, mode):
+        if mode == 'train' and hasattr(self, '_augmented_train_max_count'):
+            return self._augmented_train_max_count
         return len(self.max_candidates[mode])
 
     def get_num_final_cliques(self, mode):
@@ -423,6 +427,39 @@ class DataLoader:
             return self.upsample(X_train1, y_train1), self.upsample(X_train2, y_train2)
         else:
             return (X_train1, y_train1), (X_train2, y_train2)
+
+    def augment_training(self, additional_loaders):
+        """Stack independent noisy training projections by candidate type."""
+        loaders = [self] + list(additional_loaders)
+        max_features, max_labels, max_cliques = [], [], []
+        nested_features, nested_labels, nested_cliques = [], [], []
+        for loader in loaders:
+            split = loader.get_num_max_candidates('train')
+            max_features.append(loader.X_train[:split])
+            max_labels.append(loader.y_train[:split])
+            max_cliques.extend(loader.cliques['final_cliques_train'][:split])
+            nested_features.append(loader.X_train[split:])
+            nested_labels.append(loader.y_train[split:])
+            nested_cliques.extend(loader.cliques['final_cliques_train'][split:])
+
+        def stack_rows(parts, columns):
+            nonempty = [part for part in parts if part.shape[0]]
+            return np.vstack(nonempty) if nonempty else np.empty((0, columns))
+
+        def stack_labels(parts):
+            nonempty = [part for part in parts if part.shape[0]]
+            return np.hstack(nonempty) if nonempty else np.empty((0,), dtype=int)
+
+        columns = self.X_train.shape[1]
+        max_X = stack_rows(max_features, columns)
+        nested_X = stack_rows(nested_features, columns)
+        self.X_train = np.vstack((max_X, nested_X))
+        self.y_train = np.hstack((stack_labels(max_labels), stack_labels(nested_labels)))
+        self.cliques['final_cliques_train'] = max_cliques + nested_cliques
+        self._augmented_train_max_count = len(max_cliques)
+        self.logger.info(
+            'Multi-instance training merged %d projections: max candidates %d, nested candidates %d.',
+            len(loaders), len(max_cliques), len(nested_cliques))
 
     def extend_features(self, X, final_cliques, child2parents, mode):
         X_ext = deepcopy(X)

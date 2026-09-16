@@ -68,6 +68,10 @@ def get_args():
     parser.add_argument('--enable_cfinder', action='store_true', help='run CFinder baseline (disabled by default)')
     parser.add_argument('--soft_reliability', action='store_true', help='append channel reliability statistics to count features')
     parser.add_argument('--train_channel_matched', action='store_true', help='apply an independently drawn channel with matching type/SNR to the training projection')
+    parser.add_argument('--train_channel_replicates', '--train-channel-replicates', type=int, default=1,
+                        help='independent noisy training projections per train SNR')
+    parser.add_argument('--train_snr_offsets', '--train-snr-offsets', type=float, nargs='+', default=[0.0],
+                        help='training SNR offsets relative to the test SNR, e.g. -2 0 2')
     parser.add_argument('--decision_threshold_mode', '--decision-threshold-mode',
                         choices=['fixed', 'validation'], default='fixed',
                         help='fixed 0.5-style decision or per-candidate-type validation threshold')
@@ -94,6 +98,17 @@ def get_args():
             parser.error('--channel-candidate-tau must be in (0, 1)')
         if args.channel_candidate_max_extra_edges < 0:
             parser.error('--channel-candidate-max-extra-edges must be non-negative')
+        if args.train_channel_replicates < 1:
+            parser.error('--train-channel-replicates must be at least 1')
+        if ((args.train_channel_replicates != 1 or args.train_snr_offsets != [0.0])
+                and not args.train_channel_matched):
+            parser.error('multi-instance channel training requires --train_channel_matched')
+        if ((args.train_channel_replicates != 1 or args.train_snr_offsets != [0.0])
+                and args.channel == 'clean'):
+            parser.error('multi-instance channel training requires awgn or rayleigh')
+        if ((args.train_channel_replicates != 1 or args.train_snr_offsets != [0.0])
+                and args.features != 'count'):
+            parser.error('multi-instance channel training currently supports count features only')
     except:
         parser.print_help()
         sys.exit(0)

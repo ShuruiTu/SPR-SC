@@ -45,6 +45,7 @@ if __name__ == '__main__':
     start_time = perf_counter()
     args, logger = set_up()  # args and random seed
     graphs = load_graphs(args, logger)
+    clean_training_projection = graphs['G_train'].copy()
 
     # Retention acts strictly before the optional wireless channel.
     clean_projection = graphs['G_test'].copy()
@@ -85,19 +86,48 @@ if __name__ == '__main__':
         })
 
     train_observation = None
+    training_observations = []
     if args.train_channel_matched:
         if args.channel == 'clean':
             logger.info('Matched training channel requested with clean test graph; training graph remains clean.')
         else:
-            # Keep the training noise independent of the test realization while
-            # matching its channel family and SNR.
-            train_observation = simulate_channel(
-                graphs['G_train'], args.snr_db, args.channel, tau_e=args.channel_tau_e,
-                seed=args.channel_seed + 1, max_background_pairs=args.max_background_pairs,
-                beta=args.channel_beta, temperature=args.channel_temperature)
+            offsets = list(args.train_snr_offsets)
+            if 0.0 in offsets:
+                offsets = [0.0] + [offset for offset in offsets if offset != 0.0]
+            instance_index = 0
+            for offset in offsets:
+                for replicate in range(args.train_channel_replicates):
+                    train_seed = args.channel_seed + 1 + instance_index
+                    train_snr = args.snr_db + offset
+                    observation = simulate_channel(
+                        clean_training_projection, train_snr, args.channel,
+                        tau_e=args.channel_tau_e, seed=train_seed,
+                        max_background_pairs=args.max_background_pairs,
+                        beta=args.channel_beta, temperature=args.channel_temperature)
+                    training_observations.append({
+                        'observation': observation,
+                        'snr_db': train_snr,
+                        'snr_offset': offset,
+                        'seed': train_seed,
+                        'replicate': replicate,
+                    })
+                    instance_index += 1
+            train_observation = training_observations[0]['observation']
             graphs['G_train'] = train_observation.graph
-            logger.info('Matched training channel %s at %.1f dB: received training projection edges %d',
-                        args.channel, args.snr_db, graphs['G_train'].number_of_edges())
+            telemetry['training_channel_instances'] = [
+                {
+                    'snr_db': item['snr_db'],
+                    'snr_offset': item['snr_offset'],
+                    'seed': item['seed'],
+                    'replicate': item['replicate'],
+                    **item['observation'].metadata,
+                }
+                for item in training_observations
+            ]
+            logger.info(
+                'Matched training channel %s: %d projection instance(s); primary %.1f dB has %d edges.',
+                args.channel, len(training_observations), training_observations[0]['snr_db'],
+                graphs['G_train'].number_of_edges())
 
     if args.soft_reliability:
         if args.channel == 'clean':
@@ -107,7 +137,7 @@ if __name__ == '__main__':
             graphs['edge_reliability_test'] = test_observation.reliability
             if train_observation is None:
                 train_observation = simulate_channel(
-                    graphs['G_train'], args.snr_db, args.channel, tau_e=args.channel_tau_e,
+                    clean_training_projection, args.snr_db, args.channel, tau_e=args.channel_tau_e,
                     seed=args.channel_seed + 1, max_background_pairs=args.max_background_pairs,
                     beta=args.channel_beta, temperature=args.channel_temperature)
             graphs['edge_reliability_train'] = train_observation.reliability
@@ -136,6 +166,23 @@ if __name__ == '__main__':
 
     cliques = compute_cliques(graphs, args, logger)
     dataloader = DataLoader(graphs, cliques, args, logger)
+    if len(training_observations) > 1:
+        additional_loaders = []
+        for item in training_observations[1:]:
+            observation = item['observation']
+            extra_graphs = dict(graphs)
+            extra_graphs['G_train'] = observation.graph
+            extra_graphs.pop('G_candidate_train', None)
+            if args.soft_reliability:
+                extra_graphs['edge_reliability_train'] = observation.reliability
+            if args.candidate_generator == 'shyre_channel_aware':
+                extra_graphs['G_candidate_train'], _ = posterior_candidate_graph(
+                    observation.graph, observation.reliability,
+                    args.channel_candidate_tau, args.channel_candidate_max_extra_edges)
+            extra_cliques = dict(cliques)
+            extra_cliques.update(compute_training_cliques(extra_graphs, args, logger))
+            additional_loaders.append(DataLoader(extra_graphs, extra_cliques, args, logger))
+        dataloader.augment_training(additional_loaders)
     outcome = train(dataloader, args, logger)
     reconstructed = outcome.pop('_reconstructed_cliques')
 
@@ -151,12 +198,13 @@ if __name__ == '__main__':
             'channel': args.channel,
             'snr_db': args.snr_db,
             'seed': args.seed,
-            'model_variant': 'SHyRe{}{}{}{}-{}'.format(
+            'model_variant': 'SHyRe{}{}{}{}{}-{}'.format(
                 ('-fast' if args.candidate_generator == 'shyre_fast' else
                  '-channel-aware' if args.candidate_generator == 'shyre_channel_aware' else ''),
                 '-matched-train' if args.train_channel_matched else '',
                 '-soft' if args.soft_reliability else '',
                 '-adaptive-threshold' if args.decision_threshold_mode == 'validation' else '',
+                '-multi-train' if len(training_observations) > 1 else '',
                 args.features),
             'modules': {
                 'projection_retention': args.enable_projection_retention,
@@ -169,6 +217,8 @@ if __name__ == '__main__':
                 'cfinder': args.enable_cfinder,
                 'candidate_generator': args.candidate_generator,
                 'decision_threshold_mode': args.decision_threshold_mode,
+                'train_channel_replicates': args.train_channel_replicates,
+                'train_snr_offsets': args.train_snr_offsets,
             },
             'projection': telemetry,
             'outcome': outcome,
