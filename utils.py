@@ -71,6 +71,12 @@ def get_args():
     parser.add_argument('--channel_tau_e', type=float, default=0.58, help='posterior hard-edge threshold')
     parser.add_argument('--channel_beta', type=float, default=1.0, help='channel LLR scale')
     parser.add_argument('--channel_temperature', type=float, default=1.0, help='channel posterior temperature')
+    parser.add_argument('--rayleigh_csi_mode', '--rayleigh-csi-mode',
+                        choices=['perfect', 'estimated', 'statistical'], default='perfect',
+                        help='receiver CSI assumption for Rayleigh fading')
+    parser.add_argument('--rayleigh_csi_error_variance', '--rayleigh-csi-error-variance',
+                        type=float, default=0.1,
+                        help='complex channel-estimation error variance in estimated CSI mode')
     parser.add_argument('--enable_cfinder', action='store_true', help='run CFinder baseline (disabled by default)')
     parser.add_argument('--soft_reliability', action='store_true', help='append channel reliability statistics to count features')
     parser.add_argument('--soft_reliability_mode', '--soft-reliability-mode',
@@ -119,6 +125,10 @@ def get_args():
             parser.error('--channel-beta must be positive')
         if args.channel_temperature <= 0.0:
             parser.error('--channel-temperature must be positive')
+        if args.rayleigh_csi_error_variance <= 0.0:
+            parser.error('--rayleigh-csi-error-variance must be positive')
+        if args.channel != 'rayleigh' and args.rayleigh_csi_mode != 'perfect':
+            parser.error('non-perfect --rayleigh-csi-mode requires --channel rayleigh')
         if args.train_channel_replicates < 1:
             parser.error('--train-channel-replicates must be at least 1')
         if not 0.0 < args.upsample_positive_ratio <= 1.0:

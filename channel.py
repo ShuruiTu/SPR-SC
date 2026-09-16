@@ -41,6 +41,26 @@ def _llr(y: complex, variance: float) -> float:
     return _logsumexp(one) - _logsumexp(zero)
 
 
+def _rayleigh_csi_llr(y: complex, h_estimate: complex, n0: float,
+                      error_variance: float, statistical_only: bool = False) -> float:
+    """Return a 16-QAM bit LLR after marginalizing Rayleigh CSI uncertainty."""
+    if statistical_only:
+        rho = 0.0
+        conditional_variance = 1.0
+    else:
+        rho = 1.0 / (1.0 + error_variance)
+        conditional_variance = error_variance / (1.0 + error_variance)
+
+    def metric(x):
+        variance = max(n0 + conditional_variance * abs(x) ** 2, 1e-12)
+        mean = rho * h_estimate * x
+        return -abs(y - mean) ** 2 / variance - math.log(variance)
+
+    one = [metric(x) for x, bits in _CONSTELLATION if bits[0] == 1]
+    zero = [metric(x) for x, bits in _CONSTELLATION if bits[0] == 0]
+    return _logsumexp(one) - _logsumexp(zero)
+
+
 def _sigmoid(value: float) -> float:
     value = max(-60.0, min(60.0, value))
     return 1.0 / (1.0 + math.exp(-value))
@@ -48,9 +68,12 @@ def _sigmoid(value: float) -> float:
 
 def simulate_channel(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", tau_e: float = 0.58,
                      seed: int = 123, max_background_pairs: int = 10000, beta: float = 1.0,
-                     temperature: float = 1.0, edge_prior: float | None = None) -> ChannelObservation:
+                     temperature: float = 1.0, edge_prior: float | None = None,
+                     rayleigh_csi_mode: str = "perfect",
+                     rayleigh_csi_error_variance: float = 0.1) -> ChannelObservation:
     """Return a hard received graph and posterior reliability per transmitted pair."""
     rng = random.Random(seed)
+    estimation_rng = random.Random(seed ^ 0x5DEECE66D)
     nodes = list(clean_graph.nodes())
     clean = {tuple(sorted(edge)) for edge in clean_graph.edges()}
     possible_pairs = len(nodes) * (len(nodes) - 1) // 2
@@ -79,9 +102,22 @@ def simulate_channel(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn",
         h = (complex(rng.gauss(0, 1 / math.sqrt(2)), rng.gauss(0, 1 / math.sqrt(2)))
              if fading.lower() == "rayleigh" else 1.0 + 0.0j)
         noise = complex(rng.gauss(0, math.sqrt(n0 / 2)), rng.gauss(0, math.sqrt(n0 / 2)))
-        equalized = (h * x + noise) / h if abs(h) > 1e-10 else h * x + noise
-        sigma_eff = n0 / max(abs(h) ** 2, 1e-12)
-        posterior = _sigmoid((prior_logit + beta * _llr(equalized, sigma_eff)) / max(temperature, 1e-4))
+        y = h * x + noise
+        if fading.lower() != "rayleigh" or rayleigh_csi_mode == "perfect":
+            equalized = y / h if abs(h) > 1e-10 else y
+            sigma_eff = n0 / max(abs(h) ** 2, 1e-12)
+            llr = _llr(equalized, sigma_eff)
+        elif rayleigh_csi_mode == "estimated":
+            estimation_noise = complex(
+                estimation_rng.gauss(0, math.sqrt(rayleigh_csi_error_variance / 2)),
+                estimation_rng.gauss(0, math.sqrt(rayleigh_csi_error_variance / 2)))
+            llr = _rayleigh_csi_llr(
+                y, h + estimation_noise, n0, rayleigh_csi_error_variance)
+        elif rayleigh_csi_mode == "statistical":
+            llr = _rayleigh_csi_llr(y, 0.0j, n0, 0.0, statistical_only=True)
+        else:
+            raise ValueError('rayleigh CSI mode must be perfect, estimated, or statistical')
+        posterior = _sigmoid((prior_logit + beta * llr) / max(temperature, 1e-4))
         reliability[edge] = posterior
         if posterior >= tau_e:
             received.add_edge(*edge)
@@ -93,7 +129,10 @@ def simulate_channel(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn",
         "channel_tau_e": tau_e,
         "channel_beta": beta,
         "channel_temperature": temperature,
-        "channel_csi": "perfect" if fading.lower() == "rayleigh" else "not_applicable",
+        "channel_csi": rayleigh_csi_mode if fading.lower() == "rayleigh" else "not_applicable",
+        "rayleigh_csi_error_variance": (rayleigh_csi_error_variance
+                                          if fading.lower() == "rayleigh" and rayleigh_csi_mode == "estimated"
+                                          else 0.0),
         "channel_edge_prior": edge_prior,
         "channel_input_edges": len(clean),
         "background_pairs_sampled": len(background_pairs),
@@ -105,10 +144,13 @@ def simulate_channel(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn",
 
 def received_graph(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", tau_e: float = 0.58,
                    seed: int = 123, max_background_pairs: int = 10000, beta: float = 1.0,
-                   temperature: float = 1.0, edge_prior: float | None = None) -> nx.Graph:
+                   temperature: float = 1.0, edge_prior: float | None = None,
+                   rayleigh_csi_mode: str = "perfect",
+                   rayleigh_csi_error_variance: float = 0.1) -> nx.Graph:
     """Backward-compatible hard-graph adapter."""
     return simulate_channel(clean_graph, snr_db, fading, tau_e, seed, max_background_pairs,
-                            beta, temperature, edge_prior).graph
+                            beta, temperature, edge_prior, rayleigh_csi_mode,
+                            rayleigh_csi_error_variance).graph
 
 
 def clean_reliability(clean_graph: nx.Graph) -> Dict[Edge, float]:

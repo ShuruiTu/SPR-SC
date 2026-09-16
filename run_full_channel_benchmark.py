@@ -46,6 +46,8 @@ def parse_args():
     parser.add_argument("--channel-tau-e", type=float, default=0.58)
     parser.add_argument("--channel-beta", type=float, default=1.0)
     parser.add_argument("--channel-temperature", type=float, default=1.0)
+    parser.add_argument("--rayleigh-csi-mode", choices=("perfect", "estimated", "statistical"), default="perfect")
+    parser.add_argument("--rayleigh-csi-error-variance", type=float, default=0.1)
     parser.add_argument("--candidate-generator", choices=("shyre", "shyre_fast", "shyre_channel_aware", "strict_max_clique", "random", "head", "tail"), default="shyre")
     parser.add_argument("--channel-candidate-tau", type=float, default=0.45)
     parser.add_argument("--channel-candidate-max-extra-edges", type=int, default=2000)
@@ -75,6 +77,10 @@ def main():
         raise SystemExit('--channel-beta must be positive')
     if args.channel_temperature <= 0.0:
         raise SystemExit('--channel-temperature must be positive')
+    if args.rayleigh_csi_error_variance <= 0.0:
+        raise SystemExit('--rayleigh-csi-error-variance must be positive')
+    if args.channel != 'rayleigh' and args.rayleigh_csi_mode != 'perfect':
+        raise SystemExit('non-perfect --rayleigh-csi-mode requires --channel rayleigh')
     output = ROOT / args.output; output.mkdir(exist_ok=True)
     csv_path, heartbeat = output / "snr_baselines.csv", output / "heartbeat.log"
     lock = threading.Lock(); rows = []
@@ -108,7 +114,9 @@ def main():
                    "--max_background_pairs", str(args.max_background_pairs),
                    "--channel_tau_e", str(args.channel_tau_e),
                    "--channel_beta", str(args.channel_beta),
-                   "--channel_temperature", str(args.channel_temperature)]
+                   "--channel_temperature", str(args.channel_temperature),
+                   "--rayleigh_csi_mode", args.rayleigh_csi_mode,
+                   "--rayleigh_csi_error_variance", str(args.rayleigh_csi_error_variance)]
         if args.class_balance != 'none':
             command.extend(['--class_balance', args.class_balance])
         if args.upsample_positive_ratio != 1.0 / 3.0:

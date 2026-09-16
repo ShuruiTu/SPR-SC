@@ -131,7 +131,7 @@ v1.0 已包含：
 
 计划区分已知瞬时信道增益和仅已知统计分布两种设置，并比较均衡、边缘化后验和多衰落采样集成。
 
-状态：`已完成完美 CSI 后验校准；统计 CSI 与信道估计误差实验待实现`
+状态：`已完成后验校准及三类 CSI 模式验证`
 
 ## 4. 推荐执行顺序
 
@@ -335,5 +335,17 @@ v1.0 已包含：
 
 - 单种子 0–20 dB 曲线的平均 F1 变化：Enron +0.0086、P.School +0.0228、H.School +0.0411、Directors +0.0485、Crime +0.0481；Crime 在全部 11 个 SNR 点均提升。
 - 与 P2+P3 组合时，Crime-Rayleigh 由 0.2609 ± 0.0014 提升到 0.2859 ± 0.0198；Enron 则由 0.2979 ± 0.0056 降到 0.2936 ± 0.0170，说明困难数据集可组合使用，但不建议作为 Enron 的默认组合。
-- 结论：`channel_beta=1.5` 是当前 Rayleigh 的推荐实验配置，但仍保持显式开关、默认 1.0，以保证 v1.0 回归兼容。仅已知统计分布及信道估计误差不应与完美 CSI 结果混合，留待独立实验模块。
-- 结果目录：`results_v1_1_p6_tau_*_rayleigh_10db/`、`results_v1_1_p6_beta_*_rayleigh_10db/`、`results_v1_1_p6_external_beta_*_rayleigh_10db/`、`results_v1_1_p6_beta_1p5_rayleigh_0_20_step2/`、`results_v1_1_p6_beta_1p5_p2_p3_rayleigh_10db/`（本地忽略，不提交）。
+- 新增独立 `--rayleigh-csi-mode perfect|estimated|statistical`；`estimated` 使用给定信道估计误差方差下的条件 Rayleigh 后验，`statistical` 对未知瞬时增益进行边缘化。
+- 信道估计噪声使用独立随机数流，因此相同 seed 的三种模式共享相同真实衰落和 AWGN realization；默认 `perfect` 的接收图和逐边后验与修改前逐位一致。
+- `channel_beta=1.5`、10 dB、三个配对 seed 的 CSI 敏感性如下：
+
+| CSI 设置 | Enron F1 | Crime F1 |
+|---|---:|---:|
+| perfect | 0.3041 ± 0.0042 | 0.2725 ± 0.0041 |
+| estimated，误差方差 0.01 | 0.2975 ± 0.0133 | 0.2357 ± 0.0444 |
+| estimated，误差方差 0.05 | 0.2879 ± 0.0211 | 0.2371 ± 0.0140 |
+| estimated，误差方差 0.10 | 0.2844 ± 0.0063 | 0.1419 ± 0.0849 |
+
+- 仅统计 CSI 时，当前 16-QAM 第一比特在未知随机相位下的似然退化为相同的幅度混合，后验等于稀疏边先验；单 seed 结果为 Enron 0.0646、Crime 0.1305。这是通信模型的可辨识性限制，不能与完美 CSI 主曲线直接比较。
+- 结论：`channel_beta=1.5` 是当前 Rayleigh 完美 CSI 的推荐实验配置，但仍保持显式开关、默认 1.0，以保证 v1.0 回归兼容。论文图表必须明确标注 CSI 模式；估计 CSI 与统计 CSI 仅作为独立鲁棒性/边界实验。
+- 结果目录：`results_v1_1_p6_tau_*_rayleigh_10db/`、`results_v1_1_p6_beta_*_rayleigh_10db/`、`results_v1_1_p6_external_beta_*_rayleigh_10db/`、`results_v1_1_p6_beta_1p5_rayleigh_0_20_step2/`、`results_v1_1_p6_beta_1p5_p2_p3_rayleigh_10db/`、`results_v1_1_p6_estimated_csi_paired_*_rayleigh_10db/`、`results_v1_1_p6_statistical_csi_rayleigh_10db/`（本地忽略，不提交）。

@@ -71,7 +71,9 @@ if __name__ == '__main__':
         test_observation = simulate_channel(
             transmitted_projection, args.snr_db, args.channel, tau_e=args.channel_tau_e,
             seed=args.channel_seed, max_background_pairs=args.max_background_pairs,
-            beta=args.channel_beta, temperature=args.channel_temperature)
+            beta=args.channel_beta, temperature=args.channel_temperature,
+            rayleigh_csi_mode=args.rayleigh_csi_mode,
+            rayleigh_csi_error_variance=args.rayleigh_csi_error_variance)
         graphs['G_test'] = test_observation.graph
         telemetry.update(test_observation.metadata)
         logger.info('Channel %s at %.1f dB: transmitted projection edges %d -> received %d',
@@ -103,7 +105,9 @@ if __name__ == '__main__':
                         clean_training_projection, train_snr, args.channel,
                         tau_e=args.channel_tau_e, seed=train_seed,
                         max_background_pairs=args.max_background_pairs,
-                        beta=args.channel_beta, temperature=args.channel_temperature)
+                        beta=args.channel_beta, temperature=args.channel_temperature,
+                        rayleigh_csi_mode=args.rayleigh_csi_mode,
+                        rayleigh_csi_error_variance=args.rayleigh_csi_error_variance)
                     training_observations.append({
                         'observation': observation,
                         'snr_db': train_snr,
@@ -139,7 +143,9 @@ if __name__ == '__main__':
                 train_observation = simulate_channel(
                     clean_training_projection, args.snr_db, args.channel, tau_e=args.channel_tau_e,
                     seed=args.channel_seed + 1, max_background_pairs=args.max_background_pairs,
-                    beta=args.channel_beta, temperature=args.channel_temperature)
+                    beta=args.channel_beta, temperature=args.channel_temperature,
+                    rayleigh_csi_mode=args.rayleigh_csi_mode,
+                    rayleigh_csi_error_variance=args.rayleigh_csi_error_variance)
             graphs['edge_reliability_train'] = train_observation.reliability
 
     if args.candidate_generator == 'shyre_channel_aware':
@@ -229,6 +235,8 @@ if __name__ == '__main__':
                 'channel_tau_e': args.channel_tau_e,
                 'channel_beta': args.channel_beta,
                 'channel_temperature': args.channel_temperature,
+                'rayleigh_csi_mode': args.rayleigh_csi_mode,
+                'rayleigh_csi_error_variance': args.rayleigh_csi_error_variance,
             },
             'projection': telemetry,
             'outcome': outcome,
