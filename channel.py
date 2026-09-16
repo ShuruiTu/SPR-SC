@@ -88,6 +88,13 @@ def simulate_channel(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn",
     if {tuple(sorted(edge)) for edge in received.edges()} == clean:
         received = clean_graph.copy()
     return ChannelObservation(received, reliability, {
+        "channel_type": fading.lower(),
+        "channel_snr_db": snr_db,
+        "channel_tau_e": tau_e,
+        "channel_beta": beta,
+        "channel_temperature": temperature,
+        "channel_csi": "perfect" if fading.lower() == "rayleigh" else "not_applicable",
+        "channel_edge_prior": edge_prior,
         "channel_input_edges": len(clean),
         "background_pairs_sampled": len(background_pairs),
         "channel_symbol_count": len(clean) + len(background_pairs),

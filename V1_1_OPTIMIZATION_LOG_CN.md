@@ -131,7 +131,7 @@ v1.0 已包含：
 
 计划区分已知瞬时信道增益和仅已知统计分布两种设置，并比较均衡、边缘化后验和多衰落采样集成。
 
-状态：`待实现`
+状态：`已完成完美 CSI 后验校准；统计 CSI 与信道估计误差实验待实现`
 
 ## 4. 推荐执行顺序
 
@@ -317,3 +317,23 @@ v1.0 已包含：
 
 - 结论：Enron 保留 MLP；Crime 若优先追求最高 F1，使用 MLP+P2+P3，若优先运行效率，LR+P2+P3 以约 4.6–4.7 倍速度获得接近的 F1。不存在适合所有数据集的统一分类器，上采样也不能替代候选和训练增强。
 - 结果目录：`results_v1_1_p5_model_*_10db/`、`results_v1_1_p5_balance_*_10db/`、`results_v1_1_p5_crime_combinations_*_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P6 Rayleigh 完美 CSI 后验校准
+
+- 代码复核确认，现有 Rayleigh 接收机使用真实瞬时复信道增益 `h` 完成相干均衡，并按 `N0/|h|²` 计算等效噪声方差，因此当前结果属于完美 CSI，而不是未均衡 Rayleigh。
+- 批量运行器新增 `--channel-tau-e`、`--channel-beta`、`--channel-temperature` 和 `--max-background-pairs` 透传；参数写入结构化结果元数据，默认值保持 v1.0 行为。
+- 10 dB、三个 channel seed 的 `tau_e` 扫描显示阈值具有数据集依赖：Enron 在 0.58 最好（0.3058 ± 0.0068），Crime 在 0.50 更稳（0.2411 ± 0.0139）。因此不将数据集专用阈值固化为全局默认。
+- `channel_beta=1.5` 对稀疏先验与 16-QAM LLR 的相对权重进行校准，在五个小数据集上形成更一致的改善：
+
+| 数据集 | beta=1.0，Rayleigh 10 dB | beta=1.5，Rayleigh 10 dB |
+|---|---:|---:|
+| Enron | 0.3058 ± 0.0068 | 0.3041 ± 0.0042 |
+| P.School | 0.5402 ± 0.0030 | 0.5596 ± 0.0017 |
+| H.School | 0.5652 ± 0.0033 | 0.5958 ± 0.0037 |
+| Directors | 0.0129 ± 0.0182 | 0.0499 ± 0.0353 |
+| Crime | 0.1911 ± 0.0631 | 0.2725 ± 0.0041 |
+
+- 单种子 0–20 dB 曲线的平均 F1 变化：Enron +0.0086、P.School +0.0228、H.School +0.0411、Directors +0.0485、Crime +0.0481；Crime 在全部 11 个 SNR 点均提升。
+- 与 P2+P3 组合时，Crime-Rayleigh 由 0.2609 ± 0.0014 提升到 0.2859 ± 0.0198；Enron 则由 0.2979 ± 0.0056 降到 0.2936 ± 0.0170，说明困难数据集可组合使用，但不建议作为 Enron 的默认组合。
+- 结论：`channel_beta=1.5` 是当前 Rayleigh 的推荐实验配置，但仍保持显式开关、默认 1.0，以保证 v1.0 回归兼容。仅已知统计分布及信道估计误差不应与完美 CSI 结果混合，留待独立实验模块。
+- 结果目录：`results_v1_1_p6_tau_*_rayleigh_10db/`、`results_v1_1_p6_beta_*_rayleigh_10db/`、`results_v1_1_p6_external_beta_*_rayleigh_10db/`、`results_v1_1_p6_beta_1p5_rayleigh_0_20_step2/`、`results_v1_1_p6_beta_1p5_p2_p3_rayleigh_10db/`（本地忽略，不提交）。

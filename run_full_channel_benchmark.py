@@ -42,6 +42,10 @@ def parse_args():
     parser.add_argument("--class-balance", choices=("none", "upsample"), default="none")
     parser.add_argument("--upsample-positive-ratio", type=float, default=1.0 / 3.0)
     parser.add_argument("--projection-retention", type=float, default=None)
+    parser.add_argument("--max-background-pairs", type=int, default=10000)
+    parser.add_argument("--channel-tau-e", type=float, default=0.58)
+    parser.add_argument("--channel-beta", type=float, default=1.0)
+    parser.add_argument("--channel-temperature", type=float, default=1.0)
     parser.add_argument("--candidate-generator", choices=("shyre", "shyre_fast", "shyre_channel_aware", "strict_max_clique", "random", "head", "tail"), default="shyre")
     parser.add_argument("--channel-candidate-tau", type=float, default=0.45)
     parser.add_argument("--channel-candidate-max-extra-edges", type=int, default=2000)
@@ -62,7 +66,16 @@ def parse_args():
 
 
 def main():
-    args = parse_args(); output = ROOT / args.output; output.mkdir(exist_ok=True)
+    args = parse_args()
+    if args.max_background_pairs < 0:
+        raise SystemExit('--max-background-pairs must be non-negative')
+    if not 0.0 < args.channel_tau_e < 1.0:
+        raise SystemExit('--channel-tau-e must be in (0, 1)')
+    if args.channel_beta <= 0.0:
+        raise SystemExit('--channel-beta must be positive')
+    if args.channel_temperature <= 0.0:
+        raise SystemExit('--channel-temperature must be positive')
+    output = ROOT / args.output; output.mkdir(exist_ok=True)
     csv_path, heartbeat = output / "snr_baselines.csv", output / "heartbeat.log"
     lock = threading.Lock(); rows = []
     if csv_path.exists():
@@ -91,7 +104,11 @@ def main():
         command = [sys.executable, "main.py", "--dataset", dataset, "--beta", str(beta),
                    "--features", args.features, "--model", args.model,
                    "--channel", args.channel, "--snr_db", str(snr),
-                   "--seed", str(seed), "--channel_seed", str(seed if args.channel_seed is None else args.channel_seed)]
+                   "--seed", str(seed), "--channel_seed", str(seed if args.channel_seed is None else args.channel_seed),
+                   "--max_background_pairs", str(args.max_background_pairs),
+                   "--channel_tau_e", str(args.channel_tau_e),
+                   "--channel_beta", str(args.channel_beta),
+                   "--channel_temperature", str(args.channel_temperature)]
         if args.class_balance != 'none':
             command.extend(['--class_balance', args.class_balance])
         if args.upsample_positive_ratio != 1.0 / 3.0:

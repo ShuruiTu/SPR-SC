@@ -111,6 +111,14 @@ def get_args():
             parser.error('--channel-candidate-tau must be in (0, 1)')
         if args.channel_candidate_max_extra_edges < 0:
             parser.error('--channel-candidate-max-extra-edges must be non-negative')
+        if args.max_background_pairs < 0:
+            parser.error('--max-background-pairs must be non-negative')
+        if not 0.0 < args.channel_tau_e < 1.0:
+            parser.error('--channel-tau-e must be in (0, 1)')
+        if args.channel_beta <= 0.0:
+            parser.error('--channel-beta must be positive')
+        if args.channel_temperature <= 0.0:
+            parser.error('--channel-temperature must be positive')
         if args.train_channel_replicates < 1:
             parser.error('--train-channel-replicates must be at least 1')
         if not 0.0 < args.upsample_positive_ratio <= 1.0:
