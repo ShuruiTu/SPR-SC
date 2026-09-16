@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Dict, Tuple
+from typing import Any, Dict, Tuple
 import random
 from itertools import chain
 
@@ -26,6 +26,7 @@ Edge = Tuple[object, object]
 class ChannelObservation:
     graph: nx.Graph
     reliability: Dict[Edge, float]
+    metadata: Dict[str, Any]
 
 
 def _logsumexp(values):
@@ -86,7 +87,13 @@ def simulate_channel(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn",
             received.add_edge(*edge)
     if {tuple(sorted(edge)) for edge in received.edges()} == clean:
         received = clean_graph.copy()
-    return ChannelObservation(received, reliability)
+    return ChannelObservation(received, reliability, {
+        "channel_input_edges": len(clean),
+        "background_pairs_sampled": len(background_pairs),
+        "channel_symbol_count": len(clean) + len(background_pairs),
+        "channel_symbol_bits": 4 * (len(clean) + len(background_pairs)),
+        "received_projection_edges": received.number_of_edges(),
+    })
 
 
 def received_graph(clean_graph: nx.Graph, snr_db: float, fading: str = "awgn", tau_e: float = 0.58,

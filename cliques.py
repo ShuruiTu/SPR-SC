@@ -111,7 +111,7 @@ class CliqueSampler:
 
         self.beta = beta
         self.logger = logger
-        if self.args.ablation > 0:
+        if self.args.ablation > 0 or getattr(self.args, 'candidate_generator', 'shyre') != 'shyre':
             return
 
         self.rho = self.compute_clique_distribution(self.max_cliques, self.hyperedges)
@@ -238,13 +238,17 @@ class CliqueSampler:
 
     def find_children(self, max_cliques, hyperedges):
         max_cliques = list(max_cliques)
-        if self.args.ablation == 1:
+        candidate_generator = getattr(self.args, 'candidate_generator', 'shyre')
+        if candidate_generator == 'shyre_fast':
+            return self.find_children_fast(max_cliques)
+        if candidate_generator == 'strict_max_clique':
+            return {}
+        if candidate_generator == 'random' or self.args.ablation == 1:
             return self.find_children_random(max_cliques)
-        if self.args.ablation == 2:
+        if candidate_generator == 'head' or self.args.ablation == 2:
             return self.find_children_head_tail(max_cliques, max_size=2, tail=False)
-        if self.args.ablation == 3:
+        if candidate_generator == 'tail' or self.args.ablation == 3:
             return self.find_children_head_tail(max_cliques, max_size=2, tail=True)
-
         size2max_cliques_i = self.group_by_size(max_cliques)
         children = defaultdict(list)
         for i, (n, k) in enumerate(self.seq):
@@ -255,6 +259,37 @@ class CliqueSampler:
                 for child in combinations(max_clique, k):
                     children[max_clique].append(tuple(sorted(child)))
         print()
+        return children
+
+    def find_children_fast(self, max_cliques):
+        """Scalable, train-size-prior candidate sampler for full-source graphs.
+
+        Unlike ``shyre``, this intentionally does not build the quadratic
+        max-clique × hyperedge containment table.  It samples nested children
+        from the *training* hyperedge-size prior and is exposed as the distinct
+        ``shyre_fast`` ablation rather than silently changing SHyRe semantics.
+        """
+        rng = random.Random(self.args.seed)
+        size_counts = Counter(len(edge) for edge in self.hyperedges if len(edge) >= 2)
+        children = defaultdict(list)
+        if not max_cliques or not size_counts:
+            return children
+        per_parent = max(1, min(4, int(self.beta // max(1, len(max_cliques)))))
+        for clique in max_cliques:
+            nodes = tuple(sorted(clique))
+            valid_sizes = [size for size in size_counts if 2 <= size < len(nodes)]
+            if not valid_sizes:
+                continue
+            weights = [size_counts[size] for size in valid_sizes]
+            seen = set()
+            for _ in range(per_parent):
+                size = rng.choices(valid_sizes, weights=weights, k=1)[0]
+                child = tuple(sorted(rng.sample(nodes, size)))
+                if child not in seen:
+                    children[tuple(nodes)].append(child)
+                    seen.add(child)
+        self.logger.info('Fast candidate sampler: %d parents, at most %d children/parent, %d children total',
+                         len(max_cliques), per_parent, sum(map(len, children.values())))
         return children
 
 

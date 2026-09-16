@@ -1,0 +1,13 @@
+{
+  "dataset": "wikipeople",
+  "source_dataset": "Wikipeople",
+  "source_root": "/home/tushurui/SPRSC_20260828/handoff_20260828_sprsc/06_REPRODUCTION_CODE/external/HYPER-data/hypergraph_dataset/Wikipeople",
+  "conversion": "drop relation column; deduplicate within split; merge valid into train; global integer reindex",
+  "source_sha256": "d9c6633ba64c0b5a79a4e98c4076606571ec013f2108a32cad4bc08c85590c51",
+  "nodes": 47754,
+  "train_hyperedges": 304114,
+  "test_hyperedges": 37740,
+  "train_mean_size": 2.1799391017841994,
+  "test_mean_size": 2.1587705352411235,
+  "max_hyperedge_size": 9
+}

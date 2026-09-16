@@ -1,0 +1,13 @@
+{
+  "dataset": "m_fb15k",
+  "source_dataset": "M-FB15K",
+  "source_root": "/home/tushurui/SPRSC_20260828/handoff_20260828_sprsc/06_REPRODUCTION_CODE/external/HYPER-data/hypergraph_dataset/M-FB15K",
+  "conversion": "drop relation column; deduplicate within split; merge valid into train; global integer reindex",
+  "source_sha256": "669027f5409286ffa98712a4c13f560a57c40b8676718567222e819ab2923677",
+  "nodes": 9928,
+  "train_hyperedges": 449470,
+  "test_hyperedges": 38620,
+  "train_mean_size": 2.879021959196387,
+  "test_mean_size": 2.878275504919731,
+  "max_hyperedge_size": 5
+}

@@ -48,6 +48,16 @@ def get_args():
 
     parser.add_argument('--max_child_size', type=int, default=1, help='maximum size of the child')
     parser.add_argument('--ext', type=int, default=0, help='whether to extend features')
+    # Optional, independent modules for Fig. 3/4/9/10 and ablation studies.
+    parser.add_argument('--enable_projection_retention', action='store_true', help='retain a random alpha fraction of test projection edges before the channel')
+    parser.add_argument('--projection_retention', type=float, default=1.0, help='alpha in [0, 1], effective only with --enable_projection_retention')
+    parser.add_argument('--retention_seed', type=int, default=None, help='RNG seed for projection retention; defaults to channel_seed')
+    parser.add_argument('--enable_candidate_metrics', action='store_true', help='record candidate coverage statistics for Fig. 4')
+    parser.add_argument('--enable_storage_metrics', action='store_true', help='record received/reconstructed storage statistics for Fig. 10')
+    parser.add_argument('--candidate_generator', choices=['shyre', 'shyre_fast', 'strict_max_clique', 'random', 'head', 'tail'], default='shyre', help='independent candidate-generation module for ablations and Fig. 4')
+    parser.add_argument('--enable_runtime_metrics', action='store_true', help='record wall-clock and peak RSS telemetry for scaling studies')
+    parser.add_argument('--enable_size_stratified_metrics', action='store_true', help='record per-hyperedge-size F1 for Fig. 11/12')
+    parser.add_argument('--metrics_jsonl', type=str, default='', help='optional JSONL destination for enabled telemetry modules')
     parser.add_argument('--channel', choices=['clean', 'awgn', 'rayleigh'], default='clean', help='test projection channel')
     parser.add_argument('--snr_db', type=float, default=60.0, help='channel SNR in dB')
     parser.add_argument('--channel_seed', type=int, default=123, help='received-graph RNG seed')
@@ -57,6 +67,7 @@ def get_args():
     parser.add_argument('--channel_temperature', type=float, default=1.0, help='channel posterior temperature')
     parser.add_argument('--enable_cfinder', action='store_true', help='run CFinder baseline (disabled by default)')
     parser.add_argument('--soft_reliability', action='store_true', help='append channel reliability statistics to count features')
+    parser.add_argument('--train_channel_matched', action='store_true', help='apply an independently drawn channel with matching type/SNR to the training projection')
 
     try:
         args = parser.parse_args()

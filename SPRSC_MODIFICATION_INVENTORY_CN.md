@@ -115,3 +115,88 @@
 > 当前推荐比较对象是同一信道、同一 SNR 下的 `SHyRe-count` 与
 > `SHyRe-soft-count`（或 motif 对应变体）；不要将早期纯 LLR 信道结果与当前
 > 后验信道结果直接混合比较。
+
+## 8. Fig. 3 / 4 / 9 / 10 的数据契约与可消融开发计划（2026-09-10）
+
+原则：**每项新能力都有独立开关；默认均不改变当前基础版本的
+SHyRe-count/SHyRe-soft-count 行为。** 原始实验 CSV、历史论文数据与新遥测
+JSONL 必须分目录保存，禁止混合聚合。
+
+### 8.1 Fig. 3：数据集 × 方法 benchmark 图
+
+- **目标数据**：同一 dataset/channel/SNR/seed 下，各方法 P/R/F1/Jaccard；至少有
+  `SHyRe-count`、`SHyRe-soft-count`、Max Clique、ECC、DEMON。CFinder、Bayesian-MDL
+  仅在显式启用且成功时加入。
+- **现有缺口**：当前 `snr_baselines.csv` 无模型变体列，且只存 F1，不能作为严格
+  可追溯的 Fig. 3 主数据。
+- **新增接口**：评估返回结构化 `performance`；传入 `--metrics_jsonl PATH` 时导出
+  P/R/F1/Jaccard、dataset/channel/SNR/seed 与模块配置。
+- **绘图规则**：预声明使用 clean、固定高 SNR 或某个 SNR 聚合；若采用原论文数据，
+  必须独立来源 CSV 和图注，不能标记为本次重跑。
+
+### 8.2 Fig. 4：候选召回增益—最终 F1 增益机制图
+
+- **目标数据**：每个 dataset/seed/配置记录 `candidate_count`、
+  `candidate_true_count`、`candidate_recall`、`candidate_precision` 与最终 F1。
+  横/纵轴均相对预注册候选对照（建议 strict maximum clique）的配对差值；不得从
+  最终 F1 反推候选召回。
+- **新增接口**：`--enable_candidate_metrics` 只记录统计、不改变候选；
+  `--candidate_generator {shyre,strict_max_clique,random,head,tail}` 独立控制候选器。
+  `strict_max_clique` 不生成嵌套子集，是候选增益参照。
+- **仍需实验**：同一 seed/SNR 分别运行 strict 与 shyre，按 dataset 配对计算
+  Δcandidate-recall 与 ΔF1；至少 3 seeds 才可画 CI。
+
+### 8.3 Fig. 9：投影保留率 α—性能/通信负载
+
+- **α 定义**：发送前保留的测试投影边比例；与信道衰落、分类阈值、MLP 正则项无关。
+  α=1 是当前基础版本的发送边集。
+- **新增接口**：`--enable_projection_retention --projection_retention α` 在信道前
+  均匀无放回保留测试投影边；不启用时强制 α=1，保留图边插入顺序。
+  `--retention_seed` 独立于模型/信道随机种子（未给定时使用 channel_seed）。
+- **需要导出**：原投影边数、实际传输边数、实际 α、背景非边采样数、信道符号数、
+  `channel_symbol_bits`。相同 α 只能称为 same retention；比较 payload 必须使用
+  实际 symbols/bits。
+- **仍需实验**：α=0.2/0.4/0.6/0.8/1.0，固定 channel/SNR/seed，输出 F1 与 bits；
+  每个 α 至少 3 seeds。
+
+### 8.4 Fig. 10：Received projection 与 Reconstruction 的存储比
+
+- **目标数据**：`original_hypergraph_storage_units`、
+  `received_projection_storage_units`、`reconstruction_storage_units`，及相对
+  original 的两个倍率。当前采用可审计 endpoint-incidence 单位：超边为节点
+  incidence 数，无向投影边为 2 个端点单位；这不是比特级序列化大小。
+- **新增接口**：`--enable_storage_metrics` 只在评估后计算，不改变重构；图采用固定
+  类别横轴（Received projection 左、SPR-SC reconstruction 右），不能交换数值位置。
+- **图注要求**：storage 与 over-the-air `channel_symbol_bits` 是不同量；实际 payload
+  使用 Fig. 9 的符号/比特审计字段。
+
+### 8.5 运行与模块开关清单
+
+| 模块 | 开关 | 默认 | 改变算法输出 |
+|---|---|---:|---:|
+| 信道 hard graph | `--channel {clean,awgn,rayleigh}` | clean | 是 |
+| 投影保留 α | `--enable_projection_retention` + `--projection_retention` | 关闭/1.0 | 是 |
+| 软可靠度特征 | `--soft_reliability` | 关闭 | 是 |
+| 候选生成器 | `--candidate_generator` | shyre | 是 |
+| 候选阶段统计 | `--enable_candidate_metrics` | 关闭 | 否 |
+| 存储统计 | `--enable_storage_metrics` | 关闭 | 否 |
+| 运行时间/峰值 RSS | `--enable_runtime_metrics` | 关闭 | 否 |
+| 结构化指标导出 | `--metrics_jsonl PATH` | 不导出 | 否 |
+| CFinder | `--enable_cfinder` | 关闭 | 仅增加基线 |
+
+最小 Fig. 4 命令：
+
+```bash
+python main.py --dataset enron --beta 1000 --channel awgn --snr_db 10 \
+  --candidate_generator strict_max_clique --enable_candidate_metrics \
+  --metrics_jsonl results_fig34/strict.jsonl
+```
+
+最小 Fig. 9/10 命令：
+
+```bash
+python main.py --dataset enron --beta 1000 --channel awgn --snr_db 10 \
+  --enable_projection_retention --projection_retention 0.8 \
+  --enable_candidate_metrics --enable_storage_metrics --enable_runtime_metrics \
+  --metrics_jsonl results_fig910/alpha_08.jsonl
+```

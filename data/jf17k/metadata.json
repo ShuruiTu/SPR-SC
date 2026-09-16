@@ -1,0 +1,13 @@
+{
+  "dataset": "jf17k",
+  "source_dataset": "JF17K",
+  "source_root": "/home/tushurui/SPRSC_20260828/handoff_20260828_sprsc/06_REPRODUCTION_CODE/external/HYPER-data/hypergraph_dataset/JF17K",
+  "conversion": "drop relation column; deduplicate within split; merge valid into train; global integer reindex",
+  "source_sha256": "a0c30a27a19dd97511e9ab6dc78c2d53a153cae8376fd0c2e89aa4ce30c91415",
+  "nodes": 29386,
+  "train_hyperedges": 74808,
+  "test_hyperedges": 24885,
+  "train_mean_size": 2.554619826756497,
+  "test_mean_size": 3.736548121358248,
+  "max_hyperedge_size": 7
+}

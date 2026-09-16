@@ -1,0 +1,13 @@
+{
+  "dataset": "fb_auto",
+  "source_dataset": "FB-AUTO",
+  "source_root": "/home/tushurui/SPRSC_20260828/handoff_20260828_sprsc/06_REPRODUCTION_CODE/external/HYPER-data/hypergraph_dataset/FB-AUTO",
+  "conversion": "drop relation column; deduplicate within split; merge valid into train; global integer reindex",
+  "source_sha256": "e543a2fe07fb721714d8e1343e2f1771189ac7cc8be355d52e35dd523aa3802a",
+  "nodes": 3388,
+  "train_hyperedges": 9008,
+  "test_hyperedges": 2178,
+  "train_mean_size": 3.949711367673179,
+  "test_mean_size": 3.8980716253443526,
+  "max_hyperedge_size": 5
+}

@@ -14,68 +14,116 @@ from sklearn.feature_selection import SelectKBest
 epsilon = 1e-8
 from baselines import ecc, community
 from tqdm import tqdm
+from telemetry import candidate_metrics
+
+def _metric_record(reconstructed, ground_truth):
+    precision, recall, f1, jaccard = get_performance_wrt_ground_truth(reconstructed, ground_truth)
+    return {'precision': precision, 'recall': recall, 'f1': f1, 'jaccard': jaccard}
+
+
+def _size_group(size):
+    """Use fixed bins so Fig. 11 and Fig. 12 share identical axes."""
+    return str(size) if size <= 4 else '5+'
+
+
+def _size_stratified_metrics(outputs, ground_truth):
+    """Exact-match metrics within each true/predicted hyperedge-size bin."""
+    groups = sorted({_size_group(len(edge)) for edge in ground_truth},
+                    key=lambda value: (value == '5+', value))
+    result = {}
+    for method, output in outputs.items():
+        result[method] = {}
+        for group in groups:
+            truth = {edge for edge in ground_truth if _size_group(len(edge)) == group}
+            predicted = {edge for edge in output if _size_group(len(edge)) == group}
+            metrics = _metric_record(predicted, truth)
+            metrics['truth_count'] = len(truth)
+            metrics['reconstructed_count'] = len(predicted)
+            result[method][group] = metrics
+    return result
 
 
 def train(dataloader, args, logger):
     model1 = get_model(args, dataloader)
     model2 = deepcopy(model1)
-
     (X_train1, y_train1), (X_train2, y_train2) = dataloader.split_train()
-
     if X_train1.shape[0] > 0:
         model1.fit(X_train1, y_train1)
-    print(X_train2.shape, y_train2.shape,  y_train2.sum())
+    print(X_train2.shape, y_train2.shape, y_train2.sum())
     if X_train2.shape[0] > 0:
         model2.fit(X_train2, y_train2)
-    models = (model1, model2)
-    evaluate(models, dataloader, args, logger)
+    return evaluate((model1, model2), dataloader, args, logger)
 
 
 def evaluate(models, dataloader, args, logger):
-
-    if len(models) > 1:
-        model1, model2 = models
-    else:
-        model1 = models[0]
-        model2 = models[0]
-    X_test, y_test, X_train, y_train = dataloader.X_test, dataloader.y_test, dataloader.X_train, dataloader.y_train
+    model1, model2 = models if len(models) > 1 else (models[0], models[0])
+    X_test = dataloader.X_test
     num_max_cliques_test = dataloader.get_num_max_candidates('test')
-    y_hat_test1, y_hat_test2 = np.array([]), np.array([])
-    if X_test[:num_max_cliques_test].shape[0] > 0:
-        y_hat_test1 = model1.predict(X_test[:num_max_cliques_test])
-    if X_test[num_max_cliques_test:].shape[0] > 0:
-        y_hat_test2 = model2.predict(X_test[num_max_cliques_test:])
+    def predict_or_reject(model, features, candidate_group):
+        """Reject a group when its corresponding classifier has no train rows.
+
+        Strong channels can leave one candidate class (typically nested cliques)
+        empty after matched channel corruption.  A sklearn MLP is then rightly
+        unfitted; treating those unseen candidates as negatives is preferable to
+        aborting a complete SNR sweep.
+        """
+        if not features.shape[0]:
+            return np.array([])
+        if not hasattr(model, 'classes_'):
+            logger.warning('%s classifier has no training samples; rejecting %d candidates.',
+                           candidate_group, features.shape[0])
+            return np.zeros(features.shape[0], dtype=int)
+        return model.predict(features)
+
+    y_hat_test1 = predict_or_reject(model1, X_test[:num_max_cliques_test], 'max-clique')
+    y_hat_test2 = predict_or_reject(model2, X_test[num_max_cliques_test:], 'nested-clique')
     y_hat_test = np.hstack((y_hat_test1, y_hat_test2))
+    truth = dataloader.graphs['simplicies_test']
     reconstructed_cliques = set(clique for pred, clique in zip(y_hat_test, dataloader.cliques['final_cliques_test']) if pred > 0.5)
-    precision, recall, f1, jaccard = get_performance_wrt_ground_truth(reconstructed_cliques, dataloader.graphs['simplicies_test'])
-    logger.info('Our Performance: precision {:.4f}, recall {:.4f}, f1 {:.4f} jaccard {:.4f}'.format(precision, recall, f1, jaccard))
-    variant = 'SHyRe{}-{}'.format('-soft' if args.soft_reliability else '', args.features)
+    shyre = _metric_record(reconstructed_cliques, truth)
+    logger.info('Our Performance: precision {:.4f}, recall {:.4f}, f1 {:.4f} jaccard {:.4f}'.format(
+        shyre['precision'], shyre['recall'], shyre['f1'], shyre['jaccard']))
+    sampler_tag = '-fast' if args.candidate_generator == 'shyre_fast' else ''
+    train_tag = '-matched-train' if args.train_channel_matched else ''
+    variant = 'SHyRe{}{}{}-{}'.format(sampler_tag, train_tag, '-soft' if args.soft_reliability else '', args.features)
     logger.info('Model variant: %s', variant)
+    outcome = {'performance': {'SHyRe': shyre}, '_reconstructed_cliques': reconstructed_cliques}
 
-    # baselines:
-    # Bayesian-MDL requires graph-tool, which is intentionally not part of the
-    # default SHyRe runtime.  Skip it rather than aborting an otherwise valid
-    # SHyRe experiment.
+    if args.enable_candidate_metrics:
+        outcome['candidate'] = candidate_metrics(dataloader.cliques['final_cliques_test'], truth)
+        logger.info('Candidate Metrics: %s', outcome['candidate'])
+
+    # Bayesian-MDL depends on graph-tool and remains separately disabled.
     logger.info('Baseline: Bayesian-MDL skipped (disabled for this runtime).')
-
-    precision, recall, f1, jaccard = get_performance_wrt_ground_truth(dataloader.cliques['max_cliques_test'], dataloader.graphs['simplicies_test'])
-    logger.info('Baseline: Max Clique precision {:.4f}, recall {:.4f}, f1 {:.4f}, jaccard {:.4f} '.format(precision, recall, f1, jaccard))
-
-    ecc_covering = ecc.get_edge_clique_cover(dataloader.graphs['G_test'])
-    precision, recall, f1, jaccard = get_performance_wrt_ground_truth(ecc_covering,  dataloader.graphs['simplicies_test'])
-    logger.info('Baseline: ECC precision {:.4f}, recall {:.4f}, f1 {:.4f}, jaccard {:.4f} '.format(precision, recall, f1, jaccard))
-
-    communities_demon = community.get_demon_communities(dataloader.graphs['G_test'])
-    precision, recall, f1, jaccard = get_performance_wrt_ground_truth(communities_demon, dataloader.graphs['simplicies_test'])
-    logger.info('Baseline: Demon precision {:.4f}, recall {:.4f}, f1 {:.4f}, jaccard {:.4f} '.format(precision, recall, f1, jaccard))
+    baseline_outputs = {
+        'Max Clique': dataloader.cliques['max_cliques_test'],
+        'ECC': ecc.get_edge_clique_cover(dataloader.graphs['G_test']),
+        'DEMON': community.get_demon_communities(dataloader.graphs['G_test']),
+    }
+    for name, output in baseline_outputs.items():
+        metric = _metric_record(output, truth)
+        outcome['performance'][name] = metric
+        logger.info('Baseline: {} precision {:.4f}, recall {:.4f}, f1 {:.4f}, jaccard {:.4f} '.format(
+            'Demon' if name == 'DEMON' else name, metric['precision'], metric['recall'], metric['f1'], metric['jaccard']))
 
     if args.enable_cfinder:
         communities_kclique, best_k = community.get_kclique_communities(
             dataloader.graphs['G_test'], dataloader.graphs['G_test'], dataloader.graphs['simplicies_train'])
-        precision, recall, f1, jaccard = get_performance_wrt_ground_truth(communities_kclique, dataloader.graphs['simplicies_test'])
-        logger.info('Baseline: CFinder (k={}) precision {:.4f}, recall {:.4f}, f1 {:.4f}, jaccard {:.4f} '.format(best_k, precision, recall, f1, jaccard))
+        metric = _metric_record(communities_kclique, truth)
+        outcome['performance']['CFinder'] = metric
+        logger.info('Baseline: CFinder (k={}) precision {:.4f}, recall {:.4f}, f1 {:.4f}, jaccard {:.4f} '.format(
+            best_k, metric['precision'], metric['recall'], metric['f1'], metric['jaccard']))
     else:
         logger.info('Baseline: CFinder skipped (disabled for channel-SNR benchmark).')
+    if args.enable_size_stratified_metrics:
+        outputs = {'SHyRe': reconstructed_cliques}
+        outputs.update(baseline_outputs)
+        if args.enable_cfinder:
+            outputs['CFinder'] = communities_kclique
+        outcome['size_stratified'] = _size_stratified_metrics(outputs, truth)
+        logger.info('Size-stratified metrics recorded for groups: %s',
+                    sorted(next(iter(outcome['size_stratified'].values())).keys()))
+    return outcome
 
 
 def get_performance_wrt_ground_truth(reconstructed, ground_truth):
@@ -113,20 +161,23 @@ class DataLoader:
         self.logger.info('test real smaller cliques in search universe: {} {}'.format(self.y_test[self.get_num_max_candidates('test'):].sum(),
               len(set(self.cliques['final_cliques_test'][self.get_num_max_candidates('test'):]) & self.graphs['simplicies_test'])))
         if self.args.save_features == 1:
-            self.save_features_to_csv()
+            self.save_features()
 
     def save_features(self):
         with open('data/{}/feature_labels.pkl'.format(self.args.dataset), 'wb') as f:
-            pickle.dump({'features': self.X_test, 'label': self.y_test, 'feature_dict': self.feature_dict_test,
-                         'feature_names': self.feature_names, 'cut': self.get_num_max_candidates('test')}, f)
+            pickle.dump({'features': self.X_test, 'label': self.y_test,
+                         'feature_dict': self.feature_dict_test,
+                         'feature_names': self.feature_names,
+                         'cut': self.get_num_max_candidates('test')}, f)
         self.logger.info('features saved.')
 
     def extract_features(self, mode):
         max_cliques = self.cliques['max_cliques_{}'.format(mode)]
         child2parents = self.get_child_parents_map(mode)
         candidates_ = set(child2parents.keys())
-        if self.args.ablation > 0:
-            max_candidates = candidates_ & max_cliques
+        strict_generator = self.args.candidate_generator == 'strict_max_clique'
+        if self.args.ablation > 0 or strict_generator:
+            max_candidates = candidates_ & max_cliques if not strict_generator else max_cliques
         else:
             max_candidates = max_cliques
         self.max_candidates[mode] = max_candidates
@@ -134,18 +185,12 @@ class DataLoader:
         final_cliques = list(max_candidates) + list(nested_candidates)
 
         node_degree = self.get_node_degree(mode)
-
         if self.args.features == 'count':
-            # Now preparing for feature extraction:
-            # get node degree w.r.t. max clique view
-
+            # Structural count features from the original SHyRe path.
             node_degree_recur = self.get_node_degree_recur(mode)
             node_degree2 = self.get_node_degree2(mode)
-            # get edge degree w.r.t. graph view
             edge_degree = self.get_edge_degree(mode)
             cluster_coef = self.get_cluster_coef(mode)
-
-            # Now extract features for cliques
             feature_names = self.feature_names
             feature_dict = {feature_name: [] for feature_name in feature_names}
             for i, clique in tqdm(enumerate(final_cliques)):
