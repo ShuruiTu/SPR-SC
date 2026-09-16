@@ -14,7 +14,7 @@ from sklearn.feature_selection import SelectKBest
 epsilon = 1e-8
 from baselines import ecc, community
 from tqdm import tqdm
-from telemetry import candidate_metrics
+from telemetry import candidate_diagnostics, classifier_diagnostics
 
 def _metric_record(reconstructed, ground_truth):
     precision, recall, f1, jaccard = get_performance_wrt_ground_truth(reconstructed, ground_truth)
@@ -90,7 +90,17 @@ def evaluate(models, dataloader, args, logger):
     outcome = {'performance': {'SHyRe': shyre}, '_reconstructed_cliques': reconstructed_cliques}
 
     if args.enable_candidate_metrics:
-        outcome['candidate'] = candidate_metrics(dataloader.cliques['final_cliques_test'], truth)
+        test_candidates = dataloader.cliques['final_cliques_test']
+        test_split = dataloader.get_num_max_candidates('test')
+        train_candidates = dataloader.cliques['final_cliques_train']
+        train_split = dataloader.get_num_max_candidates('train')
+        outcome['candidate'] = candidate_diagnostics(
+            test_candidates, truth, test_split, dataloader.y_test)
+        outcome['candidate']['training'] = candidate_diagnostics(
+            train_candidates, dataloader.graphs['simplicies_train'],
+            train_split, dataloader.y_train)
+        outcome['candidate']['classifier'] = classifier_diagnostics(
+            y_hat_test, test_candidates, truth, test_split)
         logger.info('Candidate Metrics: %s', outcome['candidate'])
 
     # Bayesian-MDL depends on graph-tool and remains separately disabled.

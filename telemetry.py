@@ -69,8 +69,74 @@ def candidate_metrics(candidates: Iterable[tuple], truth: set[tuple]) -> dict:
     return {
         "candidate_count": len(candidate_set),
         "candidate_true_count": len(covered),
+        "truth_count": len(truth),
         "candidate_recall": len(covered) / max(len(truth), 1),
         "candidate_precision": len(covered) / max(len(candidate_set), 1),
+    }
+
+
+def candidate_diagnostics(candidates: list[tuple], truth: set[tuple],
+                          max_candidate_count: int, labels=None) -> dict:
+    """Report candidate coverage separately for maximal and nested cliques."""
+    max_candidates = candidates[:max_candidate_count]
+    nested_candidates = candidates[max_candidate_count:]
+    result = candidate_metrics(candidates, truth)
+    result["by_type"] = {
+        "max_clique": candidate_metrics(max_candidates, truth),
+        "nested_clique": candidate_metrics(nested_candidates, truth),
+    }
+    if labels is not None:
+        labels = list(labels)
+
+        def label_stats(group_labels):
+            positives = sum(int(value > 0.5) for value in group_labels)
+            count = len(group_labels)
+            return {
+                "sample_count": count,
+                "positive_count": positives,
+                "negative_count": count - positives,
+                "positive_rate": positives / max(count, 1),
+                "empty": count == 0,
+                "single_class": count > 0 and (positives == 0 or positives == count),
+            }
+
+        result["label_distribution"] = {
+            "all": label_stats(labels),
+            "max_clique": label_stats(labels[:max_candidate_count]),
+            "nested_clique": label_stats(labels[max_candidate_count:]),
+        }
+    return result
+
+
+def classifier_diagnostics(predictions, candidates: list[tuple], truth: set[tuple],
+                           max_candidate_count: int) -> dict:
+    """Measure how much candidate coverage survives classifier selection."""
+    predictions = list(predictions)
+
+    def group_stats(group_predictions, group_candidates):
+        candidate_set = set(group_candidates)
+        true_candidates = candidate_set & truth
+        selected = {
+            clique for prediction, clique in zip(group_predictions, group_candidates)
+            if prediction > 0.5
+        }
+        selected_true = selected & truth
+        return {
+            "candidate_count": len(candidate_set),
+            "candidate_true_count": len(true_candidates),
+            "selected_count": len(selected),
+            "selected_true_count": len(selected_true),
+            "selection_precision": len(selected_true) / max(len(selected), 1),
+            "selection_recall_within_candidates": len(selected_true) / max(len(true_candidates), 1),
+            "end_to_end_recall": len(selected_true) / max(len(truth), 1),
+        }
+
+    return {
+        "all": group_stats(predictions, candidates),
+        "max_clique": group_stats(
+            predictions[:max_candidate_count], candidates[:max_candidate_count]),
+        "nested_clique": group_stats(
+            predictions[max_candidate_count:], candidates[max_candidate_count:]),
     }
 
 
