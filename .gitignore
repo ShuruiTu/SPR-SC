@@ -6,6 +6,7 @@ data/*/*.pkl
 results_cfinder_validation/
 results_*/
 *.stdout.log
+*_status.log
 data/*/H.csv
 data/*/candidates.csv
 figures_current_six_datasets_snr/

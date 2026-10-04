@@ -1,0 +1,11 @@
+{
+  "updated_at": "2026-09-18T15:38:08.351382+08:00",
+  "dataset": "crime",
+  "channel": "awgn",
+  "snr_db": 20.0,
+  "validation_protocol": "nested training-only holdout; no test F1 used",
+  "trial_count": 15,
+  "complete_trials": 15,
+  "successful_cells": 45,
+  "required_cells": 45
+}

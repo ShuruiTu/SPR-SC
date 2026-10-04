@@ -1,0 +1,351 @@
+# SPR-SC v1.1 性能优化计划与实验记录
+
+更新日期：2026-09-16
+
+开发分支：`feature/v1.1-performance-optimization`
+
+对照版本：`v1.0`（提交 `c6b83d7`）
+
+## 1. 文档用途
+
+本文档统一记录 v1.0 之后的代码修改、实验配置、结果目录和结论。后续每次实现新模块或运行正式实验，都应在本文档追加记录，避免代码状态与实验结果无法对应。
+
+所有优化模块必须满足以下约束：
+
+1. 默认关闭，关闭后保持 v1.0 行为。
+2. 可以通过独立命令行参数启用，避免不同优化相互绑定。
+3. 输出中记录开关、参数、随机种子、数据集、信道和 SNR。
+4. 消融实验一次只改变一个主要因素。
+5. 正式结论至少使用多个 channel seed；单随机种子只作为开发验证。
+
+## 2. v1.0 基线状态
+
+v1.0 已包含：
+
+- SHyRe count 主流程；
+- `SHyRe-soft-count` 可选软可靠度特征；
+- AWGN、Rayleigh 和 clean 信道；
+- 稀疏先验后验判决；
+- matched-channel training；
+- `shyre`、`shyre_fast` 和严格最大团候选模式；
+- 候选、存储、运行时间和超边规模分层指标；
+- Max Clique、ECC、DEMON 基线；
+- 图 1/2、图 3/4、图 9/10/9.5、图 11/12 的实验与绘图入口。
+
+当前 matched-channel training 结果表明：
+
+- P.School、H.School 在两类信道下相对稳定；
+- Enron、Directors、Crime、FB-AUTO 和 JF17K 在中低 SNR 下主要表现为召回不足；
+- soft-count 对 Enron 有稳定小幅收益，但对两个 School 数据集略有下降；
+- Rayleigh 的恢复难度明显高于 AWGN；
+- JF17K 当前采用 `shyre_fast`，结果必须与精确 SHyRe 分开标注；
+- Hosts-Virus 的 matched training 存在较高内存与候选规模开销，暂不进入首轮优化实验。
+
+## 3. 优化任务与独立开关设计
+
+### P0：补充分阶段诊断指标
+
+目标：区分“候选阶段丢失真实超边”和“分类器拒绝真实候选”。
+
+计划记录：
+
+- candidate recall、precision 和候选数量；
+- 最大团候选与嵌套候选各自的正样本数量和召回率；
+- 分类前后候选数量；
+- 分类器 precision/recall/F1；
+- 空训练子集和单类别训练子集出现次数。
+
+现有入口：`--enable-candidate-metrics`。后续需要扩展为分候选类型的详细指标。
+
+状态：`已实现并完成首轮验证`
+
+### P1：验证集自适应分类阈值
+
+目标：改善当前高 precision、低 recall 的情况。
+
+计划开关：
+
+- `--decision-threshold-mode fixed|validation`
+- `--decision-threshold FLOAT`
+- 最大团和嵌套团允许使用独立阈值。
+
+候选阈值只能在训练/验证数据上选择，禁止使用测试集调参。
+
+状态：`已实现并完成首轮单种子验证`
+
+### P2：信道感知候选生成
+
+目标：避免真实边因一次硬判决被删除后，相应超边永远无法进入候选集合。
+
+计划模式：
+
+- 多后验阈值构图并合并候选；
+- 从边后验概率多次采样接收图并合并候选；
+- 可选地把 ECC/DEMON 输出加入候选池；
+- 设置候选数量上限和内存保护。
+
+该模块必须作为新的 candidate generator，不改变原 `shyre` 和 `shyre_fast`。
+
+状态：`已实现实验版本并完成 10 dB 单种子验证`
+
+### P3：多信道种子与邻域 SNR 训练
+
+目标：降低单次信道实现造成的过拟合和曲线波动。
+
+计划开关：
+
+- `--train-channel-replicates N`
+- `--train-snr-offsets ...`
+
+对照组包括：单 seed 同 SNR、多个 seed 同 SNR、多个 seed 邻域 SNR 和混合 SNR。
+
+状态：`已实现并完成 10 dB 三种子验证`
+
+### P4：软可靠度特征 v2
+
+目标：让软可靠度反映候选内部边置信度分布，而不只是简单聚合。
+
+计划加入：
+
+- 最小值、均值、标准差和分位数；
+- 低可靠度边比例；
+- 对数团存在概率；
+- 候选缺失边数量及其后验概率；
+- 独立特征归一化。
+
+计划模式：`off|basic|distribution`，其中 `basic` 保持 v1.0 soft-count 行为。
+
+状态：`已实现并完成 10 dB 三种子验证`
+
+### P5：类别不平衡与模型比较
+
+目标：缓解低 SNR 下正样本稀少、模型倾向全部拒绝的问题。
+
+计划比较：样本重采样、样本权重、Logistic Regression、Random Forest、MLP 和概率校准。模型改动与候选生成改动分开测试。
+
+状态：`已实现并完成 10 dB 三种子验证`
+
+### P6：Rayleigh 专项处理
+
+目标：缩小 Rayleigh 与 AWGN 的性能差距。
+
+计划区分已知瞬时信道增益和仅已知统计分布两种设置，并比较均衡、边缘化后验和多衰落采样集成。
+
+状态：`已完成后验校准及三类 CSI 模式验证`
+
+## 4. 推荐执行顺序
+
+1. 完成 P0，确定瓶颈位于候选还是分类阶段。
+2. 完成 P1，以较低成本验证阈值调整的收益上限。
+3. 根据 P0 结果完成 P2。
+4. 完成 P3，提高曲线稳定性。
+5. 完成 P4，并与原 soft-count 做严格消融。
+6. 再开展 P5、P6 和数据集专用参数优化。
+
+首轮开发数据集建议使用 Enron 和 Crime，SNR 使用 10 dB；确认代码正确后再扩展到 0–20 dB。非 SNR 专项实验统一使用 60 dB。
+
+## 5. 结果记录模板
+
+### YYYY-MM-DD：实验或修改名称
+
+- Git 提交：
+- 模块与开关：
+- 数据集：
+- 信道与 SNR：
+- model seed / channel seed：
+- 对照组：
+- 结果目录：
+- 主要结果：
+- 资源消耗：
+- 是否符合预期：
+- 结论与下一步：
+
+## 6. 变更记录
+
+### 2026-09-16：建立 v1.1 优化分支
+
+- 从 `v1.0` 标签对应提交 `c6b83d7` 创建 `feature/v1.1-performance-optimization`。
+- 建立本优化计划与实验记录文档。
+- 尚未改变 v1.0 默认算法行为。
+
+### 2026-09-16：P0 分阶段诊断指标
+
+- 扩展现有 `--enable-candidate-metrics`，默认仍为关闭。
+- 分别记录最大团候选、嵌套候选和全部候选的覆盖率。
+- 记录训练候选的正负样本数量、空子集和单类别子集状态。
+- 记录候选经过分类器后的保留数量、类内召回和端到端召回。
+- 已在 Enron、Crime 的 AWGN/Rayleigh 10 dB 上完成开发验证：
+
+| 数据集 | 信道 | 最终 F1 | 候选召回 | 分类器对真实候选的保留率 |
+|---|---|---:|---:|---:|
+| Enron | AWGN | 0.1102 | 0.3519 | 0.1805 |
+| Enron | Rayleigh | 0.0610 | 0.3862 | 0.0890 |
+| Crime | AWGN | 0.1490 | 0.4844 | 0.2097 |
+| Crime | Rayleigh | 0.0223 | 0.4219 | 0.0278 |
+
+- 结论：首轮样本中的候选集合仍覆盖约 35%–48% 的真实超边，但分类器只保留其中约 3%–21%；当前中低 SNR 的主要瓶颈位于分类判决阶段，P1 的优先级高于扩大候选池。
+- 结果目录：`results_v1_1_p0_diagnostics_awgn_10db/`、`results_v1_1_p0_diagnostics_rayleigh_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P1 验证集自适应分类阈值
+
+- 新增 `--decision-threshold-mode fixed|validation`，默认 `fixed`。
+- 新增 `--decision-threshold` 和 `--threshold-validation-fraction`。
+- 最大团与嵌套团分类器分别在训练候选的分层验证子集上选择 F1 最优阈值；测试标签不参与阈值选择。
+- 若训练子集为空、只有单类别或样本不足，则回退到固定阈值。
+- 默认固定阈值回归检查与 v1.0 完全一致。
+
+| 数据集 | 信道 | 固定阈值 F1 | 自适应阈值 F1 | 变化 |
+|---|---|---:|---:|---:|
+| Enron | AWGN | 0.1102 | 0.3084 | +0.1982 |
+| Enron | Rayleigh | 0.0610 | 0.2991 | +0.2381 |
+| Crime | AWGN | 0.1490 | 0.1685 | +0.0195 |
+| Crime | Rayleigh | 0.0223 | 0.2339 | +0.2116 |
+
+- Enron 自适应阈值：AWGN 为最大团 0.15、嵌套团 0.05；Rayleigh 为 0.05、0.10。
+- Crime 自适应阈值：AWGN 为最大团 0.45、嵌套团 0.25；Rayleigh 均为 0.15。
+- 结论：结果支持 P0 的判断，固定 0.5 阈值是中低 SNR 的主要瓶颈之一；需要通过多 channel seed 和完整 SNR 曲线确认泛化与稳定性。
+- 结果目录：`results_v1_1_p1_validation_threshold_awgn_10db/`、`results_v1_1_p1_validation_threshold_rayleigh_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P1 完整单种子 SNR 曲线
+
+- 数据集：Enron、P.School、H.School、Directors、Crime。
+- SNR：0–20 dB，间隔 2 dB；AWGN 和 Rayleigh；matched-channel training。
+
+| 数据集 | AWGN 平均 F1 变化 | Rayleigh 平均 F1 变化 |
+|---|---:|---:|
+| Enron | 0.1164 → 0.2538（+0.1374） | 0.0758 → 0.2626（+0.1868） |
+| P.School | 0.5379 → 0.5514（+0.0135） | 0.4843 → 0.5028（+0.0185） |
+| H.School | 0.5577 → 0.5655（+0.0078） | 0.5102 → 0.5124（+0.0022） |
+| Directors | 0.3211 → 0.3198（-0.0014） | 0.0317 → 0.0479（+0.0162） |
+| Crime | 0.3376 → 0.3855（+0.0480） | 0.1905 → 0.2732（+0.0827） |
+
+- AWGN 高 SNR 下 Crime 有 0.009–0.030 的局部回退，后续需要多 seed 或阈值正则化确认。
+- 结果目录：`results_v1_1_p1_adaptive_threshold_awgn_0_20_step2/`、`results_v1_1_p1_adaptive_threshold_rayleigh_0_20_step2/`（本地忽略，不提交）。
+
+### 2026-09-16：P2 信道感知候选生成实验版
+
+- 新增 `shyre_channel_aware`，原 `shyre` 行为不变。
+- 使用低于 hard 判决阈值的后验边建立候选搜索图；原 hard received graph 继续用于结构特征和基线。
+- 后验边按概率排序，并使用 `--channel-candidate-max-extra-edges` 控制规模。
+- hard graph 与后验图的最大团、子团候选采用并集，保证不会因最大团吞并而删除原候选。
+- 比较 0.40、0.45、0.50 后，0.45 在当前 10 dB 单种子实验中最稳定，因此作为实验模块的推荐初值。
+
+| 数据集 | 信道 | P1 F1 | P2（tau=0.45）F1 | 候选召回变化 |
+|---|---|---:|---:|---:|
+| Enron | AWGN | 0.308 | 0.317 | 0.352 → 0.378 |
+| Directors | AWGN | 0.093 | 0.177 | 0.118 → 0.147 |
+| Crime | AWGN | 0.168 | 0.329 | 0.484 → 0.516 |
+| Enron | Rayleigh | 0.299 | 0.295 | 0.386 → 0.415 |
+| Directors | Rayleigh | 0.000 | 0.000 | 0.029 → 0.059 |
+| Crime | Rayleigh | 0.234 | 0.242 | 0.422 → 0.438 |
+
+- 结论：P2 能稳定提高候选召回，但最终 F1 仍受分类器和阈值稳定性影响；暂不作为默认模型，应在 P3 多 seed 训练完成后重新验证。
+- 结果目录：`results_v1_1_p2_tau_0p45_awgn_10db/`、`results_v1_1_p2_tau_0p45_rayleigh_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P3 多实例与邻域 SNR 训练
+
+- 新增 `--train-channel-replicates`，可在每个训练 SNR 生成多个独立信道实例。
+- 新增 `--train-snr-offsets`，例如测试 10 dB 时使用 `-2 0 2` 生成 8/10/12 dB 训练实例。
+- 各实例分别完成候选与特征提取，再按最大团/嵌套团类型合并训练样本；测试图与测试标签不参与增强。
+- 默认仍为一个同 SNR 训练实例；默认回归结果与 v1.0 一致。
+- 三个同 SNR 副本的结果不稳定，因此不作为推荐配置。
+- 使用 123/124/125 三个测试信道种子比较单 SNR 与邻域 SNR 训练：
+
+| 数据集 | 信道 | P1 单 SNR F1 | P3 邻域 SNR F1 |
+|---|---|---:|---:|
+| Enron | AWGN | 0.3145 ± 0.0048 | 0.3125 ± 0.0151 |
+| Enron | Rayleigh | 0.3058 ± 0.0067 | 0.3032 ± 0.0080 |
+| Crime | AWGN | 0.2548 ± 0.0612 | 0.2958 ± 0.0188 |
+| Crime | Rayleigh | 0.1911 ± 0.0631 | 0.2549 ± 0.0025 |
+
+- 结论：邻域 SNR 训练对 Enron 基本持平，对 Crime 同时提高均值并显著降低方差；该模块适合作为困难数据集的可选稳健化策略，暂不设为全局默认。
+- 结果目录：`results_v1_1_p3_multiseed_base_*_10db/`、`results_v1_1_p3_multiseed_window_*_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P2 与 P3 组合验证
+
+| 数据集 | 信道 | P1 F1 | P3 F1 | P2+P3 F1 | P1/P2+P3 候选召回 |
+|---|---|---:|---:|---:|---:|
+| Enron | AWGN | 0.3145 | 0.3125 | 0.3122 | 0.3488 / 0.3717 |
+| Enron | Rayleigh | 0.3058 | 0.3032 | 0.2979 | 0.3814 / 0.4092 |
+| Crime | AWGN | 0.2548 | 0.2958 | 0.3359 | 0.5026 / 0.5391 |
+| Crime | Rayleigh | 0.1911 | 0.2549 | 0.2609 | 0.4245 / 0.4401 |
+
+- P2+P3 对 Crime 效果最好，并进一步降低 Rayleigh 方差；Enron 候选召回提高但 F1 略降，说明额外候选的分类仍有改进空间。
+- 结果目录：`results_v1_1_p2_p3_multiseed_awgn_10db/`、`results_v1_1_p2_p3_multiseed_rayleigh_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P4 软可靠度分布特征
+
+- 新增 `--soft-reliability-mode off|basic|distribution`。
+- `basic` 完全保持 v1.0 soft-count 的五个可靠度特征和结果。
+- `distribution` 追加可靠度标准差、10%/25%/50% 分位数、候选联合对数概率和未观测边比例。
+- 三个 channel seed 的 10 dB 结果：
+
+| 数据集 | 信道 | basic F1 | distribution F1 |
+|---|---|---:|---:|
+| Enron | AWGN | 0.3068 ± 0.0095 | 0.3203 ± 0.0076 |
+| Enron | Rayleigh | 0.3028 ± 0.0128 | 0.3034 ± 0.0087 |
+| Crime | AWGN | 0.2905 ± 0.0484 | 0.3061 ± 0.0432 |
+| Crime | Rayleigh | 0.1580 ± 0.0776 | 0.1644 ± 0.0903 |
+
+- distribution 相比 basic 的均值均有小幅提高，并降低 Enron 方差；但 Crime-Rayleigh 仍不稳定且低于 count P3。
+- Crime 上将 P3 与 distribution 组合后，AWGN 为 0.2881 ± 0.0236、Rayleigh 为 0.2311 ± 0.0104，均低于纯 count P3，因此当前不建议同时启用。
+- 结论：`distribution` 作为独立消融模型保留，不替换 count；AWGN 更可能从软可靠度获益，Rayleigh 应优先使用邻域 SNR 训练或等待 P6 专项处理。
+- 结果目录：`results_v1_1_p4_basic_*_10db/`、`results_v1_1_p4_distribution_*_10db/`、`results_v1_1_p3_p4_distribution_*_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P5 分类器与类别平衡消融
+
+- `--model` 现支持 `mlp|lr|rf`，三类模型共享相同的训练/验证划分和自适应阈值流程。
+- 新增 `--class-balance none|upsample` 与 `--upsample-positive-ratio`；上采样只作用于训练子集，避免重复样本泄漏到阈值验证集。
+- 单类别训练子集统一回退到常量分类器，避免 Logistic Regression 因缺少第二类别而中断。
+- 默认仍为 MLP 且不进行上采样；Enron AWGN 10 dB 固定阈值回归 F1 为 0.110218，与 v1.0 完全一致。
+- 三个 channel seed、P1 自适应阈值、10 dB 的模型比较如下：
+
+| 数据集 | 信道 | MLP F1 / 时间 | LR F1 / 时间 | RF F1 / 时间 |
+|---|---|---|---|---|
+| Enron | AWGN | 0.3145 ± 0.0048 / 3.02 s | 0.2971 ± 0.0387 / 0.79 s | 0.3105 ± 0.0246 / 2.52 s |
+| Enron | Rayleigh | 0.3058 ± 0.0067 / 4.19 s | 0.2958 ± 0.0175 / 0.76 s | 0.2985 ± 0.0021 / 2.24 s |
+| Crime | AWGN | 0.2548 ± 0.0612 / 2.38 s | 0.3111 ± 0.0188 / 0.46 s | 0.2935 ± 0.0260 / 2.18 s |
+| Crime | Rayleigh | 0.1911 ± 0.0631 / 1.66 s | 0.2384 ± 0.0110 / 0.45 s | 0.1949 ± 0.0421 / 1.89 s |
+
+- MLP 和 LR 上采样后仅有零散小幅变化，在 Rayleigh 上还会略微下降，未形成跨数据集、跨信道的稳定收益，因此类别平衡暂只作为消融开关，不设为推荐默认值。
+- Crime 上进一步比较 P3 和 P2+P3：
+
+| 信道 | MLP P3 | MLP P2+P3 | LR P3 | LR P2+P3 |
+|---|---:|---:|---:|---:|
+| AWGN | 0.2958 ± 0.0188 | **0.3359 ± 0.0265** | 0.3114 ± 0.0337 | 0.3279 ± 0.0286 |
+| Rayleigh | 0.2549 ± 0.0025 | **0.2609 ± 0.0014** | 0.2463 ± 0.0170 | 0.2517 ± 0.0046 |
+
+- 结论：Enron 保留 MLP；Crime 若优先追求最高 F1，使用 MLP+P2+P3，若优先运行效率，LR+P2+P3 以约 4.6–4.7 倍速度获得接近的 F1。不存在适合所有数据集的统一分类器，上采样也不能替代候选和训练增强。
+- 结果目录：`results_v1_1_p5_model_*_10db/`、`results_v1_1_p5_balance_*_10db/`、`results_v1_1_p5_crime_combinations_*_10db/`（本地忽略，不提交）。
+
+### 2026-09-16：P6 Rayleigh 完美 CSI 后验校准
+
+- 代码复核确认，现有 Rayleigh 接收机使用真实瞬时复信道增益 `h` 完成相干均衡，并按 `N0/|h|²` 计算等效噪声方差，因此当前结果属于完美 CSI，而不是未均衡 Rayleigh。
+- 批量运行器新增 `--channel-tau-e`、`--channel-beta`、`--channel-temperature` 和 `--max-background-pairs` 透传；参数写入结构化结果元数据，默认值保持 v1.0 行为。
+- 10 dB、三个 channel seed 的 `tau_e` 扫描显示阈值具有数据集依赖：Enron 在 0.58 最好（0.3058 ± 0.0068），Crime 在 0.50 更稳（0.2411 ± 0.0139）。因此不将数据集专用阈值固化为全局默认。
+- `channel_beta=1.5` 对稀疏先验与 16-QAM LLR 的相对权重进行校准，在五个小数据集上形成更一致的改善：
+
+| 数据集 | beta=1.0，Rayleigh 10 dB | beta=1.5，Rayleigh 10 dB |
+|---|---:|---:|
+| Enron | 0.3058 ± 0.0068 | 0.3041 ± 0.0042 |
+| P.School | 0.5402 ± 0.0030 | 0.5596 ± 0.0017 |
+| H.School | 0.5652 ± 0.0033 | 0.5958 ± 0.0037 |
+| Directors | 0.0129 ± 0.0182 | 0.0499 ± 0.0353 |
+| Crime | 0.1911 ± 0.0631 | 0.2725 ± 0.0041 |
+
+- 单种子 0–20 dB 曲线的平均 F1 变化：Enron +0.0086、P.School +0.0228、H.School +0.0411、Directors +0.0485、Crime +0.0481；Crime 在全部 11 个 SNR 点均提升。
+- 与 P2+P3 组合时，Crime-Rayleigh 由 0.2609 ± 0.0014 提升到 0.2859 ± 0.0198；Enron 则由 0.2979 ± 0.0056 降到 0.2936 ± 0.0170，说明困难数据集可组合使用，但不建议作为 Enron 的默认组合。
+- 新增独立 `--rayleigh-csi-mode perfect|estimated|statistical`；`estimated` 使用给定信道估计误差方差下的条件 Rayleigh 后验，`statistical` 对未知瞬时增益进行边缘化。
+- 信道估计噪声使用独立随机数流，因此相同 seed 的三种模式共享相同真实衰落和 AWGN realization；默认 `perfect` 的接收图和逐边后验与修改前逐位一致。
+- `channel_beta=1.5`、10 dB、三个配对 seed 的 CSI 敏感性如下：
+
+| CSI 设置 | Enron F1 | Crime F1 |
+|---|---:|---:|
+| perfect | 0.3041 ± 0.0042 | 0.2725 ± 0.0041 |
+| estimated，误差方差 0.01 | 0.2975 ± 0.0133 | 0.2357 ± 0.0444 |
+| estimated，误差方差 0.05 | 0.2879 ± 0.0211 | 0.2371 ± 0.0140 |
+| estimated，误差方差 0.10 | 0.2844 ± 0.0063 | 0.1419 ± 0.0849 |
+
+- 仅统计 CSI 时，当前 16-QAM 第一比特在未知随机相位下的似然退化为相同的幅度混合，后验等于稀疏边先验；单 seed 结果为 Enron 0.0646、Crime 0.1305。这是通信模型的可辨识性限制，不能与完美 CSI 主曲线直接比较。
+- 结论：`channel_beta=1.5` 是当前 Rayleigh 完美 CSI 的推荐实验配置，但仍保持显式开关、默认 1.0，以保证 v1.0 回归兼容。论文图表必须明确标注 CSI 模式；估计 CSI 与统计 CSI 仅作为独立鲁棒性/边界实验。
+- 结果目录：`results_v1_1_p6_tau_*_rayleigh_10db/`、`results_v1_1_p6_beta_*_rayleigh_10db/`、`results_v1_1_p6_external_beta_*_rayleigh_10db/`、`results_v1_1_p6_beta_1p5_rayleigh_0_20_step2/`、`results_v1_1_p6_beta_1p5_p2_p3_rayleigh_10db/`、`results_v1_1_p6_estimated_csi_paired_*_rayleigh_10db/`、`results_v1_1_p6_statistical_csi_rayleigh_10db/`（本地忽略，不提交）。

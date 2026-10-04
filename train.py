@@ -183,6 +183,112 @@ def train(dataloader, args, logger):
                     thresholds=(threshold1, threshold2))
 
 
+def tuning_validate(dataloader, args, logger):
+    """Evaluate hyperparameters on an outer split of training candidates only.
+
+    Threshold selection, when enabled, happens on a second split inside the
+    outer-fit partition.  Consequently neither model fitting nor ranking uses
+    test labels.  Candidate coverage is folded into ``objective_f1`` so a
+    configuration cannot win merely by classifying a tiny search universe.
+    """
+    groups = dataloader.split_train()
+    group_names = ('max_clique', 'nested_clique')
+    validation_labels, validation_predictions = [], []
+    group_metrics = {}
+    thresholds = {}
+
+    for group_index, ((features, labels), group_name) in enumerate(
+            zip(groups, group_names)):
+        labels = np.asarray(labels, dtype=int)
+        counts = Counter(labels.tolist())
+        # A genuinely single-class candidate group can still be validated via
+        # DummyClassifier.  A two-class group with a singleton minority cannot
+        # be split safely and is therefore skipped.
+        if (features.shape[0] < 4
+                or (len(counts) > 1 and min(counts.values()) < 2)):
+            logger.warning(
+                'Tuning outer validation skips %s: rows=%d labels=%s.',
+                group_name, features.shape[0], dict(counts))
+            group_metrics[group_name] = {
+                'status': 'skipped', 'rows': int(features.shape[0]),
+                'label_counts': {str(key): int(value)
+                                 for key, value in counts.items()},
+            }
+            continue
+
+        indices = np.arange(features.shape[0])
+        fit_indices, validation_indices = train_test_split(
+            indices, test_size=args.tuning_validation_fraction,
+            random_state=args.seed + group_index,
+            stratify=labels if len(counts) > 1 else None)
+        model = get_model(args, dataloader)
+        model, threshold = _fit_with_threshold(
+            model, features[fit_indices], labels[fit_indices], args, logger,
+            '{}-outer-fit'.format(group_name))
+        scores = _positive_scores(model, features[validation_indices])
+        predictions = (scores >= threshold).astype(int)
+        held_labels = labels[validation_indices]
+        validation_labels.append(held_labels)
+        validation_predictions.append(predictions)
+        thresholds[group_name] = float(threshold)
+        true_positive = int(((held_labels == 1) & (predictions == 1)).sum())
+        predicted_positive = int((predictions == 1).sum())
+        actual_positive = int((held_labels == 1).sum())
+        precision = true_positive / predicted_positive if predicted_positive else 0.0
+        recall = true_positive / actual_positive if actual_positive else 0.0
+        group_metrics[group_name] = {
+            'status': 'ok', 'fit_rows': int(len(fit_indices)),
+            'validation_rows': int(len(validation_indices)),
+            'validation_positives': actual_positive,
+            'predicted_positives': predicted_positive,
+            'precision': precision, 'recall': recall,
+            'f1': _binary_f1(held_labels, predictions),
+            'threshold': float(threshold),
+        }
+
+    if not validation_labels:
+        raise RuntimeError(
+            'No candidate group has enough positive and negative rows for '
+            'training-only validation.')
+
+    labels = np.hstack(validation_labels)
+    predictions = np.hstack(validation_predictions)
+    true_positive = int(((labels == 1) & (predictions == 1)).sum())
+    predicted_positive = int((predictions == 1).sum())
+    actual_positive = int((labels == 1).sum())
+    precision = true_positive / predicted_positive if predicted_positive else 0.0
+    candidate_conditional_recall = (
+        true_positive / actual_positive if actual_positive else 0.0)
+
+    candidates = set(dataloader.cliques['final_cliques_train'])
+    truth = set(dataloader.graphs['simplicies_train'])
+    candidate_recall = len(candidates & truth) / len(truth) if truth else 0.0
+    estimated_recall = candidate_recall * candidate_conditional_recall
+    objective_f1 = (2.0 * precision * estimated_recall
+                    / (precision + estimated_recall)
+                    if precision + estimated_recall else 0.0)
+    result = {
+        'protocol': 'nested_training_only_holdout',
+        'objective_f1': objective_f1,
+        'candidate_binary_f1': _binary_f1(labels, predictions),
+        'precision': precision,
+        'candidate_conditional_recall': candidate_conditional_recall,
+        'candidate_recall': candidate_recall,
+        'estimated_end_to_end_recall': estimated_recall,
+        'validation_rows': int(len(labels)),
+        'validation_positives': actual_positive,
+        'predicted_positives': predicted_positive,
+        'decision_thresholds': thresholds,
+        'groups': group_metrics,
+    }
+    logger.info(
+        'Tuning Validation: objective_f1 %.6f, precision %.6f, '
+        'candidate_recall %.6f, conditional_recall %.6f',
+        objective_f1, precision, candidate_recall,
+        candidate_conditional_recall)
+    return {'tuning_validation': result, '_reconstructed_cliques': set()}
+
+
 def evaluate(models, dataloader, args, logger, thresholds=None):
     model1, model2 = models if len(models) > 1 else (models[0], models[0])
     thresholds = thresholds or (args.decision_threshold, args.decision_threshold)

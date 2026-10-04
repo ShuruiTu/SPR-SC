@@ -189,10 +189,14 @@ if __name__ == '__main__':
             extra_cliques.update(compute_training_cliques(extra_graphs, args, logger))
             additional_loaders.append(DataLoader(extra_graphs, extra_cliques, args, logger))
         dataloader.augment_training(additional_loaders)
-    outcome = train(dataloader, args, logger)
+    if args.tuning_validation_only:
+        logger.info('Hyperparameter tuning mode: test evaluation and all baselines are skipped.')
+        outcome = tuning_validate(dataloader, args, logger)
+    else:
+        outcome = train(dataloader, args, logger)
     reconstructed = outcome.pop('_reconstructed_cliques')
 
-    if args.enable_storage_metrics:
+    if args.enable_storage_metrics and not args.tuning_validation_only:
         outcome['storage'] = storage_metrics(graphs, reconstructed)
         logger.info('Storage Metrics: %s', outcome['storage'])
     if args.enable_runtime_metrics:
@@ -230,6 +234,21 @@ if __name__ == '__main__':
                 'train_channel_replicates': args.train_channel_replicates,
                 'train_snr_offsets': args.train_snr_offsets,
                 'model': args.model,
+                'epochs': args.epochs,
+                'learning_rate': args.lr,
+                'mlp_hidden_layers': args.mlp_hidden_layers,
+                'mlp_alpha': args.mlp_alpha,
+                'mlp_early_stopping': args.mlp_early_stopping,
+                'mlp_validation_fraction': args.mlp_validation_fraction,
+                'mlp_n_iter_no_change': args.mlp_n_iter_no_change,
+                'logistic_c': args.logistic_c,
+                'logistic_max_iter': args.logistic_max_iter,
+                'logistic_class_weight': args.logistic_class_weight,
+                'rf_n_estimators': args.rf_n_estimators,
+                'rf_max_depth': args.rf_max_depth,
+                'rf_min_samples_leaf': args.rf_min_samples_leaf,
+                'rf_max_features': args.rf_max_features,
+                'rf_class_weight': args.rf_class_weight,
                 'class_balance': args.class_balance,
                 'upsample_positive_ratio': args.upsample_positive_ratio,
                 'channel_tau_e': args.channel_tau_e,
@@ -237,6 +256,8 @@ if __name__ == '__main__':
                 'channel_temperature': args.channel_temperature,
                 'rayleigh_csi_mode': args.rayleigh_csi_mode,
                 'rayleigh_csi_error_variance': args.rayleigh_csi_error_variance,
+                'tuning_validation_only': args.tuning_validation_only,
+                'tuning_validation_fraction': args.tuning_validation_fraction,
             },
             'projection': telemetry,
             'outcome': outcome,

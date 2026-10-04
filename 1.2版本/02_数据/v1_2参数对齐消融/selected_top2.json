@@ -1,0 +1,11 @@
+{
+  "selection_rule": "two highest best-variant mean F1 among the four datasets",
+  "datasets": [
+    "fb_auto",
+    "school2"
+  ],
+  "scores": {
+    "fb_auto": 0.8072587449402535,
+    "school2": 0.7072701382109124
+  }
+}

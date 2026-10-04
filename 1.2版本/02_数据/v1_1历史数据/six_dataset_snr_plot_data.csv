@@ -1,0 +1,661 @@
+dataset,channel,snr_db,method,f1,source
+crime,AWGN,0,DEMON,0.0208,snr_baselines.csv
+crime,AWGN,0,ECC,0.0208,snr_baselines.csv
+crime,AWGN,0,Max Clique,0.1299,snr_baselines.csv
+crime,AWGN,0,SHyRe-count,0.1299,snr_baselines.csv
+crime,AWGN,0,SHyRe-soft-count,0.1299,snr_baselines.csv
+crime,AWGN,2,DEMON,0.0367,snr_baselines.csv
+crime,AWGN,2,ECC,0.0367,snr_baselines.csv
+crime,AWGN,2,Max Clique,0.11,snr_baselines.csv
+crime,AWGN,2,SHyRe-count,0.11,snr_baselines.csv
+crime,AWGN,2,SHyRe-soft-count,0.1125,snr_baselines.csv
+crime,AWGN,4,DEMON,0.0766,snr_baselines.csv
+crime,AWGN,4,ECC,0.0758,snr_baselines.csv
+crime,AWGN,4,Max Clique,0.1203,snr_baselines.csv
+crime,AWGN,4,SHyRe-count,0.1203,snr_baselines.csv
+crime,AWGN,4,SHyRe-soft-count,0.1201,snr_baselines.csv
+crime,AWGN,6,DEMON,0.1297,snr_baselines.csv
+crime,AWGN,6,ECC,0.1184,snr_baselines.csv
+crime,AWGN,6,Max Clique,0.1434,snr_baselines.csv
+crime,AWGN,6,SHyRe-count,0.1454,snr_baselines.csv
+crime,AWGN,6,SHyRe-soft-count,0.1475,snr_baselines.csv
+crime,AWGN,8,DEMON,0.1968,snr_baselines.csv
+crime,AWGN,8,ECC,0.1667,snr_baselines.csv
+crime,AWGN,8,Max Clique,0.1732,snr_baselines.csv
+crime,AWGN,8,SHyRe-count,0.1799,snr_baselines.csv
+crime,AWGN,8,SHyRe-soft-count,0.1854,snr_baselines.csv
+crime,AWGN,10,DEMON,0.3144,snr_baselines.csv
+crime,AWGN,10,ECC,0.2409,snr_baselines.csv
+crime,AWGN,10,Max Clique,0.2273,snr_baselines.csv
+crime,AWGN,10,SHyRe-count,0.2321,snr_baselines.csv
+crime,AWGN,10,SHyRe-soft-count,0.2373,snr_baselines.csv
+crime,AWGN,12,DEMON,0.5385,snr_baselines.csv
+crime,AWGN,12,ECC,0.3779,snr_baselines.csv
+crime,AWGN,12,Max Clique,0.3362,snr_baselines.csv
+crime,AWGN,12,SHyRe-count,0.3372,snr_baselines.csv
+crime,AWGN,12,SHyRe-soft-count,0.3362,snr_baselines.csv
+crime,AWGN,14,DEMON,0.735,snr_baselines.csv
+crime,AWGN,14,ECC,0.5771,snr_baselines.csv
+crime,AWGN,14,Max Clique,0.5439,snr_baselines.csv
+crime,AWGN,14,SHyRe-count,0.5439,snr_baselines.csv
+crime,AWGN,14,SHyRe-soft-count,0.5436,snr_baselines.csv
+crime,AWGN,16,DEMON,0.7534,snr_baselines.csv
+crime,AWGN,16,ECC,0.7957,snr_baselines.csv
+crime,AWGN,16,Max Clique,0.8126,snr_baselines.csv
+crime,AWGN,16,SHyRe-count,0.8199,snr_baselines.csv
+crime,AWGN,16,SHyRe-soft-count,0.8124,snr_baselines.csv
+crime,AWGN,18,DEMON,0.7643,snr_baselines.csv
+crime,AWGN,18,ECC,0.8559,snr_baselines.csv
+crime,AWGN,18,Max Clique,0.875,snr_baselines.csv
+crime,AWGN,18,SHyRe-count,0.8842,snr_baselines.csv
+crime,AWGN,18,SHyRe-soft-count,0.8814,snr_baselines.csv
+crime,AWGN,20,DEMON,0.779,snr_baselines.csv
+crime,AWGN,20,ECC,0.8622,snr_baselines.csv
+crime,AWGN,20,Max Clique,0.8812,snr_baselines.csv
+crime,AWGN,20,SHyRe-count,0.8884,snr_baselines.csv
+crime,AWGN,20,SHyRe-soft-count,0.8879,snr_baselines.csv
+crime,RAYLEIGH,0,DEMON,0.0288,snr_baselines.csv
+crime,RAYLEIGH,0,ECC,0.0288,snr_baselines.csv
+crime,RAYLEIGH,0,Max Clique,0.1145,snr_baselines.csv
+crime,RAYLEIGH,0,SHyRe-count,0.1145,snr_baselines.csv
+crime,RAYLEIGH,0,SHyRe-soft-count,0.1145,snr_baselines.csv
+crime,RAYLEIGH,2,DEMON,0.0398,snr_baselines.csv
+crime,RAYLEIGH,2,ECC,0.0397,snr_baselines.csv
+crime,RAYLEIGH,2,Max Clique,0.1114,snr_baselines.csv
+crime,RAYLEIGH,2,SHyRe-count,0.1114,snr_baselines.csv
+crime,RAYLEIGH,2,SHyRe-soft-count,0.1114,snr_baselines.csv
+crime,RAYLEIGH,4,DEMON,0.0736,snr_baselines.csv
+crime,RAYLEIGH,4,ECC,0.0727,snr_baselines.csv
+crime,RAYLEIGH,4,Max Clique,0.1152,snr_baselines.csv
+crime,RAYLEIGH,4,SHyRe-count,0.1152,snr_baselines.csv
+crime,RAYLEIGH,4,SHyRe-soft-count,0.121,snr_baselines.csv
+crime,RAYLEIGH,6,DEMON,0.1051,snr_baselines.csv
+crime,RAYLEIGH,6,ECC,0.0984,snr_baselines.csv
+crime,RAYLEIGH,6,Max Clique,0.1354,snr_baselines.csv
+crime,RAYLEIGH,6,SHyRe-count,0.1354,snr_baselines.csv
+crime,RAYLEIGH,6,SHyRe-soft-count,0.1503,snr_baselines.csv
+crime,RAYLEIGH,8,DEMON,0.1431,snr_baselines.csv
+crime,RAYLEIGH,8,ECC,0.1279,snr_baselines.csv
+crime,RAYLEIGH,8,Max Clique,0.1488,snr_baselines.csv
+crime,RAYLEIGH,8,SHyRe-count,0.1488,snr_baselines.csv
+crime,RAYLEIGH,8,SHyRe-soft-count,0.1651,snr_baselines.csv
+crime,RAYLEIGH,10,DEMON,0.212,snr_baselines.csv
+crime,RAYLEIGH,10,ECC,0.173,snr_baselines.csv
+crime,RAYLEIGH,10,Max Clique,0.184,snr_baselines.csv
+crime,RAYLEIGH,10,SHyRe-count,0.1864,snr_baselines.csv
+crime,RAYLEIGH,10,SHyRe-soft-count,0.189,snr_baselines.csv
+crime,RAYLEIGH,12,DEMON,0.2963,snr_baselines.csv
+crime,RAYLEIGH,12,ECC,0.213,snr_baselines.csv
+crime,RAYLEIGH,12,Max Clique,0.2093,snr_baselines.csv
+crime,RAYLEIGH,12,SHyRe-count,0.2108,snr_baselines.csv
+crime,RAYLEIGH,12,SHyRe-soft-count,0.2202,snr_baselines.csv
+crime,RAYLEIGH,14,DEMON,0.4128,snr_baselines.csv
+crime,RAYLEIGH,14,ECC,0.2928,snr_baselines.csv
+crime,RAYLEIGH,14,Max Clique,0.271,snr_baselines.csv
+crime,RAYLEIGH,14,SHyRe-count,0.2749,snr_baselines.csv
+crime,RAYLEIGH,14,SHyRe-soft-count,0.275,snr_baselines.csv
+crime,RAYLEIGH,16,DEMON,0.506,snr_baselines.csv
+crime,RAYLEIGH,16,ECC,0.375,snr_baselines.csv
+crime,RAYLEIGH,16,Max Clique,0.339,snr_baselines.csv
+crime,RAYLEIGH,16,SHyRe-count,0.3385,snr_baselines.csv
+crime,RAYLEIGH,16,SHyRe-soft-count,0.3357,snr_baselines.csv
+crime,RAYLEIGH,18,DEMON,0.6449,snr_baselines.csv
+crime,RAYLEIGH,18,ECC,0.4788,snr_baselines.csv
+crime,RAYLEIGH,18,Max Clique,0.4651,snr_baselines.csv
+crime,RAYLEIGH,18,SHyRe-count,0.4719,snr_baselines.csv
+crime,RAYLEIGH,18,SHyRe-soft-count,0.4689,snr_baselines.csv
+crime,RAYLEIGH,20,DEMON,0.677,snr_baselines.csv
+crime,RAYLEIGH,20,ECC,0.5698,snr_baselines.csv
+crime,RAYLEIGH,20,Max Clique,0.5597,snr_baselines.csv
+crime,RAYLEIGH,20,SHyRe-count,0.5638,snr_baselines.csv
+crime,RAYLEIGH,20,SHyRe-soft-count,0.5589,snr_baselines.csv
+directors,AWGN,0,DEMON,0.0,snr_baselines.csv
+directors,AWGN,0,ECC,0.0,snr_baselines.csv
+directors,AWGN,0,Max Clique,0.0,snr_baselines.csv
+directors,AWGN,0,SHyRe-count,0.0,snr_baselines.csv
+directors,AWGN,0,SHyRe-soft-count,0.0,snr_baselines.csv
+directors,AWGN,2,DEMON,0.0,snr_baselines.csv
+directors,AWGN,2,ECC,0.0,snr_baselines.csv
+directors,AWGN,2,Max Clique,0.0,snr_baselines.csv
+directors,AWGN,2,SHyRe-count,0.0,snr_baselines.csv
+directors,AWGN,2,SHyRe-soft-count,0.0,snr_baselines.csv
+directors,AWGN,4,DEMON,0.0103,snr_baselines.csv
+directors,AWGN,4,ECC,0.0101,snr_baselines.csv
+directors,AWGN,4,Max Clique,0.0074,snr_baselines.csv
+directors,AWGN,4,SHyRe-count,0.0074,snr_baselines.csv
+directors,AWGN,4,SHyRe-soft-count,0.0074,snr_baselines.csv
+directors,AWGN,6,DEMON,0.0231,snr_baselines.csv
+directors,AWGN,6,ECC,0.0125,snr_baselines.csv
+directors,AWGN,6,Max Clique,0.0111,snr_baselines.csv
+directors,AWGN,6,SHyRe-count,0.0111,snr_baselines.csv
+directors,AWGN,6,SHyRe-soft-count,0.0111,snr_baselines.csv
+directors,AWGN,8,DEMON,0.0909,snr_baselines.csv
+directors,AWGN,8,ECC,0.0248,snr_baselines.csv
+directors,AWGN,8,Max Clique,0.0226,snr_baselines.csv
+directors,AWGN,8,SHyRe-count,0.0226,snr_baselines.csv
+directors,AWGN,8,SHyRe-soft-count,0.0226,snr_baselines.csv
+directors,AWGN,10,DEMON,0.2442,snr_baselines.csv
+directors,AWGN,10,ECC,0.0529,snr_baselines.csv
+directors,AWGN,10,Max Clique,0.0466,snr_baselines.csv
+directors,AWGN,10,SHyRe-count,0.0466,snr_baselines.csv
+directors,AWGN,10,SHyRe-soft-count,0.0466,snr_baselines.csv
+directors,AWGN,12,DEMON,0.6047,snr_baselines.csv
+directors,AWGN,12,ECC,0.1253,snr_baselines.csv
+directors,AWGN,12,Max Clique,0.108,snr_baselines.csv
+directors,AWGN,12,SHyRe-count,0.108,snr_baselines.csv
+directors,AWGN,12,SHyRe-soft-count,0.108,snr_baselines.csv
+directors,AWGN,14,DEMON,0.8517,snr_baselines.csv
+directors,AWGN,14,ECC,0.3172,snr_baselines.csv
+directors,AWGN,14,Max Clique,0.2884,snr_baselines.csv
+directors,AWGN,14,SHyRe-count,0.2884,snr_baselines.csv
+directors,AWGN,14,SHyRe-soft-count,0.2884,snr_baselines.csv
+directors,AWGN,16,DEMON,0.9073,snr_baselines.csv
+directors,AWGN,16,ECC,0.7137,snr_baselines.csv
+directors,AWGN,16,Max Clique,0.7137,snr_baselines.csv
+directors,AWGN,16,SHyRe-count,0.7137,snr_baselines.csv
+directors,AWGN,16,SHyRe-soft-count,0.7137,snr_baselines.csv
+directors,AWGN,18,DEMON,0.9353,snr_baselines.csv
+directors,AWGN,18,ECC,0.9854,snr_baselines.csv
+directors,AWGN,18,Max Clique,0.9854,snr_baselines.csv
+directors,AWGN,18,SHyRe-count,0.9854,snr_baselines.csv
+directors,AWGN,18,SHyRe-soft-count,0.9854,snr_baselines.csv
+directors,AWGN,20,DEMON,0.9552,snr_baselines.csv
+directors,AWGN,20,ECC,1.0,snr_baselines.csv
+directors,AWGN,20,Max Clique,1.0,snr_baselines.csv
+directors,AWGN,20,SHyRe-count,1.0,snr_baselines.csv
+directors,AWGN,20,SHyRe-soft-count,1.0,snr_baselines.csv
+directors,RAYLEIGH,0,DEMON,0.0,snr_baselines.csv
+directors,RAYLEIGH,0,ECC,0.0,snr_baselines.csv
+directors,RAYLEIGH,0,Max Clique,0.0,snr_baselines.csv
+directors,RAYLEIGH,0,SHyRe-count,0.0,snr_baselines.csv
+directors,RAYLEIGH,0,SHyRe-soft-count,0.0,snr_baselines.csv
+directors,RAYLEIGH,2,DEMON,0.0,snr_baselines.csv
+directors,RAYLEIGH,2,ECC,0.0,snr_baselines.csv
+directors,RAYLEIGH,2,Max Clique,0.0,snr_baselines.csv
+directors,RAYLEIGH,2,SHyRe-count,0.0,snr_baselines.csv
+directors,RAYLEIGH,2,SHyRe-soft-count,0.0,snr_baselines.csv
+directors,RAYLEIGH,4,DEMON,0.0056,snr_baselines.csv
+directors,RAYLEIGH,4,ECC,0.0055,snr_baselines.csv
+directors,RAYLEIGH,4,Max Clique,0.0037,snr_baselines.csv
+directors,RAYLEIGH,4,SHyRe-count,0.0037,snr_baselines.csv
+directors,RAYLEIGH,4,SHyRe-soft-count,0.0037,snr_baselines.csv
+directors,RAYLEIGH,6,DEMON,0.0149,snr_baselines.csv
+directors,RAYLEIGH,6,ECC,0.0093,snr_baselines.csv
+directors,RAYLEIGH,6,Max Clique,0.0074,snr_baselines.csv
+directors,RAYLEIGH,6,SHyRe-count,0.0074,snr_baselines.csv
+directors,RAYLEIGH,6,SHyRe-soft-count,0.0074,snr_baselines.csv
+directors,RAYLEIGH,8,DEMON,0.0235,snr_baselines.csv
+directors,RAYLEIGH,8,ECC,0.0128,snr_baselines.csv
+directors,RAYLEIGH,8,Max Clique,0.0111,snr_baselines.csv
+directors,RAYLEIGH,8,SHyRe-count,0.0111,snr_baselines.csv
+directors,RAYLEIGH,8,SHyRe-soft-count,0.0111,snr_baselines.csv
+directors,RAYLEIGH,10,DEMON,0.0385,snr_baselines.csv
+directors,RAYLEIGH,10,ECC,0.0124,snr_baselines.csv
+directors,RAYLEIGH,10,Max Clique,0.011,snr_baselines.csv
+directors,RAYLEIGH,10,SHyRe-count,0.011,snr_baselines.csv
+directors,RAYLEIGH,10,SHyRe-soft-count,0.011,snr_baselines.csv
+directors,RAYLEIGH,12,DEMON,0.1572,snr_baselines.csv
+directors,RAYLEIGH,12,ECC,0.0399,snr_baselines.csv
+directors,RAYLEIGH,12,Max Clique,0.034,snr_baselines.csv
+directors,RAYLEIGH,12,SHyRe-count,0.034,snr_baselines.csv
+directors,RAYLEIGH,12,SHyRe-soft-count,0.034,snr_baselines.csv
+directors,RAYLEIGH,14,DEMON,0.2536,snr_baselines.csv
+directors,RAYLEIGH,14,ECC,0.055,snr_baselines.csv
+directors,RAYLEIGH,14,Max Clique,0.044,snr_baselines.csv
+directors,RAYLEIGH,14,SHyRe-count,0.044,snr_baselines.csv
+directors,RAYLEIGH,14,SHyRe-soft-count,0.044,snr_baselines.csv
+directors,RAYLEIGH,16,DEMON,0.4897,snr_baselines.csv
+directors,RAYLEIGH,16,ECC,0.085,snr_baselines.csv
+directors,RAYLEIGH,16,Max Clique,0.0742,snr_baselines.csv
+directors,RAYLEIGH,16,SHyRe-count,0.0742,snr_baselines.csv
+directors,RAYLEIGH,16,SHyRe-soft-count,0.0742,snr_baselines.csv
+directors,RAYLEIGH,18,DEMON,0.6778,snr_baselines.csv
+directors,RAYLEIGH,18,ECC,0.142,snr_baselines.csv
+directors,RAYLEIGH,18,Max Clique,0.1279,snr_baselines.csv
+directors,RAYLEIGH,18,SHyRe-count,0.1279,snr_baselines.csv
+directors,RAYLEIGH,18,SHyRe-soft-count,0.1279,snr_baselines.csv
+directors,RAYLEIGH,20,DEMON,0.8018,snr_baselines.csv
+directors,RAYLEIGH,20,ECC,0.2025,snr_baselines.csv
+directors,RAYLEIGH,20,Max Clique,0.1899,snr_baselines.csv
+directors,RAYLEIGH,20,SHyRe-count,0.1899,snr_baselines.csv
+directors,RAYLEIGH,20,SHyRe-soft-count,0.1899,snr_baselines.csv
+enron,AWGN,0,DEMON,0.0791,snr_baselines.csv
+enron,AWGN,0,ECC,0.0903,snr_baselines.csv
+enron,AWGN,0,Max Clique,0.0794,snr_baselines.csv
+enron,AWGN,0,SHyRe-count,0.0934,snr_baselines.csv
+enron,AWGN,0,SHyRe-soft-count,0.0503,snr_baselines.csv
+enron,AWGN,2,DEMON,0.0677,snr_baselines.csv
+enron,AWGN,2,ECC,0.092,snr_baselines.csv
+enron,AWGN,2,Max Clique,0.0625,snr_baselines.csv
+enron,AWGN,2,SHyRe-count,0.1155,snr_baselines.csv
+enron,AWGN,2,SHyRe-soft-count,0.1154,snr_baselines.csv
+enron,AWGN,4,DEMON,0.0597,snr_baselines.csv
+enron,AWGN,4,ECC,0.077,snr_baselines.csv
+enron,AWGN,4,Max Clique,0.0501,snr_baselines.csv
+enron,AWGN,4,SHyRe-count,0.1349,snr_baselines.csv
+enron,AWGN,4,SHyRe-soft-count,0.182,snr_baselines.csv
+enron,AWGN,6,DEMON,0.0504,snr_baselines.csv
+enron,AWGN,6,ECC,0.0878,snr_baselines.csv
+enron,AWGN,6,Max Clique,0.0487,snr_baselines.csv
+enron,AWGN,6,SHyRe-count,0.1547,snr_baselines.csv
+enron,AWGN,6,SHyRe-soft-count,0.1913,snr_baselines.csv
+enron,AWGN,8,DEMON,0.0495,snr_baselines.csv
+enron,AWGN,8,ECC,0.1026,snr_baselines.csv
+enron,AWGN,8,Max Clique,0.0476,snr_baselines.csv
+enron,AWGN,8,SHyRe-count,0.1845,snr_baselines.csv
+enron,AWGN,8,SHyRe-soft-count,0.2539,snr_baselines.csv
+enron,AWGN,10,DEMON,0.0457,snr_baselines.csv
+enron,AWGN,10,ECC,0.1072,snr_baselines.csv
+enron,AWGN,10,Max Clique,0.0482,snr_baselines.csv
+enron,AWGN,10,SHyRe-count,0.2125,snr_baselines.csv
+enron,AWGN,10,SHyRe-soft-count,0.2441,snr_baselines.csv
+enron,AWGN,12,DEMON,0.0553,snr_baselines.csv
+enron,AWGN,12,ECC,0.1186,snr_baselines.csv
+enron,AWGN,12,Max Clique,0.0575,snr_baselines.csv
+enron,AWGN,12,SHyRe-count,0.1855,snr_baselines.csv
+enron,AWGN,12,SHyRe-soft-count,0.1639,snr_baselines.csv
+enron,AWGN,14,DEMON,0.0522,snr_baselines.csv
+enron,AWGN,14,ECC,0.1116,snr_baselines.csv
+enron,AWGN,14,Max Clique,0.0668,snr_baselines.csv
+enron,AWGN,14,SHyRe-count,0.1758,snr_baselines.csv
+enron,AWGN,14,SHyRe-soft-count,0.2158,snr_baselines.csv
+enron,AWGN,16,DEMON,0.0459,snr_baselines.csv
+enron,AWGN,16,ECC,0.116,snr_baselines.csv
+enron,AWGN,16,Max Clique,0.0705,snr_baselines.csv
+enron,AWGN,16,SHyRe-count,0.2185,snr_baselines.csv
+enron,AWGN,16,SHyRe-soft-count,0.1969,snr_baselines.csv
+enron,AWGN,18,DEMON,0.046,snr_baselines.csv
+enron,AWGN,18,ECC,0.1216,snr_baselines.csv
+enron,AWGN,18,Max Clique,0.0785,snr_baselines.csv
+enron,AWGN,18,SHyRe-count,0.2321,snr_baselines.csv
+enron,AWGN,18,SHyRe-soft-count,0.2195,snr_baselines.csv
+enron,AWGN,20,DEMON,0.0459,snr_baselines.csv
+enron,AWGN,20,ECC,0.124,snr_baselines.csv
+enron,AWGN,20,Max Clique,0.0805,snr_baselines.csv
+enron,AWGN,20,SHyRe-count,0.2285,snr_baselines.csv
+enron,AWGN,20,SHyRe-soft-count,0.2141,snr_baselines.csv
+enron,RAYLEIGH,0,DEMON,0.1088,snr_baselines.csv
+enron,RAYLEIGH,0,ECC,0.1152,snr_baselines.csv
+enron,RAYLEIGH,0,Max Clique,0.1073,snr_baselines.csv
+enron,RAYLEIGH,0,SHyRe-count,0.0892,snr_baselines.csv
+enron,RAYLEIGH,0,SHyRe-soft-count,0.0956,snr_baselines.csv
+enron,RAYLEIGH,2,DEMON,0.0976,snr_baselines.csv
+enron,RAYLEIGH,2,ECC,0.1119,snr_baselines.csv
+enron,RAYLEIGH,2,Max Clique,0.0967,snr_baselines.csv
+enron,RAYLEIGH,2,SHyRe-count,0.0977,snr_baselines.csv
+enron,RAYLEIGH,2,SHyRe-soft-count,0.1167,snr_baselines.csv
+enron,RAYLEIGH,4,DEMON,0.0789,snr_baselines.csv
+enron,RAYLEIGH,4,ECC,0.109,snr_baselines.csv
+enron,RAYLEIGH,4,Max Clique,0.0777,snr_baselines.csv
+enron,RAYLEIGH,4,SHyRe-count,0.1348,snr_baselines.csv
+enron,RAYLEIGH,4,SHyRe-soft-count,0.1197,snr_baselines.csv
+enron,RAYLEIGH,6,DEMON,0.0589,snr_baselines.csv
+enron,RAYLEIGH,6,ECC,0.0985,snr_baselines.csv
+enron,RAYLEIGH,6,Max Clique,0.0587,snr_baselines.csv
+enron,RAYLEIGH,6,SHyRe-count,0.1404,snr_baselines.csv
+enron,RAYLEIGH,6,SHyRe-soft-count,0.1773,snr_baselines.csv
+enron,RAYLEIGH,8,DEMON,0.0441,snr_baselines.csv
+enron,RAYLEIGH,8,ECC,0.0745,snr_baselines.csv
+enron,RAYLEIGH,8,Max Clique,0.0443,snr_baselines.csv
+enron,RAYLEIGH,8,SHyRe-count,0.1636,snr_baselines.csv
+enron,RAYLEIGH,8,SHyRe-soft-count,0.1767,snr_baselines.csv
+enron,RAYLEIGH,10,DEMON,0.0426,snr_baselines.csv
+enron,RAYLEIGH,10,ECC,0.085,snr_baselines.csv
+enron,RAYLEIGH,10,Max Clique,0.0334,snr_baselines.csv
+enron,RAYLEIGH,10,SHyRe-count,0.1753,snr_baselines.csv
+enron,RAYLEIGH,10,SHyRe-soft-count,0.1738,snr_baselines.csv
+enron,RAYLEIGH,12,DEMON,0.0536,snr_baselines.csv
+enron,RAYLEIGH,12,ECC,0.0968,snr_baselines.csv
+enron,RAYLEIGH,12,Max Clique,0.0376,snr_baselines.csv
+enron,RAYLEIGH,12,SHyRe-count,0.214,snr_baselines.csv
+enron,RAYLEIGH,12,SHyRe-soft-count,0.2093,snr_baselines.csv
+enron,RAYLEIGH,14,DEMON,0.0521,snr_baselines.csv
+enron,RAYLEIGH,14,ECC,0.0971,snr_baselines.csv
+enron,RAYLEIGH,14,Max Clique,0.0406,snr_baselines.csv
+enron,RAYLEIGH,14,SHyRe-count,0.2095,snr_baselines.csv
+enron,RAYLEIGH,14,SHyRe-soft-count,0.2077,snr_baselines.csv
+enron,RAYLEIGH,16,DEMON,0.051,snr_baselines.csv
+enron,RAYLEIGH,16,ECC,0.1124,snr_baselines.csv
+enron,RAYLEIGH,16,Max Clique,0.0495,snr_baselines.csv
+enron,RAYLEIGH,16,SHyRe-count,0.206,snr_baselines.csv
+enron,RAYLEIGH,16,SHyRe-soft-count,0.2322,snr_baselines.csv
+enron,RAYLEIGH,18,DEMON,0.0538,snr_baselines.csv
+enron,RAYLEIGH,18,ECC,0.1141,snr_baselines.csv
+enron,RAYLEIGH,18,Max Clique,0.0514,snr_baselines.csv
+enron,RAYLEIGH,18,SHyRe-count,0.2041,snr_baselines.csv
+enron,RAYLEIGH,18,SHyRe-soft-count,0.2381,snr_baselines.csv
+enron,RAYLEIGH,20,DEMON,0.0544,snr_baselines.csv
+enron,RAYLEIGH,20,ECC,0.1161,snr_baselines.csv
+enron,RAYLEIGH,20,Max Clique,0.0566,snr_baselines.csv
+enron,RAYLEIGH,20,SHyRe-count,0.1945,snr_baselines.csv
+enron,RAYLEIGH,20,SHyRe-soft-count,0.2246,snr_baselines.csv
+hosts,AWGN,0,DEMON,0.0096,snr_baselines.csv
+hosts,AWGN,0,ECC,0.0075,snr_baselines.csv
+hosts,AWGN,0,Max Clique,0.0137,snr_baselines.csv
+hosts,AWGN,0,SHyRe-count,0.0446,snr_baselines.csv
+hosts,AWGN,0,SHyRe-soft-count,0.0496,snr_baselines.csv
+hosts,AWGN,2,DEMON,0.0176,snr_baselines.csv
+hosts,AWGN,2,ECC,0.0098,snr_baselines.csv
+hosts,AWGN,2,Max Clique,0.0082,snr_baselines.csv
+hosts,AWGN,2,SHyRe-count,0.0745,snr_baselines.csv
+hosts,AWGN,2,SHyRe-soft-count,0.0506,snr_baselines.csv
+hosts,AWGN,4,DEMON,0.0279,snr_baselines.csv
+hosts,AWGN,4,ECC,0.0226,snr_baselines.csv
+hosts,AWGN,4,Max Clique,0.0043,snr_baselines.csv
+hosts,AWGN,4,SHyRe-count,0.0274,snr_baselines.csv
+hosts,AWGN,4,SHyRe-soft-count,0.036,snr_baselines.csv
+hosts,AWGN,6,DEMON,0.0375,snr_baselines.csv
+hosts,AWGN,6,ECC,0.0234,snr_baselines.csv
+hosts,AWGN,6,Max Clique,0.0017,snr_baselines.csv
+hosts,AWGN,6,SHyRe-count,0.0086,snr_baselines.csv
+hosts,AWGN,6,SHyRe-soft-count,0.0081,snr_baselines.csv
+hosts,AWGN,8,DEMON,0.0602,snr_baselines.csv
+hosts,AWGN,8,ECC,0.0422,snr_baselines.csv
+hosts,AWGN,8,Max Clique,0.0006,snr_baselines.csv
+hosts,AWGN,8,SHyRe-count,0.0073,snr_baselines.csv
+hosts,AWGN,8,SHyRe-soft-count,0.0054,snr_baselines.csv
+hosts,AWGN,10,DEMON,0.0643,snr_baselines.csv
+hosts,AWGN,10,ECC,0.0701,snr_baselines.csv
+hosts,AWGN,10,Max Clique,0.0001,snr_baselines.csv
+hosts,AWGN,10,SHyRe-count,0.0005,snr_baselines.csv
+hosts,AWGN,10,SHyRe-soft-count,0.0004,snr_baselines.csv
+hosts,AWGN,12,DEMON,0.1033,snr_baselines.csv
+hosts,AWGN,12,ECC,0.1395,snr_baselines.csv
+hosts,AWGN,12,Max Clique,0.0,snr_baselines.csv
+hosts,AWGN,12,SHyRe-count,0.0002,snr_baselines.csv
+hosts,AWGN,12,SHyRe-soft-count,0.0001,snr_baselines.csv
+hosts,AWGN,14,DEMON,0.1247,snr_baselines.csv
+hosts,AWGN,14,ECC,0.271,snr_baselines.csv
+hosts,AWGN,14,Max Clique,0.0001,snr_baselines.csv
+hosts,AWGN,14,SHyRe-count,0.0002,snr_baselines.csv
+hosts,AWGN,14,SHyRe-soft-count,0.0001,snr_baselines.csv
+hosts,AWGN,16,DEMON,0.1636,snr_baselines.csv
+hosts,AWGN,16,ECC,0.4323,snr_baselines.csv
+hosts,AWGN,16,Max Clique,0.2071,snr_baselines.csv
+hosts,AWGN,16,SHyRe-count,0.5493,snr_baselines.csv
+hosts,AWGN,16,SHyRe-soft-count,0.5564,snr_baselines.csv
+hosts,AWGN,18,DEMON,0.1407,snr_baselines.csv
+hosts,AWGN,18,ECC,0.563,snr_baselines.csv
+hosts,AWGN,18,Max Clique,0.3574,snr_baselines.csv
+hosts,AWGN,18,SHyRe-count,0.6431,snr_baselines.csv
+hosts,AWGN,18,SHyRe-soft-count,0.6344,snr_baselines.csv
+hosts,AWGN,20,DEMON,0.1477,snr_baselines.csv
+hosts,AWGN,20,ECC,0.5816,snr_baselines.csv
+hosts,AWGN,20,Max Clique,0.3661,snr_baselines.csv
+hosts,AWGN,20,SHyRe-count,0.6593,snr_baselines.csv
+hosts,AWGN,20,SHyRe-soft-count,0.6521,snr_baselines.csv
+hosts,RAYLEIGH,0,DEMON,0.0077,snr_baselines.csv
+hosts,RAYLEIGH,0,ECC,0.0065,snr_baselines.csv
+hosts,RAYLEIGH,0,Max Clique,0.02,snr_baselines.csv
+hosts,RAYLEIGH,0,SHyRe-count,0.0461,snr_baselines.csv
+hosts,RAYLEIGH,0,SHyRe-soft-count,0.0635,snr_baselines.csv
+hosts,RAYLEIGH,2,DEMON,0.0115,snr_baselines.csv
+hosts,RAYLEIGH,2,ECC,0.0088,snr_baselines.csv
+hosts,RAYLEIGH,2,Max Clique,0.0135,snr_baselines.csv
+hosts,RAYLEIGH,2,SHyRe-count,0.0789,snr_baselines.csv
+hosts,RAYLEIGH,2,SHyRe-soft-count,0.0811,snr_baselines.csv
+hosts,RAYLEIGH,4,DEMON,0.0132,snr_baselines.csv
+hosts,RAYLEIGH,4,ECC,0.0087,snr_baselines.csv
+hosts,RAYLEIGH,4,Max Clique,0.0091,snr_baselines.csv
+hosts,RAYLEIGH,4,SHyRe-count,0.0906,snr_baselines.csv
+hosts,RAYLEIGH,4,SHyRe-soft-count,0.0613,snr_baselines.csv
+hosts,RAYLEIGH,6,DEMON,0.0166,snr_baselines.csv
+hosts,RAYLEIGH,6,ECC,0.0107,snr_baselines.csv
+hosts,RAYLEIGH,6,Max Clique,0.0044,snr_baselines.csv
+hosts,RAYLEIGH,6,SHyRe-count,0.035,snr_baselines.csv
+hosts,RAYLEIGH,6,SHyRe-soft-count,0.0232,snr_baselines.csv
+hosts,RAYLEIGH,8,DEMON,0.0312,snr_baselines.csv
+hosts,RAYLEIGH,8,ECC,0.0197,snr_baselines.csv
+hosts,RAYLEIGH,8,Max Clique,0.0025,snr_baselines.csv
+hosts,RAYLEIGH,8,SHyRe-count,0.0129,snr_baselines.csv
+hosts,RAYLEIGH,8,SHyRe-soft-count,0.0106,snr_baselines.csv
+hosts,RAYLEIGH,10,DEMON,0.0501,snr_baselines.csv
+hosts,RAYLEIGH,10,ECC,0.0332,snr_baselines.csv
+hosts,RAYLEIGH,10,Max Clique,0.0012,snr_baselines.csv
+hosts,RAYLEIGH,10,SHyRe-count,0.0083,snr_baselines.csv
+hosts,RAYLEIGH,10,SHyRe-soft-count,0.0064,snr_baselines.csv
+hosts,RAYLEIGH,12,DEMON,0.0654,snr_baselines.csv
+hosts,RAYLEIGH,12,ECC,0.0406,snr_baselines.csv
+hosts,RAYLEIGH,12,Max Clique,0.0004,snr_baselines.csv
+hosts,RAYLEIGH,12,SHyRe-count,0.0069,snr_baselines.csv
+hosts,RAYLEIGH,12,SHyRe-soft-count,0.0045,snr_baselines.csv
+hosts,RAYLEIGH,14,DEMON,0.0719,snr_baselines.csv
+hosts,RAYLEIGH,14,ECC,0.0524,snr_baselines.csv
+hosts,RAYLEIGH,14,Max Clique,0.0001,snr_baselines.csv
+hosts,RAYLEIGH,14,SHyRe-count,0.0005,snr_baselines.csv
+hosts,RAYLEIGH,14,SHyRe-soft-count,0.0003,snr_baselines.csv
+hosts,RAYLEIGH,16,DEMON,0.0842,snr_baselines.csv
+hosts,RAYLEIGH,16,ECC,0.0803,snr_baselines.csv
+hosts,RAYLEIGH,16,Max Clique,0.0001,snr_baselines.csv
+hosts,RAYLEIGH,16,SHyRe-count,0.0004,snr_baselines.csv
+hosts,RAYLEIGH,16,SHyRe-soft-count,0.0002,snr_baselines.csv
+hosts,RAYLEIGH,18,DEMON,0.1029,snr_baselines.csv
+hosts,RAYLEIGH,18,ECC,0.1178,snr_baselines.csv
+hosts,RAYLEIGH,18,Max Clique,0.0,snr_baselines.csv
+hosts,RAYLEIGH,18,SHyRe-count,0.0001,snr_baselines.csv
+hosts,RAYLEIGH,18,SHyRe-soft-count,0.0001,snr_baselines.csv
+hosts,RAYLEIGH,20,DEMON,0.0984,snr_baselines.csv
+hosts,RAYLEIGH,20,ECC,0.1798,snr_baselines.csv
+hosts,RAYLEIGH,20,Max Clique,0.0,snr_baselines.csv
+hosts,RAYLEIGH,20,SHyRe-count,0.0001,snr_baselines.csv
+hosts,RAYLEIGH,20,SHyRe-soft-count,0.0001,snr_baselines.csv
+school,AWGN,0,DEMON,0.0302,snr_baselines.csv
+school,AWGN,0,ECC,0.074,snr_baselines.csv
+school,AWGN,0,Max Clique,0.0363,snr_baselines.csv
+school,AWGN,0,SHyRe-count,0.3034,snr_baselines.csv
+school,AWGN,0,SHyRe-soft-count,0.2157,snr_baselines.csv
+school,AWGN,2,DEMON,0.0155,snr_baselines.csv
+school,AWGN,2,ECC,0.0551,snr_baselines.csv
+school,AWGN,2,Max Clique,0.0171,snr_baselines.csv
+school,AWGN,2,SHyRe-count,0.4228,snr_baselines.csv
+school,AWGN,2,SHyRe-soft-count,0.4232,snr_baselines.csv
+school,AWGN,4,DEMON,0.0054,snr_baselines.csv
+school,AWGN,4,ECC,0.0462,snr_baselines.csv
+school,AWGN,4,Max Clique,0.0061,snr_baselines.csv
+school,AWGN,4,SHyRe-count,0.4843,snr_baselines.csv
+school,AWGN,4,SHyRe-soft-count,0.4843,snr_baselines.csv
+school,AWGN,6,DEMON,0.0027,snr_baselines.csv
+school,AWGN,6,ECC,0.0406,snr_baselines.csv
+school,AWGN,6,Max Clique,0.0035,snr_baselines.csv
+school,AWGN,6,SHyRe-count,0.5321,snr_baselines.csv
+school,AWGN,6,SHyRe-soft-count,0.5316,snr_baselines.csv
+school,AWGN,8,DEMON,0.0024,snr_baselines.csv
+school,AWGN,8,ECC,0.0358,snr_baselines.csv
+school,AWGN,8,Max Clique,0.0028,snr_baselines.csv
+school,AWGN,8,SHyRe-count,0.5682,snr_baselines.csv
+school,AWGN,8,SHyRe-soft-count,0.5682,snr_baselines.csv
+school,AWGN,10,DEMON,0.0018,snr_baselines.csv
+school,AWGN,10,ECC,0.0338,snr_baselines.csv
+school,AWGN,10,Max Clique,0.0021,snr_baselines.csv
+school,AWGN,10,SHyRe-count,0.5933,snr_baselines.csv
+school,AWGN,10,SHyRe-soft-count,0.5915,snr_baselines.csv
+school,AWGN,12,DEMON,0.0018,snr_baselines.csv
+school,AWGN,12,ECC,0.0323,snr_baselines.csv
+school,AWGN,12,Max Clique,0.0018,snr_baselines.csv
+school,AWGN,12,SHyRe-count,0.6079,snr_baselines.csv
+school,AWGN,12,SHyRe-soft-count,0.6089,snr_baselines.csv
+school,AWGN,14,DEMON,0.0018,snr_baselines.csv
+school,AWGN,14,ECC,0.0336,snr_baselines.csv
+school,AWGN,14,Max Clique,0.0019,snr_baselines.csv
+school,AWGN,14,SHyRe-count,0.622,snr_baselines.csv
+school,AWGN,14,SHyRe-soft-count,0.6159,snr_baselines.csv
+school,AWGN,16,DEMON,0.0021,snr_baselines.csv
+school,AWGN,16,ECC,0.0397,snr_baselines.csv
+school,AWGN,16,Max Clique,0.0019,snr_baselines.csv
+school,AWGN,16,SHyRe-count,0.6202,snr_baselines.csv
+school,AWGN,16,SHyRe-soft-count,0.6134,snr_baselines.csv
+school,AWGN,18,DEMON,0.0018,snr_baselines.csv
+school,AWGN,18,ECC,0.0381,snr_baselines.csv
+school,AWGN,18,Max Clique,0.0018,snr_baselines.csv
+school,AWGN,18,SHyRe-count,0.6176,snr_baselines.csv
+school,AWGN,18,SHyRe-soft-count,0.6201,snr_baselines.csv
+school,AWGN,20,DEMON,0.0018,snr_baselines.csv
+school,AWGN,20,ECC,0.0389,snr_baselines.csv
+school,AWGN,20,Max Clique,0.0018,snr_baselines.csv
+school,AWGN,20,SHyRe-count,0.6177,snr_baselines.csv
+school,AWGN,20,SHyRe-soft-count,0.6239,snr_baselines.csv
+school,RAYLEIGH,0,DEMON,0.0602,snr_baselines.csv
+school,RAYLEIGH,0,ECC,0.0936,snr_baselines.csv
+school,RAYLEIGH,0,Max Clique,0.0658,snr_baselines.csv
+school,RAYLEIGH,0,SHyRe-count,0.0954,snr_baselines.csv
+school,RAYLEIGH,0,SHyRe-soft-count,0.0035,snr_baselines.csv
+school,RAYLEIGH,2,DEMON,0.0376,snr_baselines.csv
+school,RAYLEIGH,2,ECC,0.0806,snr_baselines.csv
+school,RAYLEIGH,2,Max Clique,0.0419,snr_baselines.csv
+school,RAYLEIGH,2,SHyRe-count,0.2719,snr_baselines.csv
+school,RAYLEIGH,2,SHyRe-soft-count,0.194,snr_baselines.csv
+school,RAYLEIGH,4,DEMON,0.023,snr_baselines.csv
+school,RAYLEIGH,4,ECC,0.0672,snr_baselines.csv
+school,RAYLEIGH,4,Max Clique,0.0274,snr_baselines.csv
+school,RAYLEIGH,4,SHyRe-count,0.4057,snr_baselines.csv
+school,RAYLEIGH,4,SHyRe-soft-count,0.4028,snr_baselines.csv
+school,RAYLEIGH,6,DEMON,0.0122,snr_baselines.csv
+school,RAYLEIGH,6,ECC,0.0524,snr_baselines.csv
+school,RAYLEIGH,6,Max Clique,0.0136,snr_baselines.csv
+school,RAYLEIGH,6,SHyRe-count,0.4612,snr_baselines.csv
+school,RAYLEIGH,6,SHyRe-soft-count,0.4608,snr_baselines.csv
+school,RAYLEIGH,8,DEMON,0.0072,snr_baselines.csv
+school,RAYLEIGH,8,ECC,0.0462,snr_baselines.csv
+school,RAYLEIGH,8,Max Clique,0.0078,snr_baselines.csv
+school,RAYLEIGH,8,SHyRe-count,0.5039,snr_baselines.csv
+school,RAYLEIGH,8,SHyRe-soft-count,0.5051,snr_baselines.csv
+school,RAYLEIGH,10,DEMON,0.0048,snr_baselines.csv
+school,RAYLEIGH,10,ECC,0.0462,snr_baselines.csv
+school,RAYLEIGH,10,Max Clique,0.0048,snr_baselines.csv
+school,RAYLEIGH,10,SHyRe-count,0.5395,snr_baselines.csv
+school,RAYLEIGH,10,SHyRe-soft-count,0.5394,snr_baselines.csv
+school,RAYLEIGH,12,DEMON,0.0039,snr_baselines.csv
+school,RAYLEIGH,12,ECC,0.0367,snr_baselines.csv
+school,RAYLEIGH,12,Max Clique,0.0034,snr_baselines.csv
+school,RAYLEIGH,12,SHyRe-count,0.5714,snr_baselines.csv
+school,RAYLEIGH,12,SHyRe-soft-count,0.5697,snr_baselines.csv
+school,RAYLEIGH,14,DEMON,0.0033,snr_baselines.csv
+school,RAYLEIGH,14,ECC,0.0377,snr_baselines.csv
+school,RAYLEIGH,14,Max Clique,0.0025,snr_baselines.csv
+school,RAYLEIGH,14,SHyRe-count,0.5909,snr_baselines.csv
+school,RAYLEIGH,14,SHyRe-soft-count,0.5855,snr_baselines.csv
+school,RAYLEIGH,16,DEMON,0.0027,snr_baselines.csv
+school,RAYLEIGH,16,ECC,0.0398,snr_baselines.csv
+school,RAYLEIGH,16,Max Clique,0.0021,snr_baselines.csv
+school,RAYLEIGH,16,SHyRe-count,0.5998,snr_baselines.csv
+school,RAYLEIGH,16,SHyRe-soft-count,0.5976,snr_baselines.csv
+school,RAYLEIGH,18,DEMON,0.0018,snr_baselines.csv
+school,RAYLEIGH,18,ECC,0.0356,snr_baselines.csv
+school,RAYLEIGH,18,Max Clique,0.0017,snr_baselines.csv
+school,RAYLEIGH,18,SHyRe-count,0.6071,snr_baselines.csv
+school,RAYLEIGH,18,SHyRe-soft-count,0.606,snr_baselines.csv
+school,RAYLEIGH,20,DEMON,0.0018,snr_baselines.csv
+school,RAYLEIGH,20,ECC,0.0392,snr_baselines.csv
+school,RAYLEIGH,20,Max Clique,0.0018,snr_baselines.csv
+school,RAYLEIGH,20,SHyRe-count,0.6123,snr_baselines.csv
+school,RAYLEIGH,20,SHyRe-soft-count,0.6103,snr_baselines.csv
+school2,AWGN,0,DEMON,0.1631,snr_baselines.csv
+school2,AWGN,0,ECC,0.1655,snr_baselines.csv
+school2,AWGN,0,Max Clique,0.1636,snr_baselines.csv
+school2,AWGN,0,SHyRe-count,0.0903,snr_baselines.csv
+school2,AWGN,0,SHyRe-soft-count,0.1075,snr_baselines.csv
+school2,AWGN,2,DEMON,0.1707,snr_baselines.csv
+school2,AWGN,2,ECC,0.1959,snr_baselines.csv
+school2,AWGN,2,Max Clique,0.1791,snr_baselines.csv
+school2,AWGN,2,SHyRe-count,0.1726,snr_baselines.csv
+school2,AWGN,2,SHyRe-soft-count,0.1603,snr_baselines.csv
+school2,AWGN,4,DEMON,0.1279,snr_baselines.csv
+school2,AWGN,4,ECC,0.1704,snr_baselines.csv
+school2,AWGN,4,Max Clique,0.1346,snr_baselines.csv
+school2,AWGN,4,SHyRe-count,0.2794,snr_baselines.csv
+school2,AWGN,4,SHyRe-soft-count,0.2572,snr_baselines.csv
+school2,AWGN,6,DEMON,0.1004,snr_baselines.csv
+school2,AWGN,6,ECC,0.1661,snr_baselines.csv
+school2,AWGN,6,Max Clique,0.1044,snr_baselines.csv
+school2,AWGN,6,SHyRe-count,0.5237,snr_baselines.csv
+school2,AWGN,6,SHyRe-soft-count,0.4727,snr_baselines.csv
+school2,AWGN,8,DEMON,0.0845,snr_baselines.csv
+school2,AWGN,8,ECC,0.1564,snr_baselines.csv
+school2,AWGN,8,Max Clique,0.0839,snr_baselines.csv
+school2,AWGN,8,SHyRe-count,0.5912,snr_baselines.csv
+school2,AWGN,8,SHyRe-soft-count,0.5654,snr_baselines.csv
+school2,AWGN,10,DEMON,0.0709,snr_baselines.csv
+school2,AWGN,10,ECC,0.1353,snr_baselines.csv
+school2,AWGN,10,Max Clique,0.0634,snr_baselines.csv
+school2,AWGN,10,SHyRe-count,0.6417,snr_baselines.csv
+school2,AWGN,10,SHyRe-soft-count,0.6354,snr_baselines.csv
+school2,AWGN,12,DEMON,0.0638,snr_baselines.csv
+school2,AWGN,12,ECC,0.1333,snr_baselines.csv
+school2,AWGN,12,Max Clique,0.0535,snr_baselines.csv
+school2,AWGN,12,SHyRe-count,0.6789,snr_baselines.csv
+school2,AWGN,12,SHyRe-soft-count,0.6669,snr_baselines.csv
+school2,AWGN,14,DEMON,0.0586,snr_baselines.csv
+school2,AWGN,14,ECC,0.1339,snr_baselines.csv
+school2,AWGN,14,Max Clique,0.0477,snr_baselines.csv
+school2,AWGN,14,SHyRe-count,0.699,snr_baselines.csv
+school2,AWGN,14,SHyRe-soft-count,0.6848,snr_baselines.csv
+school2,AWGN,16,DEMON,0.0572,snr_baselines.csv
+school2,AWGN,16,ECC,0.1319,snr_baselines.csv
+school2,AWGN,16,Max Clique,0.0464,snr_baselines.csv
+school2,AWGN,16,SHyRe-count,0.7039,snr_baselines.csv
+school2,AWGN,16,SHyRe-soft-count,0.7042,snr_baselines.csv
+school2,AWGN,18,DEMON,0.0577,snr_baselines.csv
+school2,AWGN,18,ECC,0.128,snr_baselines.csv
+school2,AWGN,18,Max Clique,0.0465,snr_baselines.csv
+school2,AWGN,18,SHyRe-count,0.705,snr_baselines.csv
+school2,AWGN,18,SHyRe-soft-count,0.7022,snr_baselines.csv
+school2,AWGN,20,DEMON,0.0577,snr_baselines.csv
+school2,AWGN,20,ECC,0.1289,snr_baselines.csv
+school2,AWGN,20,Max Clique,0.0465,snr_baselines.csv
+school2,AWGN,20,SHyRe-count,0.7051,snr_baselines.csv
+school2,AWGN,20,SHyRe-soft-count,0.702,snr_baselines.csv
+school2,RAYLEIGH,0,DEMON,0.1609,snr_baselines.csv
+school2,RAYLEIGH,0,ECC,0.1614,snr_baselines.csv
+school2,RAYLEIGH,0,Max Clique,0.1603,snr_baselines.csv
+school2,RAYLEIGH,0,SHyRe-count,0.0206,snr_baselines.csv
+school2,RAYLEIGH,0,SHyRe-soft-count,0.0338,snr_baselines.csv
+school2,RAYLEIGH,2,DEMON,0.1771,snr_baselines.csv
+school2,RAYLEIGH,2,ECC,0.189,snr_baselines.csv
+school2,RAYLEIGH,2,Max Clique,0.178,snr_baselines.csv
+school2,RAYLEIGH,2,SHyRe-count,0.1628,snr_baselines.csv
+school2,RAYLEIGH,2,SHyRe-soft-count,0.1257,snr_baselines.csv
+school2,RAYLEIGH,4,DEMON,0.1636,snr_baselines.csv
+school2,RAYLEIGH,4,ECC,0.1889,snr_baselines.csv
+school2,RAYLEIGH,4,Max Clique,0.1692,snr_baselines.csv
+school2,RAYLEIGH,4,SHyRe-count,0.1698,snr_baselines.csv
+school2,RAYLEIGH,4,SHyRe-soft-count,0.1485,snr_baselines.csv
+school2,RAYLEIGH,6,DEMON,0.1349,snr_baselines.csv
+school2,RAYLEIGH,6,ECC,0.175,snr_baselines.csv
+school2,RAYLEIGH,6,Max Clique,0.1415,snr_baselines.csv
+school2,RAYLEIGH,6,SHyRe-count,0.2848,snr_baselines.csv
+school2,RAYLEIGH,6,SHyRe-soft-count,0.2388,snr_baselines.csv
+school2,RAYLEIGH,8,DEMON,0.1029,snr_baselines.csv
+school2,RAYLEIGH,8,ECC,0.1616,snr_baselines.csv
+school2,RAYLEIGH,8,Max Clique,0.1078,snr_baselines.csv
+school2,RAYLEIGH,8,SHyRe-count,0.4854,snr_baselines.csv
+school2,RAYLEIGH,8,SHyRe-soft-count,0.4623,snr_baselines.csv
+school2,RAYLEIGH,10,DEMON,0.0871,snr_baselines.csv
+school2,RAYLEIGH,10,ECC,0.1412,snr_baselines.csv
+school2,RAYLEIGH,10,Max Clique,0.0839,snr_baselines.csv
+school2,RAYLEIGH,10,SHyRe-count,0.5658,snr_baselines.csv
+school2,RAYLEIGH,10,SHyRe-soft-count,0.5449,snr_baselines.csv
+school2,RAYLEIGH,12,DEMON,0.0803,snr_baselines.csv
+school2,RAYLEIGH,12,ECC,0.1502,snr_baselines.csv
+school2,RAYLEIGH,12,Max Clique,0.0755,snr_baselines.csv
+school2,RAYLEIGH,12,SHyRe-count,0.6088,snr_baselines.csv
+school2,RAYLEIGH,12,SHyRe-soft-count,0.6022,snr_baselines.csv
+school2,RAYLEIGH,14,DEMON,0.0682,snr_baselines.csv
+school2,RAYLEIGH,14,ECC,0.1343,snr_baselines.csv
+school2,RAYLEIGH,14,Max Clique,0.0619,snr_baselines.csv
+school2,RAYLEIGH,14,SHyRe-count,0.6409,snr_baselines.csv
+school2,RAYLEIGH,14,SHyRe-soft-count,0.6348,snr_baselines.csv
+school2,RAYLEIGH,16,DEMON,0.0666,snr_baselines.csv
+school2,RAYLEIGH,16,ECC,0.1306,snr_baselines.csv
+school2,RAYLEIGH,16,Max Clique,0.0569,snr_baselines.csv
+school2,RAYLEIGH,16,SHyRe-count,0.6678,snr_baselines.csv
+school2,RAYLEIGH,16,SHyRe-soft-count,0.6593,snr_baselines.csv
+school2,RAYLEIGH,18,DEMON,0.0614,snr_baselines.csv
+school2,RAYLEIGH,18,ECC,0.1269,snr_baselines.csv
+school2,RAYLEIGH,18,Max Clique,0.0495,snr_baselines.csv
+school2,RAYLEIGH,18,SHyRe-count,0.6812,snr_baselines.csv
+school2,RAYLEIGH,18,SHyRe-soft-count,0.6765,snr_baselines.csv
+school2,RAYLEIGH,20,DEMON,0.0608,snr_baselines.csv
+school2,RAYLEIGH,20,ECC,0.1318,snr_baselines.csv
+school2,RAYLEIGH,20,Max Clique,0.0487,snr_baselines.csv
+school2,RAYLEIGH,20,SHyRe-count,0.6926,snr_baselines.csv
+school2,RAYLEIGH,20,SHyRe-soft-count,0.6821,snr_baselines.csv

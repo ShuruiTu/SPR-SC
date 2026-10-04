@@ -39,6 +39,21 @@ def parse_args():
     parser.add_argument("--enable-cfinder", action="store_true")
     parser.add_argument("--features", choices=("count", "motif"), default="count")
     parser.add_argument("--model", choices=("mlp", "lr", "rf"), default="mlp")
+    parser.add_argument("--epochs", type=int, default=2000)
+    parser.add_argument("--lr", type=float, default=1e-3)
+    parser.add_argument("--mlp-hidden-layers", type=int, nargs="+", default=[100])
+    parser.add_argument("--mlp-alpha", type=float, default=1e-4)
+    parser.add_argument("--mlp-early-stopping", action="store_true")
+    parser.add_argument("--mlp-validation-fraction", type=float, default=0.1)
+    parser.add_argument("--mlp-n-iter-no-change", type=int, default=10)
+    parser.add_argument("--logistic-c", type=float, default=1.0)
+    parser.add_argument("--logistic-max-iter", type=int, default=100)
+    parser.add_argument("--logistic-class-weight", choices=("none", "balanced"), default="none")
+    parser.add_argument("--rf-n-estimators", type=int, default=100)
+    parser.add_argument("--rf-max-depth", type=int, default=0)
+    parser.add_argument("--rf-min-samples-leaf", type=int, default=1)
+    parser.add_argument("--rf-max-features", choices=("sqrt", "log2", "all"), default="sqrt")
+    parser.add_argument("--rf-class-weight", choices=("none", "balanced", "balanced_subsample"), default="none")
     parser.add_argument("--class-balance", choices=("none", "upsample"), default="none")
     parser.add_argument("--upsample-positive-ratio", type=float, default=1.0 / 3.0)
     parser.add_argument("--projection-retention", type=float, default=None)
@@ -109,6 +124,19 @@ def main():
         persist(f"START dataset={dataset} channel={args.channel} snr_db={snr} seed={seed}")
         command = [sys.executable, "main.py", "--dataset", dataset, "--beta", str(beta),
                    "--features", args.features, "--model", args.model,
+                   "--epochs", str(args.epochs), "--lr", str(args.lr),
+                   "--mlp_hidden_layers", *map(str, args.mlp_hidden_layers),
+                   "--mlp_alpha", str(args.mlp_alpha),
+                   "--mlp_validation_fraction", str(args.mlp_validation_fraction),
+                   "--mlp_n_iter_no_change", str(args.mlp_n_iter_no_change),
+                   "--logistic_c", str(args.logistic_c),
+                   "--logistic_max_iter", str(args.logistic_max_iter),
+                   "--logistic_class_weight", args.logistic_class_weight,
+                   "--rf_n_estimators", str(args.rf_n_estimators),
+                   "--rf_max_depth", str(args.rf_max_depth),
+                   "--rf_min_samples_leaf", str(args.rf_min_samples_leaf),
+                   "--rf_max_features", args.rf_max_features,
+                   "--rf_class_weight", args.rf_class_weight,
                    "--channel", args.channel, "--snr_db", str(snr),
                    "--seed", str(seed), "--channel_seed", str(seed if args.channel_seed is None else args.channel_seed),
                    "--max_background_pairs", str(args.max_background_pairs),
@@ -117,6 +145,8 @@ def main():
                    "--channel_temperature", str(args.channel_temperature),
                    "--rayleigh_csi_mode", args.rayleigh_csi_mode,
                    "--rayleigh_csi_error_variance", str(args.rayleigh_csi_error_variance)]
+        if args.mlp_early_stopping:
+            command.append('--mlp_early_stopping')
         if args.class_balance != 'none':
             command.extend(['--class_balance', args.class_balance])
         if args.upsample_positive_ratio != 1.0 / 3.0:

@@ -33,8 +33,39 @@ def get_args():
     # parser.add_argument('--gnn_model', type=str, default='GIN', help='GNN model to use, valid only when model=gnn')
 
     # moderate training process
-    parser.add_argument('--epochs', type=int, default=2000, help='epochs')
-    parser.add_argument('--lr', type=float, default=1e-4, help='random seed')
+    parser.add_argument('--epochs', type=int, default=2000, help='maximum MLP iterations')
+    parser.add_argument('--lr', type=float, default=1e-3,
+                        help='MLP initial learning rate (1e-3 preserves the former sklearn default)')
+    parser.add_argument('--mlp_hidden_layers', '--mlp-hidden-layers', type=int, nargs='+',
+                        default=[100], help='MLP hidden-layer widths, e.g. 128 64')
+    parser.add_argument('--mlp_alpha', '--mlp-alpha', type=float, default=1e-4,
+                        help='MLP L2 regularization coefficient')
+    parser.add_argument('--mlp_early_stopping', '--mlp-early-stopping', action='store_true',
+                        help='enable sklearn MLP early stopping')
+    parser.add_argument('--mlp_validation_fraction', '--mlp-validation-fraction',
+                        type=float, default=0.1, help='MLP early-stopping validation fraction')
+    parser.add_argument('--mlp_n_iter_no_change', '--mlp-n-iter-no-change',
+                        type=int, default=10, help='MLP convergence/early-stopping patience')
+    parser.add_argument('--logistic_c', '--logistic-c', type=float, default=1.0,
+                        help='inverse regularization strength for logistic regression')
+    parser.add_argument('--logistic_max_iter', '--logistic-max-iter', type=int, default=100,
+                        help='maximum logistic-regression iterations')
+    parser.add_argument('--logistic_class_weight', '--logistic-class-weight',
+                        choices=['none', 'balanced'], default='none')
+    parser.add_argument('--rf_n_estimators', '--rf-n-estimators', type=int, default=100)
+    parser.add_argument('--rf_max_depth', '--rf-max-depth', type=int, default=0,
+                        help='random-forest maximum depth; 0 means unlimited')
+    parser.add_argument('--rf_min_samples_leaf', '--rf-min-samples-leaf', type=int, default=1)
+    parser.add_argument('--rf_max_features', '--rf-max-features',
+                        choices=['sqrt', 'log2', 'all'], default='sqrt')
+    parser.add_argument('--rf_class_weight', '--rf-class-weight',
+                        choices=['none', 'balanced', 'balanced_subsample'], default='none')
+    parser.add_argument('--tuning_validation_only', '--tuning-validation-only',
+                        action='store_true',
+                        help='rank a configuration using training candidates only; skip test evaluation')
+    parser.add_argument('--tuning_validation_fraction', '--tuning-validation-fraction',
+                        type=float, default=0.25,
+                        help='outer training-candidate fraction used for hyperparameter ranking')
 
     # more experiments
     parser.add_argument('--setting', type=str, default='f', help='fully supervised (f) or semi-supervised with 10% labels (s)')
@@ -113,6 +144,18 @@ def get_args():
             parser.error('--decision-threshold must be in (0, 1)')
         if not 0.0 < args.threshold_validation_fraction < 0.5:
             parser.error('--threshold-validation-fraction must be in (0, 0.5)')
+        if not 0.0 < args.tuning_validation_fraction < 0.5:
+            parser.error('--tuning-validation-fraction must be in (0, 0.5)')
+        if args.epochs < 1 or args.lr <= 0.0 or args.mlp_alpha < 0.0:
+            parser.error('--epochs must be positive, --lr positive, and --mlp-alpha non-negative')
+        if not args.mlp_hidden_layers or any(width < 1 for width in args.mlp_hidden_layers):
+            parser.error('--mlp-hidden-layers must contain positive integers')
+        if not 0.0 < args.mlp_validation_fraction < 0.5:
+            parser.error('--mlp-validation-fraction must be in (0, 0.5)')
+        if args.mlp_n_iter_no_change < 1 or args.logistic_c <= 0.0 or args.logistic_max_iter < 1:
+            parser.error('invalid MLP patience or logistic-regression parameters')
+        if args.rf_n_estimators < 1 or args.rf_max_depth < 0 or args.rf_min_samples_leaf < 1:
+            parser.error('invalid random-forest parameters')
         if not 0.0 < args.channel_candidate_tau < 1.0:
             parser.error('--channel-candidate-tau must be in (0, 1)')
         if args.channel_candidate_max_extra_edges < 0:
@@ -142,9 +185,11 @@ def get_args():
         if ((args.train_channel_replicates != 1 or args.train_snr_offsets != [0.0])
                 and args.features != 'count'):
             parser.error('multi-instance channel training currently supports count features only')
-    except:
+    except SystemExit:
+        raise
+    except Exception:
         parser.print_help()
-        sys.exit(0)
+        raise
     return args, sys.argv
 
 
